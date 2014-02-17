@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">QuizAPTAndroid</string>
+    <string name="action_settings">Settings</string>
+    <string name="emailidhint">Email address</string>
+    <string name="passwordhint">Password</string>
+    <string name="confirmpasswordhint">Confirm Password</string>
+    <string name="title_activity_login">Login</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_signup">Signup</string>
+    <string name="title_activity_start_aquiz">Start a Quiz</string>
+
+</resources>
