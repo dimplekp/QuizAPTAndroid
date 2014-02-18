@@ -73,7 +73,7 @@ public class Login extends Activity implements OnClickListener {
 		 {
 			 Intent in = new Intent(getBaseContext(), StartAQuiz.class);
 			 startActivity(in);
-			 finish(); 
+			 finish();
 		 }
 		 else
 		 {

@@ -46,7 +46,7 @@ public class Signup extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		validateLoginInput();	
 		addEntry(name, email, pass);
-		Intent loginPage = new Intent(Signup.this, Login.class);
+		Intent loginPage = new Intent(Signup.this, StartAQuiz.class);
 		startActivity(loginPage);
 		finish();
 	}
@@ -55,9 +55,9 @@ public class Signup extends Activity implements OnClickListener {
 		
 		boolean valid = false;
 		
-		String name = edtxtName.getText().toString();
-		String pass = edtxtPassword.getText().toString();
-		String email = edtxtEmail.getText().toString();
+		name = edtxtName.getText().toString();
+		pass = edtxtPassword.getText().toString();
+		email = edtxtEmail.getText().toString();
 
 		final String password = edtxtPassword.getText().toString().trim();
 		
