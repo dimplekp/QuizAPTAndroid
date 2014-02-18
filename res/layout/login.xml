@@ -5,7 +5,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity" >
     
-    <TextView android:text="New User"
+    <TextView android:text="Existing User"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left"

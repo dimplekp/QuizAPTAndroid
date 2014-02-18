@@ -21,13 +21,18 @@ public class Signup extends Activity implements OnClickListener {
 	Button btnSignup;
 	final Activity registerActivity = this;
 	final Context registerContext = this;
+	String name;
+	String email;
+	String pass;
 	
-	protected DBHelper DB = new DBHelper(Signup.this);
+	protected DBHelper DB;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.signup);
+		
+		DB = new DBHelper(Signup.this);
 		
 		edtxtName = (EditText)findViewById(R.id.fullname_txt);		
 		edtxtEmail = (EditText)findViewById(R.id.email_txt);		
@@ -38,67 +43,49 @@ public class Signup extends Activity implements OnClickListener {
 	}
 	
 	@Override
-	public void onResume() {
-		super.onResume();
-	}
-
-	@Override
-	public void onPause(){
-		super.onPause();
-	}
-
-	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-
-		case R.id.signup:
-			String name = edtxtName.getText().toString();
-			String pass = edtxtPassword.getText().toString();
-			String email = edtxtEmail.getText().toString();
-
-
-			boolean invalid = false;
-			final String password = edtxtPassword.getText().toString().trim();
-			
-			if(name.equals(""))	{
-				invalid = true;
-				Toast.makeText(getApplicationContext(), "Enter your Name", Toast.LENGTH_SHORT).show();
-			}
-			else
-			
-			if(pass.equals("")) {
-				invalid = true;
-				Toast.makeText(getApplicationContext(), "Please enter your Password", Toast.LENGTH_SHORT).show();
-			}
-			else
-				
-			if(email.equals("")) {
-				invalid = true;
-				Toast.makeText(getApplicationContext(), "Please enter your Email ID", Toast.LENGTH_SHORT).show();
-			}
-			else
-				
-			if(password.compareTo(edtxtConfirmPassword.getText().toString().trim())!=0) {
-				Toast.makeText(this.getApplicationContext(), "Password does not match.", Toast.LENGTH_SHORT).show();
-			}
-			else
-				
-			if(invalid == false) {
-				addEntry(name, email, pass);
-				Intent loginPage = new Intent(Signup.this, Login.class);
-				startActivity(loginPage);
-				finish();
-			}
-			break;
-			}
+		validateLoginInput();	
+		addEntry(name, email, pass);
+		Intent loginPage = new Intent(Signup.this, Login.class);
+		startActivity(loginPage);
+		finish();
 	}
 	
-	public void onDestroy()
-	{
-		super.onDestroy();
-		DB.close();
-	}
+	private boolean validateLoginInput() {
+		
+		boolean valid = false;
+		
+		String name = edtxtName.getText().toString();
+		String pass = edtxtPassword.getText().toString();
+		String email = edtxtEmail.getText().toString();
 
+		final String password = edtxtPassword.getText().toString().trim();
+		
+		if(name.equals(""))	{
+			valid = false;
+			Toast.makeText(getApplicationContext(), "Enter your Name", Toast.LENGTH_SHORT).show();
+		}
+		else
+		
+		if(pass.equals("")) {
+			valid = false;
+			Toast.makeText(getApplicationContext(), "Please enter your Password", Toast.LENGTH_SHORT).show();
+		}
+		else
+			
+		if(email.equals("")) {
+			valid = false;
+			Toast.makeText(getApplicationContext(), "Please enter your Email ID", Toast.LENGTH_SHORT).show();
+		}
+		else
+			
+		if(password.compareTo(edtxtConfirmPassword.getText().toString().trim())!=0) {
+			Toast.makeText(this.getApplicationContext(), "Password does not match.", Toast.LENGTH_SHORT).show();
+		}
+		
+		return valid;
+		
+	}
 	private void addEntry(String name, String email, String pass) 
 	{
 		SQLiteDatabase db = DB.getWritableDatabase();
@@ -117,4 +104,21 @@ public class Signup extends Activity implements OnClickListener {
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+	}
+
+	@Override
+	public void onPause(){
+		super.onPause();
+	}
+
+	public void onDestroy()
+	{
+		super.onDestroy();
+		DB.close();
+	}
+
 }
