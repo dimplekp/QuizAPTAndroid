@@ -48,6 +48,9 @@ public class Login extends Activity implements OnClickListener {
 		}
 	}
 	
+	/*
+	 Checks if Email id and password are entered or not.
+	 */
 	private boolean validateLoginInput() {
 		
 		boolean valid = true;
@@ -66,12 +69,14 @@ public class Login extends Activity implements OnClickListener {
 		return valid;	
 	}
 		
-	 private void validateLogin(String email, String password) 
-	 {
+	/*
+	 If login credentials matches, user gets logged in and if not, error message is displayed.
+	 */
+	 private void validateLogin(String email, String password) {
 		 boolean check = dao.ValidateLoginCredentials(email, password);
 		 if(check == true)
 		 {
-			 Intent in = new Intent(getBaseContext(), StartAQuiz.class);
+			 Intent in = new Intent(getBaseContext(), HomeScreen.class);
 			 startActivity(in);
 			 finish();
 		 }
@@ -79,10 +84,5 @@ public class Login extends Activity implements OnClickListener {
 		 {
 			 Toast.makeText(getApplicationContext(), "Login failed. Try again.", Toast.LENGTH_SHORT).show();
 		 }
-	 }
-	 
-	 public void onDestroy()
-	 {
-		 super.onDestroy();
-	 }    
+	 }   
 }

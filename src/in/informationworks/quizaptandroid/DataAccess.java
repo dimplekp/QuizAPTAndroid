@@ -1,6 +1,7 @@
 package in.informationworks.quizaptandroid;
 
 import in.informationworks.quizaptandroid.DBHelper;
+import in.informationworks.quizaptandroid.models.*;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -16,9 +17,14 @@ public class DataAccess {
 		dbHelper = new DBHelper(context);
 	}
 	
-	public long insertUser(ContentValues values) {
+	public long insertUser(String name, String pass, String email) {
 		long id = -1;
 		try {
+			ContentValues values = new ContentValues();
+			values.put("name", name);
+			values.put("password", pass);
+			values.put("email_id", email);
+			
 			db = dbHelper.getWritableDatabase();
 			id = db.insert(DBHelper.USERS_TABLE_NAME, null, values);
 		} catch (Exception e) {
@@ -27,6 +33,9 @@ public class DataAccess {
 		return id;
 	}
 	
+	/*
+	 Compare entered email id and password with the ones in database to check if they are correct or not.
+	 */
 	public boolean ValidateLoginCredentials(String email, String password) {
 		 SQLiteDatabase db = dbHelper.getReadableDatabase();
 		 String[] columns = {"_id"};
@@ -45,6 +54,27 @@ public class DataAccess {
 	 		 return true;
 	}
 	
+	/*
+	 Checks before creating a new user if user with the same email id exists or not.
+	 */
+	public boolean CheckIfUserAlreadyExist(String email) {
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		 String[] columns = {"_id"};
+		 String selection = "email_id=?";
+		 String[] selectionArg = {email};
+		 Cursor cursor = null;
+	 	 cursor = db.query(DBHelper.USERS_TABLE_NAME, columns, selection, selectionArg, null, null, null);
+	 	 
+	 	 int numberOfRows = cursor.getCount();
+	 	 
+	 	 if(numberOfRows <= 0) {
+	 		 return false;
+	 	 }
+	 	 else
+	 		 return true;
+	 }
+
+	
 	public long updateUser(ContentValues values, int userId) {
 		long id = -1;
 		try {
@@ -57,8 +87,22 @@ public class DataAccess {
 		return id;
 	}
 	
-	public Users getUser(int userId) {
-		Users user = null;
+	public User getUserById(int userId) { 
+		
+		User user = null;
+		
+		// open db
+		
+		// user retrive 
+		
+		// return
+		
+		return user;
+		
+	}
+	
+	public User getUser(int userId) {
+		User user = null;
 		try {
 			db = dbHelper.getReadableDatabase();
 			Cursor cursor = db.rawQuery("select * from "
@@ -116,8 +160,10 @@ public class DataAccess {
 		return userId;
 	}
 	
-	public Users cursorToUser(Cursor cursor) {
-		Users user = new Users();
+	public User cursorToUser(Cursor cursor) {
+		User user = new User();
+		user.getTax();
+		
 		user.setId(cursor.getInt(cursor.getColumnIndex("_id")));
 		user.setName(cursor.getString(cursor.getColumnIndex("name")));
 		user.setEmail(cursor.getString(cursor.getColumnIndex("email")));

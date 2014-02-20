@@ -35,8 +35,8 @@
             android:label="@string/title_activity_signup" >
         </activity>
         <activity
-            android:name="in.informationworks.quizaptandroid.StartAQuiz"
-            android:label="@string/title_activity_start_aquiz" >
+            android:name="in.informationworks.quizaptandroid.HomeScreen"
+            android:label="@string/title_activity_home_screen" >
         </activity>
     </application>
 

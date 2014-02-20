@@ -3,18 +3,19 @@ package in.informationworks.quizaptandroid;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class StartAQuiz extends Activity {
+public class HomeScreen extends Activity {
 
 	Button logoutButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.start_a_quiz);
+		setContentView(R.layout.home_screen);
 		
 		logoutButton = (Button) findViewById(R.id.logout);
 		
@@ -22,9 +23,8 @@ public class StartAQuiz extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-					Intent signupIntent = new Intent(StartAQuiz.this, MainActivity.class);
+					Intent signupIntent = new Intent(HomeScreen.this, MainActivity.class);
 					startActivity(signupIntent);
-					
 			}
 		});
 	}

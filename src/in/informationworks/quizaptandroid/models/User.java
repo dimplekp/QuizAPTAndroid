@@ -1,9 +1,12 @@
-package in.informationworks.quizaptandroid;
+package in.informationworks.quizaptandroid.models;
 
-public class Users {
+public class User {
+
+	private int salary;
+	private int tax_limit;
+	private int tax;
 	private int id;
 	private String name;
-	private String phoneno;
 	private String email;
 	public int getId() {
 		return id;
@@ -22,5 +25,11 @@ public class Users {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public int getTax() {
+		// Logic to calculate
+		
+		return tax;
 	}
 }

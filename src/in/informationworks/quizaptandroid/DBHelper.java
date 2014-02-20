@@ -33,7 +33,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static String PackageName = "in.informationworks.quizaptandroid";
     private static String DB_PATH = Environment.getDataDirectory()+"/data/" + PackageName + "/databases/";
     public static final String DB_FULL_PATH = DB_PATH + DATABASE_NAME;    
-        
+       
         public static DBHelper getInstance(Context ctx) {
     		
             if (mInstance == null) {
@@ -42,6 +42,9 @@ public class DBHelper extends SQLiteOpenHelper {
             return mInstance;
         }
         
+        /*
+         Created database by copying it from Assets folder. If database alredy exists, it does nothing.
+         */
         public void createDataBase() throws Exception{
 
         	boolean dbExist = checkDataBase();
@@ -63,9 +66,9 @@ public class DBHelper extends SQLiteOpenHelper {
         	}
         }
         
-        /**
+        /*
          * Check if the database already exist to avoid re-copying the file each time you open the application.
-         * @return true if it exists, false if it doesn't
+         * @return true if it exists, false if it doesn't.
          */
         private boolean checkDataBase(){
      
@@ -81,11 +84,11 @@ public class DBHelper extends SQLiteOpenHelper {
         	}
         	return checkDB != null ? true : false;
         }
-        /**
+        /*
          * Copies your database from your local assets-folder to the just created empty database in the
          * system folder, from where it can be accessed and handled.
          * This is done by transferring bytestream.
-         * */
+         */
         private void copyDataBase() throws IOException{
         	try {
      
@@ -123,6 +126,9 @@ public class DBHelper extends SQLiteOpenHelper {
         	return myDataBase;
         }
         
+        /*
+         * Closes database connection
+         */
         @Override
     	public synchronized void close() {
      
