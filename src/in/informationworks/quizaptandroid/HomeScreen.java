@@ -17,6 +17,8 @@ public class HomeScreen extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home_screen);
 		
+		// Get user_id from shared prefrences using SPAccess class.
+		
 		logoutButton = (Button) findViewById(R.id.logout);
 		
 		logoutButton.setOnClickListener(new OnClickListener() {

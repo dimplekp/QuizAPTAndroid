@@ -65,24 +65,23 @@ public class Login extends Activity implements OnClickListener {
 			valid = false;
 			Toast.makeText(getApplicationContext(), "Please enter your Password", Toast.LENGTH_SHORT).show();
 		}
-		
 		return valid;	
-	}
-		
+	}	
 	/*
 	 If login credentials matches, user gets logged in and if not, error message is displayed.
 	 */
 	 private void validateLogin(String email, String password) {
-		 boolean check = dao.ValidateLoginCredentials(email, password);
-		 if(check == true)
+		 int user_id = dao.ValidateCredentialAndGetId(email, password);
+		 if(user_id == -1)
 		 {
-			 Intent in = new Intent(getBaseContext(), HomeScreen.class);
-			 startActivity(in);
-			 finish();
+			 Toast.makeText(getApplicationContext(), "Login failed. Try again.", Toast.LENGTH_SHORT).show();
 		 }
 		 else
 		 {
-			 Toast.makeText(getApplicationContext(), "Login failed. Try again.", Toast.LENGTH_SHORT).show();
+			 // Store user_id in stored preferences using SPAccess class.
+			 Intent in = new Intent(getBaseContext(), HomeScreen.class);
+			 startActivity(in);
+			 finish(); 
 		 }
 	 }   
 }

@@ -17,7 +17,7 @@ public class DataAccess {
 		dbHelper = new DBHelper(context);
 	}
 	
-	public long insertUser(String name, String pass, String email) {
+	public long insertUser(String name, String email, String pass) {
 		long id = -1;
 		try {
 			ContentValues values = new ContentValues();
@@ -33,11 +33,13 @@ public class DataAccess {
 		return id;
 	}
 	
+	
+	
 	/*
 	 Compare entered email id and password with the ones in database to check if they are correct or not.
 	 */
 	public boolean ValidateLoginCredentials(String email, String password) {
-		 SQLiteDatabase db = dbHelper.getReadableDatabase();
+		 db = dbHelper.getReadableDatabase();
 		 String[] columns = {"_id"};
 		 String selection = "email_id=? AND password=?";
 		 String[] selectionArgs = {email,password};
@@ -54,6 +56,28 @@ public class DataAccess {
 	 		 return true;
 	}
 	
+	public int ValidateCredentialAndGetId(String email, String password) {
+		int user_id = -1;
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		String[] columns = {"_id"};
+		String selection = "email_id=? AND password=?";
+		String[] selectionArgs = {email,password};
+		Cursor cursor = null;
+		cursor = db.query(DBHelper.USERS_TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+		
+		int numberOfRows = cursor.getCount();
+		
+		if(numberOfRows <= 0)
+	 	 {
+	 		 return user_id;
+	 	 }
+	 	 else
+	 	 {
+	 		cursor.moveToFirst();
+	 		user_id = cursor.getInt(cursor.getColumnIndex("_id"));
+	    	return user_id;
+	 	 }
+	}
 	/*
 	 Checks before creating a new user if user with the same email id exists or not.
 	 */
@@ -101,6 +125,25 @@ public class DataAccess {
 		
 	}
 	
+	public int getUserid() {
+		int userId = -1;
+		try {
+			db = dbHelper.getReadableDatabase();
+			if (db != null) {
+				Cursor cursor = db.rawQuery("select _id from "
+						+ DBHelper.USERS_TABLE_NAME, null);
+				if (cursor.getCount() > 0) {
+					cursor.moveToFirst();
+					userId = cursor.getInt(cursor.getColumnIndex("_id"));
+				}
+				cursor.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return userId;
+	}
+	
 	public User getUser(int userId) {
 		User user = null;
 		try {
@@ -141,24 +184,7 @@ public class DataAccess {
 		return isRegistered;
 	}
 	
-	public int getUserid() {
-		int userId = -1;
-		try {
-			db = dbHelper.getReadableDatabase();
-			if (db != null) {
-				Cursor cursor = db.rawQuery("select _id from "
-						+ DBHelper.USERS_TABLE_NAME, null);
-				if (cursor.getCount() > 0) {
-					cursor.moveToFirst();
-					userId = cursor.getInt(cursor.getColumnIndex("_id"));
-				}
-				cursor.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return userId;
-	}
+	
 	
 	public User cursorToUser(Cursor cursor) {
 		User user = new User();
