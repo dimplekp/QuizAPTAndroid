@@ -2,9 +2,6 @@ package in.informationworks.quizaptandroid.models;
 
 public class User {
 
-	private int salary;
-	private int tax_limit;
-	private int tax;
 	private int id;
 	private String name;
 	private String email;
@@ -25,11 +22,5 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	
-	public int getTax() {
-		// Logic to calculate
-		
-		return tax;
 	}
 }

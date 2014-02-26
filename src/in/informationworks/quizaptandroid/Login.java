@@ -2,7 +2,6 @@ package in.informationworks.quizaptandroid;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,9 +17,9 @@ public class Login extends Activity implements OnClickListener {
 	long check;
 	String email;
 	String password;
-	Context baseContext;
 	DBHelper DB = null;
 	DataAccess dao;
+	SPAccess spa;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +32,7 @@ public class Login extends Activity implements OnClickListener {
 		
         btnLogin.setOnClickListener(this);
         dao = new DataAccess(this);
+        spa = new SPAccess(this);
     }
 
 	@Override
@@ -72,6 +72,7 @@ public class Login extends Activity implements OnClickListener {
 	 */
 	 private void validateLogin(String email, String password) {
 		 int user_id = dao.ValidateCredentialAndGetId(email, password);
+		 String key = "User id";
 		 if(user_id == -1)
 		 {
 			 Toast.makeText(getApplicationContext(), "Login failed. Try again.", Toast.LENGTH_SHORT).show();
@@ -79,6 +80,8 @@ public class Login extends Activity implements OnClickListener {
 		 else
 		 {
 			 // Store user_id in stored preferences using SPAccess class.
+			 //spa.DisplayUserId(String.valueOf(user_id));
+			 spa.saveId(user_id );
 			 Intent in = new Intent(getBaseContext(), HomeScreen.class);
 			 startActivity(in);
 			 finish(); 
