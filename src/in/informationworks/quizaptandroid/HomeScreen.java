@@ -17,23 +17,34 @@ import android.widget.TextView;
 public class HomeScreen extends Activity {
 
 	Button logoutButton;
-	SPAccess spa;
 	int userId;
-	TextView user_idTxt;
+	TextView userIdTxt;
+	TextView userNameTxt;
 	User userModel;
 
+	SPAccess spa;
+	DataAccess dao;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home_screen);
 		
 		spa = new SPAccess(this);
+		dao = new DataAccess(this);
 		
 		// Get user_id from shared prefrences using SPAccess class.
 		userId = spa.getUserId();
 		
-		//user_idTxt = (TextView) findViewById(R.id.user_id);
-		//user_idTxt.setText(userId);
+		User user = dao.getUser(userId);
+		final String name = user.getName();
+		
+		//Display user id stored in SharedPreferences.
+		userIdTxt = (TextView) findViewById(R.id.userId);
+		userIdTxt.setText(String.valueOf(userId));
+		
+		//Display name of a user whose id is stored in SharedPreferences.
+		userNameTxt = (TextView) findViewById(R.id.userName);
+		userNameTxt.setText(name);
 		
 		logoutButton = (Button) findViewById(R.id.logout);
 		logoutButton.setOnClickListener(new OnClickListener() {

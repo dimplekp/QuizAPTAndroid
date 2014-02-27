@@ -148,7 +148,7 @@ public class DataAccess {
 		User user = null;
 		try {
 			db = dbHelper.getReadableDatabase();
-			Cursor cursor = db.rawQuery("select name from "
+			Cursor cursor = db.rawQuery("select * from "
 					+ DBHelper.USERS_TABLE_NAME + " where _id = '"
 					+ String.valueOf(userId) + "'", null);
 			cursor.moveToFirst();
@@ -190,7 +190,7 @@ public class DataAccess {
 		User user = new User();
 		user.setId(cursor.getInt(cursor.getColumnIndex("_id")));
 		user.setName(cursor.getString(cursor.getColumnIndex("name")));
-		user.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+		user.setEmail(cursor.getString(cursor.getColumnIndex("email_id")));
 		return user;
 	}	
 }

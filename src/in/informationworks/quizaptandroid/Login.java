@@ -43,7 +43,6 @@ public class Login extends Activity implements OnClickListener {
 			if (validateLoginInput()) {
 				validateLogin(email, password);
 			}
-			
 			break;
 		}
 	}
