@@ -71,7 +71,6 @@ public class Login extends Activity implements OnClickListener {
 	 */
 	 private void validateLogin(String email, String password) {
 		 int user_id = dao.ValidateCredentialAndGetId(email, password);
-		 String key = "User id";
 		 if(user_id == -1)
 		 {
 			 Toast.makeText(getApplicationContext(), "Login failed. Try again.", Toast.LENGTH_SHORT).show();

@@ -24,6 +24,7 @@ public class Signup extends Activity implements OnClickListener {
 	String email;
 	String pass;
 	DataAccess dao;
+	SPAccess spa;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class Signup extends Activity implements OnClickListener {
 		setContentView(R.layout.signup);
 		
 		dao = new DataAccess(this);
+		spa = new SPAccess(this);
 		
 		edtxtName = (EditText)findViewById(R.id.fullname_txt);		
 		edtxtEmail = (EditText)findViewById(R.id.email_txt);		
@@ -42,11 +44,17 @@ public class Signup extends Activity implements OnClickListener {
 	
 	@Override
 	public void onClick(View v) {
-		validateLoginInput();	
-		addEntry(name, email, pass);
-		Intent loginPage = new Intent(Signup.this, HomeScreen.class);
-		startActivity(loginPage);
-		finish();
+		boolean UserStatus = validateLoginInput();
+
+		if(UserStatus == true) {
+			Intent loginPage = new Intent(Signup.this, HomeScreen.class);
+			startActivity(loginPage);
+			finish();
+		}
+		
+		else {
+			//Do nothing
+		}
 	}
 	
 	/*
@@ -54,7 +62,7 @@ public class Signup extends Activity implements OnClickListener {
 	 */
 	private boolean validateLoginInput() {
 		
-		boolean valid = false;
+		boolean valid = true;
 		
 		name = edtxtName.getText().toString();
 		pass = edtxtPassword.getText().toString();
@@ -62,27 +70,15 @@ public class Signup extends Activity implements OnClickListener {
 
 		final String password = edtxtPassword.getText().toString().trim();
 		
-		if(name.equals(""))	{
+		if(name.trim().equals("") || pass.equals("") || email.equals("") || password.compareTo(edtxtConfirmPassword.getText().toString().trim())!=0) {
 			valid = false;
-			Toast.makeText(getApplicationContext(), "Enter your Name", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "Please enter all the details properly", Toast.LENGTH_SHORT).show();
 		}
-		else
+		else {
+			valid = true;
+			addEntry(name, email, pass);					
+		}
 		
-		if(pass.equals("")) {
-			valid = false;
-			Toast.makeText(getApplicationContext(), "Please enter your Password", Toast.LENGTH_SHORT).show();
-		}
-		else
-			
-		if(email.equals("")) {
-			valid = false;
-			Toast.makeText(getApplicationContext(), "Please enter your Email ID", Toast.LENGTH_SHORT).show();
-		}
-		else
-			
-		if(password.compareTo(edtxtConfirmPassword.getText().toString().trim())!=0) {
-			Toast.makeText(this.getApplicationContext(), "Password does not match", Toast.LENGTH_SHORT).show();
-		}
 		return valid;
 	}
 	
@@ -90,12 +86,28 @@ public class Signup extends Activity implements OnClickListener {
 	 If user already exists with the email id entered, error message is displayed. If not, User gets added to the database.
 	 */
 	private void addEntry(String name, String email, String pass) {	
+		long userId = 0;
 		boolean check = dao.CheckIfUserAlreadyExist(email);
 		if(check == true) {
 			Toast.makeText(this.getApplicationContext(), "User with this email id already exist", Toast.LENGTH_SHORT).show();
 		}
 		else {
-			dao.insertUser(name, email, pass);
+			userId = dao.insertUser(name,email,pass);
+			int id = (int) (long) userId;
+			spa.saveId(id);
 		}
 	}
+	
+	/*private boolean checkExpectedEntry(int userId) {
+		if(dao.insertUser(name, email, pass)>0)
+		{
+			userId = dao.getUserid(email);
+			spa.saveId(userId);
+			return true;
+		}else
+		{
+			Toast.makeText(this.getApplicationContext(), "Please try again.", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+	}*/
 }

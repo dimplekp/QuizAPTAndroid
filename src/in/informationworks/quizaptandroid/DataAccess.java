@@ -125,13 +125,16 @@ public class DataAccess {
 		
 	}
 	
-	public int getUserid() {
+	public int getUserid(String email) {
 		int userId = -1;
+		db = dbHelper.getReadableDatabase();
+		 String[] columns = {"_id"};
+		 String selection = "email_id=?";
+		 String[] selectionArgs = {email};
+		 Cursor cursor = null;
 		try {
-			db = dbHelper.getReadableDatabase();
 			if (db != null) {
-				Cursor cursor = db.rawQuery("select _id from "
-						+ DBHelper.USERS_TABLE_NAME, null);
+				cursor = db.query(DBHelper.USERS_TABLE_NAME, columns, selection, selectionArgs, null, null, null);
 				if (cursor.getCount() > 0) {
 					cursor.moveToFirst();
 					userId = cursor.getInt(cursor.getColumnIndex("_id"));
