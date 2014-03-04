@@ -34,9 +34,9 @@ public class Quiz {
 	public void setTimeAllowed(int time_allowerd) {
 		this.time_allowerd = time_allowerd;
 	}
-
+	
 	@Override
 	  public String toString() {
 	    return name;
-	}
+	  }
 }

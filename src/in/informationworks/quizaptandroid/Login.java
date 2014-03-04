@@ -83,6 +83,7 @@ public class Login extends Activity implements OnClickListener {
 			 Intent intent = new Intent();
 			 intent.setClass(Login.this, QuizzesList.class);
 			 startActivity(intent);
+			 finish();
 		 }
 	 }   
 }
