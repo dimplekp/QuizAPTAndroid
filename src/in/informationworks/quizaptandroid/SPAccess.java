@@ -9,11 +9,10 @@ public class SPAccess {
 	Context c;
 	Editor editor;
 	SharedPreferences pref;
-	DataAccess dao = new DataAccess(c);
 	
     public SPAccess(Context context)  {
     	c= context;
-    	pref = c.getSharedPreferences("User id", 0);
+    	pref = c.getSharedPreferences("QUIZ_APT_PREFS", c.MODE_PRIVATE);
     	editor = pref.edit();
 	}
 	
@@ -26,21 +25,15 @@ public class SPAccess {
 		return pref.getInt("USER_ID", 0);
 	}
 	
-	/*public static final String MyPREFERENCES = "MyPrefs" ;
-	public int user_id;
-	Context context;
-	public void SaveId(String key, int userId) {
-		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
-		SharedPreferences.Editor editor = sharedPreferences.edit();
-		editor.putInt(key, userId);
-		editor.commit(); 
-	}
-	*/
-	
-	/*
-	public int LoadId(){
-		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
-	    user_id = sharedPreferences.getInt("user id", 0);
-	    return user_id;
-	    */
+	public boolean isUserLoggedin() {
+		
+		int value = pref.getInt("USER_ID",0);
+		pref = c.getSharedPreferences("QUIZ_APT_PREFS", 0);
+		if (value == 0) {
+			return false;
+		}
+		else {
+			return true; 	
+		}
+}
 }

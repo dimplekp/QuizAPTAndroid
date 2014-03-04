@@ -12,5 +12,6 @@
     <string name="title_activity_start_aquiz">Start a Quiz</string>
     <string name="title_activity_home_screen">Home</string>
     <string name="_id">_id</string>
+    <string name="title_activity_choose_login_signup">Choose any</string>
 
 </resources>

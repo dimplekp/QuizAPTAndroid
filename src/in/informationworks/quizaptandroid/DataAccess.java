@@ -12,9 +12,12 @@ public class DataAccess {
 
 	private SQLiteDatabase db;
 	private DBHelper dbHelper = null;
+	Context context;
+	SPAccess spa;
 	
 	public DataAccess(Context context) {
 		dbHelper = new DBHelper(context);
+		spa = new SPAccess(context);
 	}
 	
 	public long insertUser(String name, String email, String pass) {
@@ -32,8 +35,6 @@ public class DataAccess {
 		}
 		return id;
 	}
-	
-	
 	
 	/*
 	 Compare entered email id and password with the ones in database to check if they are correct or not.

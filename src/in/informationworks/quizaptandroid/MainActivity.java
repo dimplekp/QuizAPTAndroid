@@ -3,56 +3,62 @@ package in.informationworks.quizaptandroid;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 
 public class MainActivity extends Activity {
 
 	DBHelper dbHelper;
-	Button newUserButton;
-	Button existingUserButton;
+	DataAccess dao;
+	SPAccess sao;
+	
+	Boolean isUserLoggedin;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
-		try {
-            synchronized(this){
-            	dbHelper = new DBHelper(MainActivity.this);
-        		dbHelper.createDataBase();
-        		dbHelper.close();
-            }
-        }
-        catch(Exception ex){
-           	return;
-        }
+		setContentView(R.layout.splash);
+		dao = new DataAccess(this);
+		sao = new SPAccess(this);
+		try{
+			new Thread() {
+				@Override
+				public void run(){
+					try {
+						synchronized(this){
+							dbHelper = new DBHelper(MainActivity.this);
+							dbHelper.createDataBase();
+							dbHelper.close();
+						}
+						sleep(2000);
+					}
+					catch(Exception ex){
+						return;
+					}
 		
-		newUserButton = (Button) findViewById(R.id.button1);
-		existingUserButton = (Button) findViewById(R.id.button2);
+					isUserLoggedin = sao.isUserLoggedin();
+					//If no user is logged in, open first activity
+					if(isUserLoggedin == false) {
+			
+						Intent intent = new Intent();
+						intent.setClass(MainActivity.this, ChooseLoginSignup.class);
+						startActivity(intent);
+						finish();
+						
+					}
+					//If user is already logged in, open Home screen directly
+					else {
+						
+						Intent intent = new Intent();
+						intent.setClass(MainActivity.this, HomeScreen.class);
+						startActivity(intent);
+						finish();
+						
+					}
 		
-		newUserButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				
-					Intent signupIntent = new Intent(MainActivity.this, Signup.class);
-					startActivity(signupIntent);
-			}
-		});
-		
-		existingUserButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				
-					Intent signupIntent = new Intent(MainActivity.this, Login.class);
-					startActivity(signupIntent);
-			}
-		});
-	}
-	
-	@Override
-	public void onBackPressed()
-	{
-	     moveTaskToBack(true);
+				}
+			}.start();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 }
