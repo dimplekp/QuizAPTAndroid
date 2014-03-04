@@ -25,6 +25,15 @@ public class SPAccess {
 		return pref.getInt("USER_ID", 0);
 	}
 	
+	public void saveQuizName(String QuizName) {
+		editor.putString("Quiz_Name", QuizName);
+		editor.commit();
+	}
+	
+	public String getQuizName() {
+		return pref.getString("Quiz_Name", null);
+	}
+	
 	public boolean isUserLoggedin() {
 		
 		int value = pref.getInt("USER_ID",0);
@@ -35,5 +44,5 @@ public class SPAccess {
 		else {
 			return true; 	
 		}
-}
+	}
 }

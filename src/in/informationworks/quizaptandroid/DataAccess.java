@@ -1,10 +1,14 @@
 package in.informationworks.quizaptandroid;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import in.informationworks.quizaptandroid.DBHelper;
 import in.informationworks.quizaptandroid.models.*;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
@@ -188,7 +192,45 @@ public class DataAccess {
 		return isRegistered;
 	}
 	
-	
+	//return cursor over the list of all items in the database
+    public Cursor fetchAllQuizzes() {
+    	
+    	db = dbHelper.getReadableDatabase();
+    	String[] columns = {"name"};
+    	return db.query(DBHelper.QUIZZES_TABLE_NAME, columns, 
+                       null, null, null, null, null);
+    }
+
+    //return a cursor positioned at the defined item
+    public Cursor fetchQuiz(long rowId) throws SQLException {
+    	String[] columns = {"_id", "name", "no_of_questions", "time_allowed_in_minutes"};
+    	
+        Cursor mCursor = db.query(true, DBHelper.QUIZZES_TABLE_NAME, columns, "_id" + "=" + rowId, null, null, null, null, null);
+        if(mCursor != null){
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
+    
+    public List<Quiz> getAllQuizzes() {
+    	List<Quiz> quizList = new ArrayList<Quiz>();
+    	try {
+    		db = dbHelper.getReadableDatabase();
+    	
+    		Cursor cursor = db.query(DBHelper.QUIZZES_TABLE_NAME, null, null, null, null, null, null);
+    		cursor.moveToFirst();
+    		while(!cursor.isAfterLast()) {
+    			Quiz quiz = cursorToQuiz(cursor);
+    			quizList.add(quiz);
+    			cursor.moveToNext();
+    		}
+    		cursor.close();
+    	
+    	} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return quizList;
+    }
 	
 	public User cursorToUser(Cursor cursor) {
 		User user = new User();
@@ -196,5 +238,13 @@ public class DataAccess {
 		user.setName(cursor.getString(cursor.getColumnIndex("name")));
 		user.setEmail(cursor.getString(cursor.getColumnIndex("email_id")));
 		return user;
-	}	
+	}
+	
+	public Quiz cursorToQuiz(Cursor cursor) {
+		Quiz quiz = new Quiz();
+		//quiz.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+		quiz.setName(cursor.getString(cursor.getColumnIndex("name")));
+		//quiz.setNoOfQuestions(cursor.getString(cursor.getColumnIndex("no_of_questions")));
+		return quiz;
+	}
 }

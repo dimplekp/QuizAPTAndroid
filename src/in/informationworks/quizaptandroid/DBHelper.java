@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -22,6 +23,14 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String KEY_ROWID = "_id";
 	public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email_id";
+    public static final String QUIZ_ROWID = "_id";
+	public static final String QUIZ_NAME = "name";
+    public static final String QUIZ_QUE_NOS = "no_of_questions";
+    public static final String QUIZ_TIME_ALLOWED = "time_allowed_in_minutes";
+
+    public static final String USERS_TABLE_NAME = "user";
+    public static final String QUIZZES_TABLE_NAME = "Quizzes";
+    
     private final Context myContext;
     private static DBHelper mInstance;
     private SQLiteDatabase myDataBase;
@@ -29,7 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
     DBHelper DB = null;
     private static final String DATABASE_NAME = "quizapt.sqlite";
     private static final int DATABASE_VERSION = 2;
-    public static final String USERS_TABLE_NAME = "user";
+    
     public static String PackageName = "in.informationworks.quizaptandroid";
     private static String DB_PATH = Environment.getDataDirectory()+"/data/" + PackageName + "/databases/";
     public static final String DB_FULL_PATH = DB_PATH + DATABASE_NAME;    
@@ -41,6 +50,12 @@ public class DBHelper extends SQLiteOpenHelper {
             }
             return mInstance;
         }
+        
+        @Override
+		public void onCreate(SQLiteDatabase db) {
+			// TODO Auto-generated method stub
+			
+		}
         
         /*
          Created database by copying it from Assets folder. If database alredy exists, it does nothing.
@@ -126,6 +141,8 @@ public class DBHelper extends SQLiteOpenHelper {
         	return myDataBase;
         }
         
+      
+        
         /*
          * Closes database connection
          */
@@ -137,11 +154,7 @@ public class DBHelper extends SQLiteOpenHelper {
         	    super.close();
     	}
 
-		@Override
-		public void onCreate(SQLiteDatabase db) {
-			// TODO Auto-generated method stub
-			
-		}
+		
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

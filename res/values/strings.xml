@@ -13,5 +13,7 @@
     <string name="title_activity_home_screen">Home</string>
     <string name="_id">_id</string>
     <string name="title_activity_choose_login_signup">Choose any</string>
+    <string name="title_activity_quizzes_list">List of Quizzes</string>
+    <string name="title_activity_selected_quiz">SelectedQuiz</string>
 
 </resources>

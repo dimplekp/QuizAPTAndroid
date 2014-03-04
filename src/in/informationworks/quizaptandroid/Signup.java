@@ -47,7 +47,7 @@ public class Signup extends Activity implements OnClickListener {
 		boolean UserStatus = validateLoginInput();
 
 		if(UserStatus == true) {
-			Intent loginPage = new Intent(Signup.this, HomeScreen.class);
+			Intent loginPage = new Intent(Signup.this, QuizzesList.class);
 			startActivity(loginPage);
 			finish();
 		}
@@ -97,17 +97,4 @@ public class Signup extends Activity implements OnClickListener {
 			spa.saveId(id);
 		}
 	}
-	
-	/*private boolean checkExpectedEntry(int userId) {
-		if(dao.insertUser(name, email, pass)>0)
-		{
-			userId = dao.getUserid(email);
-			spa.saveId(userId);
-			return true;
-		}else
-		{
-			Toast.makeText(this.getApplicationContext(), "Please try again.", Toast.LENGTH_SHORT).show();
-			return false;
-		}
-	}*/
 }

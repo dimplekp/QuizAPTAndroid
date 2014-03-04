@@ -45,5 +45,3 @@ public class ChooseLoginSignup extends Activity {
 	     moveTaskToBack(true);
 	}
 }
-
-

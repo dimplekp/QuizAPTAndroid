@@ -43,6 +43,14 @@
             android:name="in.informationworks.quizaptandroid.ChooseLoginSignup"
             android:label="@string/title_activity_choose_login_signup" >
         </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.QuizzesList"
+            android:label="@string/title_activity_quizzes_list" >
+        </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.SelectedQuiz"
+            android:label="@string/title_activity_selected_quiz" >
+        </activity>
     </application>
 
 </manifest>

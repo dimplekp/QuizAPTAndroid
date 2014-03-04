@@ -80,9 +80,9 @@ public class Login extends Activity implements OnClickListener {
 			 // Store user_id in stored preferences using SPAccess class.
 			 //spa.DisplayUserId(String.valueOf(user_id));
 			 spa.saveId(user_id );
-			 Intent in = new Intent(getBaseContext(), HomeScreen.class);
-			 startActivity(in);
-			 finish(); 
+			 Intent intent = new Intent();
+			 intent.setClass(Login.this, QuizzesList.class);
+			 startActivity(intent);
 		 }
 	 }   
 }
