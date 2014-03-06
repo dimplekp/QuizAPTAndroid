@@ -60,8 +60,8 @@ public class DataAccess {
 	 		 return true;
 	}
 	
-	public int ValidateCredentialAndGetId(String email, String password) {
-		int user_id = -1;
+	public long ValidateCredentialAndGetId(String email, String password) {
+		long user_id = -1;
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		String[] columns = {"_id"};
 		String selection = "email_id=? AND password=?";
@@ -115,22 +115,8 @@ public class DataAccess {
 		return id;
 	}
 	
-	public User getUserById(int userId) { 
-		
-		User user = null;
-		
-		// open db
-		
-		// user retrive 
-		
-		// return
-		
-		return user;
-		
-	}
-	
-	public int getUserid(String email) {
-		int userId = -1;
+	public long getUserid(String email) {
+		long userId = -1;
 		db = dbHelper.getReadableDatabase();
 		 String[] columns = {"_id"};
 		 String selection = "email_id=?";
@@ -151,7 +137,7 @@ public class DataAccess {
 		return userId;
 	}
 	
-	public User getUser(int userId) {
+	public User getUser(long userId) {
 		User user = null;
 		try {
 			db = dbHelper.getReadableDatabase();
@@ -170,7 +156,7 @@ public class DataAccess {
 		return user;
 	}
 
-	public boolean isRegistered(int userId) {
+	public boolean isRegistered(long userId) {
 		boolean isRegistered = false;
 		try {
 			db = dbHelper.getReadableDatabase();
@@ -191,6 +177,24 @@ public class DataAccess {
 		return isRegistered;
 	}
 	    
+	public Quiz getQuiz(long quizId) {
+		Quiz quiz = null;
+		try {
+			db = dbHelper.getReadableDatabase();
+			Cursor cursor = db.rawQuery("select * from "
+					+ DBHelper.QUIZZES_TABLE_NAME + " where _id = '"
+					+ String.valueOf(quizId+1) + "'", null);
+			cursor.moveToFirst();
+			if (!cursor.isAfterLast()) {
+				quiz = cursorToQuiz(cursor);
+			}
+			cursor.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return quiz;
+	}
+	
     public List<Quiz> getAllQuizzes() {
     	List<Quiz> quizList = new ArrayList<Quiz>();
     	try {
@@ -209,7 +213,49 @@ public class DataAccess {
 		}
     	return quizList;
     }
-	
+    
+    public int getTimeAllowed(long quizId) {
+		int timeAllowed = -1;
+		db = dbHelper.getReadableDatabase();
+		 String[] columns = {"time_allowed_in_minutes"};
+		 String selection = "_id=?";
+		 String[] selectionArgs = {String.valueOf(quizId)};
+		 Cursor cursor = null;
+		try {
+			if (db != null) {
+				cursor = db.query(DBHelper.QUESTION_TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+				if (cursor.getCount() > 0) {
+					cursor.moveToFirst();
+					timeAllowed = cursor.getInt(cursor.getColumnIndex("time_allowed_in_minutes"));
+				}
+				cursor.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return timeAllowed;
+	}
+    
+    public int getNumberOfQuestionsInQuiz(long quizId) {
+		int cnt = -1;
+		try {
+			db = dbHelper.getReadableDatabase();
+			if (db != null) {
+				Cursor cursor = db.rawQuery("select count(_id) as quecnt from "
+						+ DBHelper.QUESTION_TABLE_NAME
+						+ " where quiz_id = ?", new String[] { String.valueOf(quizId) });
+				if (cursor.getCount() > 0) {
+					cursor.moveToFirst();
+					cnt = cursor.getInt(cursor.getColumnIndex("quecnt"));
+				}
+				cursor.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cnt;
+	}
+    
 	public User cursorToUser(Cursor cursor) {
 		User user = new User();
 		user.setId(cursor.getInt(cursor.getColumnIndex("_id")));
@@ -222,8 +268,6 @@ public class DataAccess {
 		Quiz quiz = new Quiz();
 		quiz.setId(cursor.getInt(cursor.getColumnIndex("_id")));
 		quiz.setName(cursor.getString(cursor.getColumnIndex("name")));
-		quiz.setNoOfQuestions(cursor.getInt(cursor.getColumnIndex("no_of_questions")));
-		quiz.setTimeAllowed(cursor.getInt(cursor.getColumnIndex("time_allowed_in_minutes")));
 		return quiz;
 	}
 }

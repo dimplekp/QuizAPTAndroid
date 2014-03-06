@@ -16,8 +16,8 @@ public class SPAccess {
     	editor = pref.edit();
 	}
 	
-	public void saveId(int userId) {
-		editor.putInt("USER_ID", userId);
+	public void saveId(long userId) {
+		editor.putLong("USER_ID", userId);
 		editor.commit();
 	}
 	

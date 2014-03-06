@@ -2,12 +2,12 @@ package in.informationworks.quizaptandroid.models;
 
 public class Quiz {
 
-	private int id;
+	private long id;
 	private String name;
 	private int no_of_questions;
 	private int time_allowerd;
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	public void setId(int id) {

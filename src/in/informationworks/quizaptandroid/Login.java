@@ -70,7 +70,7 @@ public class Login extends Activity implements OnClickListener {
 	 If login credentials matches, user gets logged in and if not, error message is displayed.
 	 */
 	 private void validateLogin(String email, String password) {
-		 int user_id = dao.ValidateCredentialAndGetId(email, password);
+		 long user_id = dao.ValidateCredentialAndGetId(email, password);
 		 if(user_id == -1)
 		 {
 			 Toast.makeText(getApplicationContext(), "Login failed. Try again.", Toast.LENGTH_SHORT).show();
