@@ -21,8 +21,8 @@ public class SPAccess {
 		editor.commit();
 	}
 	
-	public int getUserId() {
-		return pref.getInt("USER_ID", 0);
+	public long getUserId() {
+		return pref.getLong("USER_ID", 0);
 	}
 	
 	public void saveQuizName(String QuizName) {
@@ -36,7 +36,7 @@ public class SPAccess {
 	
 	public boolean isUserLoggedin() {
 		
-		int value = pref.getInt("USER_ID",0);
+		long value = pref.getLong("USER_ID",0);
 		pref = c.getSharedPreferences("QUIZ_APT_PREFS", 0);
 		if (value == 0) {
 			return false;

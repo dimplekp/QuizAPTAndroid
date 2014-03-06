@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
 					else {
 						
 						Intent intent = new Intent();
-						intent.setClass(MainActivity.this, QuizzesList.class);
+						intent.setClass(MainActivity.this, HomeScreen.class);
 						startActivity(intent);
 						finish();
 	

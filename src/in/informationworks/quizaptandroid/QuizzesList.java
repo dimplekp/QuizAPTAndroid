@@ -31,7 +31,7 @@ public class QuizzesList extends ListActivity {
 	public void onListItemClick(ListView parent, View v, int position, long id) {
 		Intent intent = new Intent();
 		intent.setClass(QuizzesList.this, SelectedQuiz.class);
-		intent.putExtra(QUIZ_ID, id);
+		intent.putExtra(QUIZ_ID, id+1);
 		startActivity(intent);
 	}
 }

@@ -183,7 +183,7 @@ public class DataAccess {
 			db = dbHelper.getReadableDatabase();
 			Cursor cursor = db.rawQuery("select * from "
 					+ DBHelper.QUIZZES_TABLE_NAME + " where _id = '"
-					+ String.valueOf(quizId+1) + "'", null);
+					+ String.valueOf(quizId) + "'", null);
 			cursor.moveToFirst();
 			if (!cursor.isAfterLast()) {
 				quiz = cursorToQuiz(cursor);
@@ -215,28 +215,40 @@ public class DataAccess {
     }
     
     public int getTimeAllowed(long quizId) {
+    	int cnt = -1;
 		int timeAllowed = -1;
 		db = dbHelper.getReadableDatabase();
-		 String[] columns = {"time_allowed_in_minutes"};
-		 String selection = "_id=?";
-		 String[] selectionArgs = {String.valueOf(quizId)};
-		 Cursor cursor = null;
+		Cursor cursor = null;
 		try {
 			if (db != null) {
-				cursor = db.query(DBHelper.QUESTION_TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+				
+				cursor = db.rawQuery("select count(_id) as quecnt from "
+						+ DBHelper.QUESTION_TABLE_NAME
+						+ " where quiz_id = ?", new String[] { String.valueOf(quizId) });
 				if (cursor.getCount() > 0) {
 					cursor.moveToFirst();
-					timeAllowed = cursor.getInt(cursor.getColumnIndex("time_allowed_in_minutes"));
+					cnt = cursor.getInt(cursor.getColumnIndex("quecnt"));
 				}
+				
+				cursor = db.rawQuery("select time_allowed_per_question_in_minutes from " 
+						+ DBHelper.QUIZZES_TABLE_NAME 
+						+ " where _id = ?",
+						new String[] { String.valueOf(quizId) });
+				
+				if (cursor.getCount() > 0) {
+					cursor.moveToFirst();
+					timeAllowed = cursor.getInt(cursor.getColumnIndex("time_allowed_per_question_in_minutes"));
+				}
+				
 				cursor.close();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return timeAllowed;
+		return cnt*timeAllowed;
 	}
     
-    public int getNumberOfQuestionsInQuiz(long quizId) {
+    public int getNumberOfQuestionsInQuiz(Long quizId) {
 		int cnt = -1;
 		try {
 			db = dbHelper.getReadableDatabase();

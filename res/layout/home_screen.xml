@@ -10,6 +10,12 @@
     tools:context=".HomeScreen" >
 
     <Button
+        android:id="@+id/chooseQuiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose a Quiz" />
+
+    <Button
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

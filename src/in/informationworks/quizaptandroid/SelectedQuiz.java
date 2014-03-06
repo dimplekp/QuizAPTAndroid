@@ -8,7 +8,8 @@ import android.widget.TextView;
 public class SelectedQuiz extends Activity {
 
 	TextView quizNameTextView;
-	TextView noOfQuestions;
+	TextView noOfQuestionsTextView;
+	TextView timeAllowedTextView;
 	String name;
 	int no_of_questions;
 	int time_allowed;
@@ -24,13 +25,17 @@ public class SelectedQuiz extends Activity {
 		dao = new DataAccess(this);
 		
 		quizId = getIntent().getExtras().getLong(QuizzesList.QUIZ_ID);
-		no_of_questions = dao.getNumberOfQuestionsInQuiz(quizId);
 		quiz = dao.getQuiz(quizId);
+		no_of_questions = dao.getNumberOfQuestionsInQuiz(quizId);
+		time_allowed = dao.getTimeAllowed(quizId);
 		
 		quizNameTextView = (TextView) findViewById(R.id.quizName);
 		quizNameTextView.setText(quiz.getName());
 		
-		noOfQuestions = (TextView) findViewById(R.id.noOfQuestions);
-		noOfQuestions.setText(String.valueOf(no_of_questions));
+		noOfQuestionsTextView = (TextView) findViewById(R.id.noOfQuestions);
+		noOfQuestionsTextView.setText(String.valueOf(no_of_questions));
+		
+		timeAllowedTextView = (TextView) findViewById(R.id.timeAllowed);
+		timeAllowedTextView.setText(String.valueOf(time_allowed));
 	}
 }

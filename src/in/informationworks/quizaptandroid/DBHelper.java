@@ -25,11 +25,11 @@ public class DBHelper extends SQLiteOpenHelper {
     
     public static final String QUIZ_ID = "_id";
 	public static final String QUIZ_NAME = "name";
+	public static final String QUIZ_TIME_ALLOWED = "time_allowed_per_question_in_minutes";
 	
 	public static final String QUES_ID = "_id";
 	public static final String QUES_TXT = "question_txt";
-    public static final String QUES_TIME_ALLOWED = "time_allowed_in_minutes";
-
+   
     public static final String USERS_TABLE_NAME = "user";
     public static final String QUIZZES_TABLE_NAME = "Quizzes";
     public static final String QUESTION_TABLE_NAME = "Questions";

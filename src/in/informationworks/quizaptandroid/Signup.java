@@ -44,10 +44,10 @@ public class Signup extends Activity implements OnClickListener {
 	
 	@Override
 	public void onClick(View v) {
-		boolean UserStatus = validateLoginInput();
+		boolean UserStatus = validateSignupInput();
 
 		if(UserStatus == true) {
-			Intent loginPage = new Intent(Signup.this, QuizzesList.class);
+			Intent loginPage = new Intent(Signup.this, HomeScreen.class);
 			startActivity(loginPage);
 			finish();
 		}
@@ -60,7 +60,7 @@ public class Signup extends Activity implements OnClickListener {
 	/*
 	 Checks if all the fields required for sign up are entered or not.
 	 */
-	private boolean validateLoginInput() {
+	private boolean validateSignupInput() {
 		
 		boolean valid = true;
 		

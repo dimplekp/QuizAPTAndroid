@@ -14,7 +14,8 @@ import android.widget.TextView;
 public class HomeScreen extends Activity {
 
 	Button logoutButton;
-	int userId;
+	Button startQuizButton;
+	long userId;
 	TextView userIdTxt;
 	TextView userNameTxt;
 
@@ -50,6 +51,15 @@ public class HomeScreen extends Activity {
 				preferences.edit().remove("USER_ID").commit();
 				Intent signupIntent = new Intent(HomeScreen.this, ChooseLoginSignup.class);
 				startActivity(signupIntent);
+			}
+		});
+		
+		startQuizButton = (Button) findViewById(R.id.chooseQuiz);
+		startQuizButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent quizzesList = new Intent(HomeScreen.this, QuizzesList.class);
+				startActivity(quizzesList);
 			}
 		});
 	}
