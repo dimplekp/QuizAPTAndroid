@@ -2,23 +2,23 @@ package in.informationworks.quizaptandroid.models;
 
 public class Quiz {
 
-	private long id;
-	private String name;
+	private long quizId;
+	private String quizName;
 	private int no_of_questions;
 	private int time_allowerd;
 	
 	public long getId() {
-		return id;
+		return quizId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int quizId) {
+		this.quizId = quizId;
 	}
 	
 	public String getName() {
-		return name;
+		return quizName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String quizName) {
+		this.quizName = quizName;
 	}
 	
 	public int getNoOfQuestions() {
@@ -37,6 +37,6 @@ public class Quiz {
 	
 	@Override
 	  public String toString() {
-	    return name;
+	    return quizName;
 	  }
 }

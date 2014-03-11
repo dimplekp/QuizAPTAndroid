@@ -14,7 +14,7 @@ import android.widget.TextView;
 public class HomeScreen extends Activity {
 
 	Button logoutButton;
-	Button startQuizButton;
+	Button ChooseQuizButton;
 	long userId;
 	TextView userIdTxt;
 	TextView userNameTxt;
@@ -54,8 +54,8 @@ public class HomeScreen extends Activity {
 			}
 		});
 		
-		startQuizButton = (Button) findViewById(R.id.chooseQuiz);
-		startQuizButton.setOnClickListener(new OnClickListener() {
+		ChooseQuizButton = (Button) findViewById(R.id.chooseQuiz);
+		ChooseQuizButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent quizzesList = new Intent(HomeScreen.this, QuizzesList.class);

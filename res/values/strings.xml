@@ -15,5 +15,7 @@
     <string name="title_activity_choose_login_signup">Choose any</string>
     <string name="title_activity_quizzes_list">List of Quizzes</string>
     <string name="title_activity_selected_quiz">SelectedQuiz</string>
+    <string name="title_activity_load_question">LoadQuestion</string>
+    <string name="title_activity_score_board">Score Board</string>
 
 </resources>
