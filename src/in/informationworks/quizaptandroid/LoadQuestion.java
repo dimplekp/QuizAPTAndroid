@@ -1,5 +1,6 @@
 package in.informationworks.quizaptandroid;
 
+import in.informationworks.quizaptandroid.models.Option;
 import in.informationworks.quizaptandroid.models.Question;
 import in.informationworks.quizaptandroid.models.Quiz;
 
@@ -18,17 +19,23 @@ import android.widget.TextView;
 public class LoadQuestion extends Activity {
 	
 	Button nextButton;
+	Button prevButton;
 	long queId = 0;
 	long quizId;
 	int totalQuestions;
 	int position;
+	int noOfOptions;
 	TextView questionTextView;
 	TextView quizNameTextView;
-	RadioButton rda, rdb, rdc, rdd;
+	RadioGroup optionsRadioGroup;
 	Question currentQue;
 	DataAccess dao;
 	Quiz quiz;
+	Option option;
+	Question question;
 	List<Question> quesList;
+	List<Option> optList;
+	final RadioButton[] optionRB = new RadioButton[10];
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,25 +48,27 @@ public class LoadQuestion extends Activity {
 		totalQuestions = getIntent().getExtras().getInt(SelectedQuiz.NO_OF_QUESTIONS);
 		
 		quesList = dao.getAllQuestions(quizId);
-		currentQue = quesList.get((int) queId);
 		quiz = dao.getQuiz(quizId);
+		currentQue = quesList.get((int) queId);
+		
+		//optList = dao.getOptions(queId);
+		//option = dao.getOptions(queId);
 		
 		questionTextView = (TextView)findViewById(R.id.question);
 		quizNameTextView = (TextView) findViewById(R.id.QuizName);
-		nextButton = (Button) findViewById(R.id.next);
-		rda=(RadioButton)findViewById(R.id.radio0);
-		rdb=(RadioButton)findViewById(R.id.radio1);
-		rdc=(RadioButton)findViewById(R.id.radio2);
+		nextButton = (Button) findViewById(R.id.next); 
+		prevButton = (Button) findViewById(R.id.previous);
+		optionsRadioGroup = (RadioGroup) findViewById (R.id.optionsRadioGroup);
 		
 		setQuestionView();
 		
 		nextButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				RadioGroup options = (RadioGroup)findViewById(R.id.radioGroup1);
-				RadioButton answer = (RadioButton)findViewById(options.getCheckedRadioButtonId());
-				if(queId<totalQuestions){
-					currentQue=quesList.get((int) queId);
+				//optionsRadioGroup = (RadioGroup)findViewById(R.id.optionsRadioGroup);
+				//RadioButton answer = (RadioButton)findViewById(optionsRadioGroup.getCheckedRadioButtonId());
+				if(queId<totalQuestions) {
+					currentQue = quesList.get((int) queId);
 					setQuestionView();
 				} else {
 					Intent intent = new Intent(LoadQuestion.this, ScoreBoard.class);
@@ -68,11 +77,34 @@ public class LoadQuestion extends Activity {
 				}
 			}
 		});
+		
+		/*prevButton.setOnClickListener(new View.OnClickListener() {	
+			@Override
+			public void onClick(View v) {
+				if(queId<totalQuestions) {
+					currentQue = quesList.get((int) queId-1);
+					setQuestionView();
+				}
+				else {
+					Intent intent = new Intent(LoadQuestion.this, SelectedQuiz.class);
+					startActivity(intent);
+					finish();
+				}
+			}
+		}); */
 	}
 
+	
 	private void setQuestionView() {
 		questionTextView.setText(currentQue.getQuestion());
 		quizNameTextView.setText(quiz.getName());
+		noOfOptions = dao.getNumberOfOptionsInQuestion(currentQue.getQueId());
+		optionsRadioGroup.removeAllViews();
+		for (int i=0; i<noOfOptions; i++) {
+			optionRB[i] = new RadioButton(this);
+			optionsRadioGroup.addView(optionRB[i]);
+			optionRB[i].setText("option");
+		}
 		queId++;
 	}
 }

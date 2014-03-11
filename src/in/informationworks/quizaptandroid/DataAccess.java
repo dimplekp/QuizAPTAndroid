@@ -143,8 +143,14 @@ public class DataAccess {
 		return userId;
 	}
 	
-	//Gets a list of Users
+	public long getQueId(long quizId) {
+		long queId = -1;
+		db = dbHelper.getReadableDatabase();
+		
+		return queId;
+	}
 	
+	//Gets a list of Users
 	public User getUser(long userId) {
 		User user = null;
 		try {
@@ -266,7 +272,7 @@ public class DataAccess {
     
     //Gets no. of questions in the Quiz
     
-    public int getNumberOfQuestionsInQuiz(Long quizId) {
+    public int getNumberOfQuestionsInQuiz(long quizId) {
 		int cnt = -1;
 		try {
 			db = dbHelper.getReadableDatabase();
@@ -285,6 +291,26 @@ public class DataAccess {
 		}
 		return cnt;
 	}
+    
+    public int getNumberOfOptionsInQuestion(long queId) {
+    	int cnt = -1;
+    	try {
+    		db = dbHelper.getReadableDatabase();
+    		if (db != null){
+    			Cursor cursor = db.rawQuery("select count(_id) as optcnt from " 
+    					+ DBHelper.OPTION_TABLE_NAME
+    					+ " where que_id = ?", new String[] { String.valueOf(queId)});
+    			if (cursor.getCount() > 0) {
+    				cursor.moveToFirst();
+    				cnt = cursor.getInt(cursor.getColumnIndex("optcnt"));
+    			}
+    			cursor.close();
+    		}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	return cnt;
+    }
     
     /*public List<Question> getQuestionForQuiz(long quizId) {
 		List<Question> questions = null;
@@ -334,7 +360,7 @@ public class DataAccess {
 		return question;
 	}*/
     
-    public List<Option> getOptions(int queId) {
+    public List<Option> getOptions(long queId) {
 		List<Option> options = null;
 		try {
 			db = dbHelper.getReadableDatabase();
@@ -381,7 +407,24 @@ public class DataAccess {
 		// return quest list
 		return quesList;
 	}
-    
+      
+    public Question getQuestion(long quizId) {
+    	Question question = null;
+		try {
+			db = dbHelper.getReadableDatabase();
+			Cursor cursor = db.rawQuery("select * from "
+					+ DBHelper.QUESTION_TABLE_NAME + " where _id = '"
+					+ String.valueOf(quizId) + "'", null);
+			cursor.moveToFirst();
+			if (!cursor.isAfterLast()) {
+				question = cursorToQuestion(cursor);
+			}
+			cursor.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return question;
+	}
     
 	public User cursorToUser(Cursor cursor) {
 		User user = new User();
