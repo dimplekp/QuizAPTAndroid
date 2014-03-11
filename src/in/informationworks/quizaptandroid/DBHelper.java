@@ -29,10 +29,15 @@ public class DBHelper extends SQLiteOpenHelper {
 	
 	public static final String QUES_ID = "_id";
 	public static final String QUES_TXT = "question_txt";
+	
+	public static final String OPT_ID = "_id";
+	public static final String OPT_TXT = "option_txt";
+	public static final String OPT_CORRECT = "correct";
    
     public static final String USERS_TABLE_NAME = "user";
     public static final String QUIZZES_TABLE_NAME = "Quizzes";
     public static final String QUESTION_TABLE_NAME = "Questions";
+    public static final String OPTION_TABLE_NAME = "Options";
     
     private final Context myContext;
     private static DBHelper mInstance;

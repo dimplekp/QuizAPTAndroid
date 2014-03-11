@@ -17,7 +17,8 @@ public class QuizzesList extends ListActivity {
 	DBHelper db;
 	DataAccess dao;
 	Cursor c;
-	public final static String QUIZ_ID = "Quiz id";
+	public final static String QUIZ_ID2 = "Quiz id";
+	public final static String QUIZ_LIST_POSITION2 = "position";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,8 @@ public class QuizzesList extends ListActivity {
 	public void onListItemClick(ListView parent, View v, int position, long id) {
 		Intent intent = new Intent();
 		intent.setClass(QuizzesList.this, SelectedQuiz.class);
-		intent.putExtra(QUIZ_ID, id+1);
+		intent.putExtra(QUIZ_ID2, id+1);
+		intent.putExtra(QUIZ_LIST_POSITION2, position);
 		startActivity(intent);
 	}
 }
