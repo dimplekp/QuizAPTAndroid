@@ -17,14 +17,13 @@ public class QuizzesList extends ListActivity {
 	DBHelper db;
 	DataAccess dao;
 	Cursor c;
-	public final static String QUIZ_ID2 = "Quiz id";
-	public final static String QUIZ_LIST_POSITION2 = "position";
+	List<Quiz> quizzes;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		dao = new DataAccess(this);
-        List<Quiz> quizzes = dao.getAllQuizzes();
+        quizzes = dao.getAllQuizzes();
         ArrayAdapter<Quiz> adapter = new ArrayAdapter<Quiz>(this, android.R.layout.simple_list_item_1, quizzes);
         setListAdapter(adapter);
 	}
@@ -32,8 +31,7 @@ public class QuizzesList extends ListActivity {
 	public void onListItemClick(ListView parent, View v, int position, long id) {
 		Intent intent = new Intent();
 		intent.setClass(QuizzesList.this, SelectedQuiz.class);
-		intent.putExtra(QUIZ_ID2, id+1);
-		intent.putExtra(QUIZ_LIST_POSITION2, position);
+		intent.putExtra(Utility.QUIZ_ID, quizzes.get(position).getId());
 		startActivity(intent);
 	}
 }

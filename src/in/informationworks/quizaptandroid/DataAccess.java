@@ -63,7 +63,6 @@ public class DataAccess {
 	}
 	
 	//Compare user's email and password for the validation of login and if they're valid, gets that user's id.
-	
 	public long ValidateCredentialAndGetId(String email, String password) {
 		long user_id = -1;
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -106,6 +105,22 @@ public class DataAccess {
 	 		 return true;
 	 }
 
+public boolean checkCorrectnessOfAnswer(long optId) {
+	SQLiteDatabase db = dbHelper.getReadableDatabase();
+	 String[] columns = {"_id"};
+	 String selection = "email_id=?";
+	 String[] selectionArg = {DBHelper.OPT_ID};
+	 Cursor cursor = null;
+	 cursor = db.query(DBHelper.USERS_TABLE_NAME, columns, selection, selectionArg, null, null, null);
+	 
+	 int numberOfRows = cursor.getCount();
+	 
+	 if(numberOfRows <= 0) {
+		 return false;
+	 }
+	 else
+		return true;
+	}
 	
 	public long updateUser(ContentValues values, int userId) {
 		long id = -1;

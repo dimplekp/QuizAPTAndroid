@@ -22,10 +22,6 @@ public class SelectedQuiz extends Activity {
 	Button startAQuizButton;
 	int position;
 	
-	public final static String NO_OF_QUESTIONS = "No of questions";
-	public final static String QUIZ_ID = "Quiz id";
-	public final static String QUIZ_LIST_POSITION = "position";
-	
 	DataAccess dao;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +30,7 @@ public class SelectedQuiz extends Activity {
 		
 		dao = new DataAccess(this);
 		
-		quizId = getIntent().getExtras().getLong(QuizzesList.QUIZ_ID2);
-		position = getIntent().getExtras().getInt(QuizzesList.QUIZ_LIST_POSITION2);
+		quizId = getIntent().getExtras().getLong(Utility.QUIZ_ID);
 		quiz = dao.getQuiz(quizId);
 		no_of_questions = dao.getNumberOfQuestionsInQuiz(quizId);
 		time_allowed = dao.getTimeAllowed(quizId);
@@ -53,10 +48,9 @@ public class SelectedQuiz extends Activity {
 		startAQuizButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent quizQuestion = new Intent(SelectedQuiz.this, LoadQuestion.class);
-				quizQuestion.putExtra(NO_OF_QUESTIONS, no_of_questions);
-				quizQuestion.putExtra(QUIZ_LIST_POSITION, position);
-				quizQuestion.putExtra(QUIZ_ID, quizId);
+				Intent quizQuestion = new Intent(SelectedQuiz.this, TakeQuiz.class);
+				quizQuestion.putExtra(Utility.NO_OF_QUESTIONS, no_of_questions);
+				quizQuestion.putExtra(Utility.QUIZ_ID, quiz.getId());
 				startActivity(quizQuestion);
 				finish();
 			}

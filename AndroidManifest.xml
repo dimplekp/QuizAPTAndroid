@@ -59,6 +59,10 @@
             android:name="in.informationworks.quizaptandroid.ScoreBoard"
             android:label="@string/title_activity_score_board" >
         </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.TakeQuiz"
+            android:label="@string/title_activity_take_quiz" >
+        </activity>
     </application>
 
 </manifest>

@@ -4,13 +4,11 @@ import in.informationworks.quizaptandroid.models.Option;
 import in.informationworks.quizaptandroid.models.Question;
 import in.informationworks.quizaptandroid.models.Quiz;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,13 +17,13 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 
-public class LoadQuestion extends Activity {
-	
+public class TakeQuiz extends Activity {
+
 	Button nextButton;
 	Button prevButton;
-	long queId = 0;
+	int currentQuestionIndex = 0;
 	long quizId;
 	int totalQuestions;
 	int position;
@@ -34,7 +32,7 @@ public class LoadQuestion extends Activity {
 	TextView quizNameTextView;
 	RadioGroup optionsRadioGroup;
 	Question currentQue;
-	Option curentOptions;
+	Option curentOption;
 	DataAccess dao;
 	Quiz quiz;
 	Option option;
@@ -42,23 +40,22 @@ public class LoadQuestion extends Activity {
 	List<Question> quesList;
 	List<Option> optList;
 	final RadioButton[] optionRB = new RadioButton[10];
-	int optionId = 0;
 	long currentQueId = 0;
 	final Context context = this;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.load_question);
+		setContentView(R.layout.take_quiz);
+	
+dao = new DataAccess(this);
 		
-		dao = new DataAccess(this);
+		quizId = getIntent().getExtras().getLong(Utility.QUIZ_ID);
+		totalQuestions = getIntent().getExtras().getInt(Utility.NO_OF_QUESTIONS);
 		
-		quizId = getIntent().getExtras().getLong(SelectedQuiz.QUIZ_ID);
-		totalQuestions = getIntent().getExtras().getInt(SelectedQuiz.NO_OF_QUESTIONS);
-		
+		currentQuestionIndex = 0;
 		quiz = dao.getQuiz(quizId);
 		quesList = dao.getAllQuestions(quizId);
-		currentQue = quesList.get((int) queId);
 		
 		questionTextView = (TextView)findViewById(R.id.question);
 		quizNameTextView = (TextView) findViewById(R.id.QuizName);
@@ -71,14 +68,13 @@ public class LoadQuestion extends Activity {
 		nextButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(queId<totalQuestions) {
-					optionId = 0;
-					currentQue = quesList.get((int) queId);
-					setQuestionView();
-				} else {
-					Intent intent = new Intent(LoadQuestion.this, ScoreBoard.class);
+				currentQuestionIndex++;
+				if(currentQuestionIndex == (totalQuestions)) {
+					Intent intent = new Intent(TakeQuiz.this, ScoreBoard.class);
 					startActivity(intent);
 					finish();
+				} else {
+					setQuestionView();
 				}
 			}
 		});
@@ -86,42 +82,57 @@ public class LoadQuestion extends Activity {
 		prevButton.setOnClickListener(new View.OnClickListener() {	
 			@Override
 			public void onClick(View v) {
-				queId = queId - 2;
+				currentQuestionIndex--;
 				
-				if((queId>0 && queId<currentQueId) || (queId == 0)) 
+				if(currentQuestionIndex == 0) 
 				{
-					optionId = 0;
-					currentQue = quesList.get((int) queId);
-					setQuestionView();
+					prevButton.setEnabled(false);
 				}
-				
-				else 
+				else
 				{
-					Toast.makeText(getApplicationContext(), "This is first question. No more previous questions!",
-							   Toast.LENGTH_LONG).show();
-					queId = queId + 2;
+					prevButton.setEnabled(true);
 				}
+				setQuestionView();
 			}
 		});
 	}
 	
 	private void setQuestionView() {
+		currentQue = quesList.get(currentQuestionIndex);
+		
 		questionTextView.setText(currentQue.getQuestion());
 		quizNameTextView.setText(quiz.getName());
 		
+		if(currentQuestionIndex == 0) 
+		{
+			prevButton.setEnabled(false);
+		}
+		else
+		{
+			prevButton.setEnabled(true);
+		}
+		
 		optList = dao.getAllOptions(currentQue.getQueId());		
-		noOfOptions = dao.getNumberOfOptionsInQuestion(currentQue.getQueId());
+		noOfOptions = optList.size();
 		optionsRadioGroup.removeAllViews();
 		
 		for (int i=0; i<noOfOptions; i++) {
-			curentOptions = optList.get(optionId);
+			curentOption = optList.get(i);
 			optionRB[i] = new RadioButton(this);
 			optionsRadioGroup.addView(optionRB[i]);
-			optionRB[i].setText(curentOptions.getOptTxt());
-			optionId++;
+			optionRB[i].setText(curentOption.getOptTxt());
 		}
-		queId++;
-		currentQueId = queId;
+		
+		currentQueId = currentQuestionIndex;
+		
+		optionsRadioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				 //int pos = optionsRadioGroup.indexOfChild(findViewById(checkedId));	 
+			}
+			
+		});
 	}
 	
 	@Override
@@ -137,7 +148,7 @@ public class LoadQuestion extends Activity {
 				.setCancelable(false)
 				.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog,int id) {
-						LoadQuestion.this.finish();
+						TakeQuiz.this.finish();
 					}
 				  })
 				.setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -150,4 +161,5 @@ public class LoadQuestion extends Activity {
  
 				alertDialog.show();
 	}
+
 }
