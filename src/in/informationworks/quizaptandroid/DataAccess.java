@@ -312,54 +312,6 @@ public class DataAccess {
     	return cnt;
     }
     
-    /*public List<Question> getQuestionForQuiz(long quizId) {
-		List<Question> questions = null;
-		try {
-			db = dbHelper.getReadableDatabase();
-			if (db != null) {
-				Cursor cursor = db.query(DBHelper.QUESTION_TABLE_NAME,
-						null, "quiz_id = " + quizId + "", null, null, null, null);
-				if (cursor.getCount() > 0) {
-					questions = new ArrayList<Question>();
-					cursor.moveToFirst();
-					while (!cursor.isAfterLast()) {
-						Question question = cursorToQuestion(cursor);
-						questions.add(question);
-						cursor.moveToNext();
-					}
-				}
-				cursor.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return questions;
-	}*/
-    
-    /*public Question getQuestionForQuiz(long quizId, int position) {
-    	Question question = null;
-		try {
-			position++;
-			db = dbHelper.getReadableDatabase();
-			if (db != null) {
-				Cursor cursor = db.rawQuery(
-						"select * from Questions where _id = '" + quizId
-								+ "' and name = '" + position + "'", null);
-				if (cursor.getCount() > 0) {
-					cursor.moveToFirst();
-					while (!cursor.isAfterLast()) {
-						question = cursorToQuestion(cursor);
-						cursor.moveToNext();
-					}
-				}
-				cursor.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return question;
-	}*/
-    
     public List<Option> getOptions(long queId) {
 		List<Option> options = null;
 		try {
@@ -408,6 +360,25 @@ public class DataAccess {
 		return quesList;
 	}
       
+    public List<Option> getAllOptions(long queId) {
+    	List<Option> optList = new ArrayList<Option>();
+    	db = dbHelper.getReadableDatabase();
+    	Cursor cursor = db.rawQuery("select * from "
+    			+ DBHelper.OPTION_TABLE_NAME
+    			+ " where que_id = ?", new String[] {String.valueOf(queId) });
+    	if (cursor.moveToFirst()) {
+    		do {
+    			Option option = new Option();
+    			option.setOptId(cursor.getLong(0));
+    			option.setQueId(cursor.getLong(1));
+    			option.setOptTxt(cursor.getString(2));
+    			option.setCorrect(cursor.getString(3));
+    			optList.add(option);
+    		} while (cursor.moveToNext());
+    	}
+    	return optList;
+    }
+    
     public Question getQuestion(long quizId) {
     	Question question = null;
 		try {

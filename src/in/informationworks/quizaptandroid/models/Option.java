@@ -10,14 +10,14 @@ public class Option {
 	public long getOptId() {
 		return optionId;
 	}
-	public void setOptId(int optionId) {
+	public void setOptId(long optionId) {
 		this.optionId = optionId;
 	}
 	
 	public long getQueId() {
 		return queId;
 	}
-	public void setQueId(int queId) {
+	public void setQueId(long queId) {
 		this.queId = queId;
 	}
 	
