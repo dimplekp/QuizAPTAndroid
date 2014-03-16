@@ -9,56 +9,110 @@
     android:orientation="vertical"
     tools:context=".SelectedQuiz" >
 
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+    
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
         android:text="Quiz name :"
+        android:layout_marginBottom="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <TextView
         android:id="@+id/quizName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="50dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    </LinearLayout>
+    
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+    
 	<TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
         android:text="No. of questions :"
+        android:layout_marginBottom="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <TextView
         android:id="@+id/noOfQuestions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginBottom="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    </LinearLayout>
+    
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
     
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
         android:text="Time allowed :"
+        android:layout_marginBottom="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <TextView
         android:id="@+id/timeAllowed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginBottom="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    </LinearLayout>
+    
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+    
     <Button
         android:id="@+id/startAQuiz"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:text="Start a quiz" />
+        android:text="START THE QUIZ" />
 
+    </LinearLayout>
+    
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+    	
+    	<Button 
+    	    android:id="@+id/reviewAttempt"
+    	    android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_marginTop="200dp"
+        	android:text="REVIEW PREVIOUS ATTEMPTS" />
+    
+    </LinearLayout>
+    
 </LinearLayout>

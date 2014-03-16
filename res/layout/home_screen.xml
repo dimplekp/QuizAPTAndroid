@@ -4,36 +4,99 @@
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     tools:context=".HomeScreen" >
 
-    <Button
-        android:id="@+id/chooseQuiz"
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+        
+        <TextView
+        android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose a Quiz" />
-
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="182dp"
-        android:text="Log out" />
-
-    <TextView
-        android:id="@+id/userId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Large Text"
+        android:text="Hi "
+        android:layout_marginLeft="150dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
+        
+        <TextView
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Large Text"
+        android:text="Dimple"
+        android:layout_marginBottom="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+    </LinearLayout>
+    
+    
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+        
+        <Button
+        android:id="@+id/chooseQuiz"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="CHOOSE A QUIZ" />
+        
+    </LinearLayout>
+    
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+        
+        <Button
+        android:id="@+id/reviewPreviousAttempts"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="REVIEW PREVIOUS ATTEMPTS" />
+        
+    </LinearLayout>
+
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+        
+        <Button
+        android:id="@+id/Solution"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="VIEW SOLUTION" />
+        
+    </LinearLayout>
+    
+    
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+        
+        <Button
+        android:id="@+id/logout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="LOG OUT" />
+        
+    </LinearLayout>
     
 </LinearLayout>

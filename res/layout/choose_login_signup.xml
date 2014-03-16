@@ -8,24 +8,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ChooseLoginSignup" >
 
-     <Button
+    <Button
         android:id="@+id/button1"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="30dp"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="178dp"
         android:text="NEW USER?" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="29dp"
-        android:layout_marginLeft="30dp"
+        android:layout_above="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
         android:text="EXISTING USER?" />
-    
 
 </RelativeLayout>

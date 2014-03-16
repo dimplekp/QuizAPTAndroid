@@ -36,8 +36,8 @@ public class HomeScreen extends Activity {
 		final String name = user.getName();
 		
 		//Display user id stored in SharedPreferences.
-		userIdTxt = (TextView) findViewById(R.id.userId);
-		userIdTxt.setText(String.valueOf(userId));
+		//userIdTxt = (TextView) findViewById(R.id.userId);
+		//userIdTxt.setText(String.valueOf(userId));
 		
 		//Display name of a user whose id is stored in SharedPreferences.
 		userNameTxt = (TextView) findViewById(R.id.userName);

@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,11 +6,168 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context=".ScoreBoard" >
 
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+    
     <TextView
+        android:id="@+id/Score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Score" />
+        android:text="Your Score:"
+        android:layout_marginBottom="20dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-</RelativeLayout>
+    <TextView
+        	android:id="@+id/userScore"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_marginLeft="80dp"
+        	android:layout_marginBottom="20dp"
+        	android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    </LinearLayout>
+    
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+    	
+    	<TextView
+        	android:id="@+id/Total"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="Total:"
+        	android:layout_marginBottom="20dp"
+        	android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+    	<TextView
+        	android:id="@+id/totalQuestions"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_marginBottom="20dp"
+        	android:textAppearance="?android:attr/textAppearanceMedium" />
+    	
+    </LinearLayout>
+    
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+    	
+    	<TextView
+        	android:id="@+id/Attempted"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="Attempted:"
+        	android:layout_marginBottom="20dp"
+        	android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+    	<TextView
+        	android:id="@+id/attemptedQuestions"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_marginBottom="20dp"
+        	android:textAppearance="?android:attr/textAppearanceMedium" />
+    	
+    </LinearLayout>
+    
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+    	
+    	<TextView
+        	android:id="@+id/Correct"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="Correct:"
+        	android:layout_marginBottom="20dp"
+        	android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+    	<TextView
+        	android:id="@+id/correctQuestions"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_marginBottom="20dp"
+        	android:textAppearance="?android:attr/textAppearanceMedium" />
+    	
+    </LinearLayout>
+    
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+    	
+    	<TextView
+        	android:id="@+id/Incorrect"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="Incorrect:"
+        	android:layout_marginBottom="20dp"
+        	android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+    	<TextView
+        	android:id="@+id/incorrectQuestions"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_marginBottom="20dp"
+        	android:textAppearance="?android:attr/textAppearanceMedium" />
+    	
+    </LinearLayout>
+    
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+    	
+    	<Button 
+    	    android:id="@+id/reviewAttempt"
+    	    android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_marginTop="100dp"
+        	android:text="REVIEW ATTEMPT" />
+    
+    </LinearLayout>
+    
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+    
+    	<TextView
+        	android:id="@+id/currentDateandTime"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="Date : Time"
+        	android:layout_marginBottom="20dp"
+        	android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+    	<TextView
+        	android:id="@+id/dateAndTime"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_marginBottom="20dp"
+        	android:textAppearance="?android:attr/textAppearanceMedium" />
+    	
+    	</LinearLayout>
+    
+</LinearLayout>

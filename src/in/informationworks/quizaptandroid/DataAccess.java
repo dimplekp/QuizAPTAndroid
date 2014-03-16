@@ -41,6 +41,8 @@ public class DataAccess {
 		return id;
 	}
 	
+	
+	
 	/*
 	 Compare entered email id and password with the ones in database to check if they are correct or not.
 	 */
@@ -85,6 +87,27 @@ public class DataAccess {
 	    	return user_id;
 	 	 }
 	}
+	
+	//Checks if answer is correct or not
+	public boolean checkCorrectnessOfAnswer(long optId) {
+		boolean isCorrect = false;
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		String[] columns = {"correct"};
+		String selection = "_id = ?";
+		String[] selectionArg = {String.valueOf(optId)};
+		
+		Cursor cursor = null;
+		cursor = db.query(DBHelper.OPTION_TABLE_NAME, columns, selection, selectionArg, null, null, null);
+		if(cursor.getCount()  > 0) {
+			cursor.moveToFirst();
+			//trueOrFalse = cursor.getString(cursor.getColumnIndex("correct"));
+			isCorrect = cursor.getString(cursor.getColumnIndex("correct")).equalsIgnoreCase("true");
+			
+			
+		}
+		cursor.close();
+		return isCorrect;
+	}
 	/*
 	 Checks before creating a new user if user with the same email id exists or not.
 	 */
@@ -104,23 +127,6 @@ public class DataAccess {
 	 	 else
 	 		 return true;
 	 }
-
-public boolean checkCorrectnessOfAnswer(long optId) {
-	SQLiteDatabase db = dbHelper.getReadableDatabase();
-	 String[] columns = {"_id"};
-	 String selection = "email_id=?";
-	 String[] selectionArg = {DBHelper.OPT_ID};
-	 Cursor cursor = null;
-	 cursor = db.query(DBHelper.USERS_TABLE_NAME, columns, selection, selectionArg, null, null, null);
-	 
-	 int numberOfRows = cursor.getCount();
-	 
-	 if(numberOfRows <= 0) {
-		 return false;
-	 }
-	 else
-		return true;
-	}
 	
 	public long updateUser(ContentValues values, int userId) {
 		long id = -1;
@@ -185,31 +191,7 @@ public boolean checkCorrectnessOfAnswer(long optId) {
 		return user;
 	}
 
-	//Checks if user is alredy registered or not
-	
-	public boolean isRegistered(long userId) {
-		boolean isRegistered = false;
-		try {
-			db = dbHelper.getReadableDatabase();
-			Cursor cursor = db.rawQuery("select * from "
-					+ DBHelper.USERS_TABLE_NAME + " where _id = '"
-					+ String.valueOf(userId) + "'", null);
-			cursor.moveToFirst();
-			while (!cursor.isAfterLast()) {
-				isRegistered = cursor.getString(
-						cursor.getColumnIndex("registered")).equalsIgnoreCase(
-						"1") ? true : false;
-				cursor.moveToNext();
-			}
-			cursor.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return isRegistered;
-	}
-	    
 	//Gets Quiz name
-	
 	public Quiz getQuiz(long quizId) {
 		Quiz quiz = null;
 		try {
@@ -228,8 +210,7 @@ public boolean checkCorrectnessOfAnswer(long optId) {
 		return quiz;
 	}
 	
-	//Gets a list of Quizzes
-	
+	//Gets a list of Quizzes	
     public List<Quiz> getAllQuizzes() {
     	List<Quiz> quizList = new ArrayList<Quiz>();
     	try {
@@ -411,6 +392,65 @@ public boolean checkCorrectnessOfAnswer(long optId) {
 		}
 		return question;
 	}
+    
+    public long insertQuizAttempt(long quizId, long userId, String currentDateandTime) {
+		long id = -1;
+		try {
+			ContentValues values = new ContentValues();
+			values.put("quiz_id", quizId);
+			values.put("user_id", userId);
+			values.put("attempt_time", currentDateandTime);
+			
+			db = dbHelper.getWritableDatabase();
+			id = db.insert(DBHelper.ATTEMPTS_TABLE_NAME, null, values);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
+    
+	public long insertAttemptDetails(long optionId, long attemptId) {
+		long id= -1;
+		try {
+			ContentValues values = new ContentValues();
+			values.put("option_id", optionId);
+			values.put("attempt_id", attemptId);
+			
+			db = dbHelper.getWritableDatabase();
+			id = db.insert(DBHelper.ATTEMPT_DETAILS_TABLE_NAME, null, values);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return id;
+	}
+    
+   /* public int getNumberOfCorrectAnswersForAttempt(String attemptId) {
+		int correctCnt = 0;
+		try {
+			db = dbHelper.getReadableDatabase();
+			if (db != null) {
+				Cursor questionsCursor = db.rawQuery(
+						"select distinct q_id from "
+								+ DataSQLHelper.ATTEMPTS_TABLE_NAME
+								+ " where a_id = '" + attemptId + "'", null);
+				if (questionsCursor.getCount() > 0) {
+					questionsCursor.moveToFirst();
+					while (!questionsCursor.isAfterLast()) {
+						if (isCorrectAttempt(attemptId,
+								questionsCursor.getString(questionsCursor
+										.getColumnIndex("q_id"))))
+							correctCnt++;
+						questionsCursor.moveToNext();
+					}
+				}
+				questionsCursor.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return correctCnt;
+	}*/
     
 	public User cursorToUser(Cursor cursor) {
 		User user = new User();
