@@ -63,6 +63,10 @@
             android:name="in.informationworks.quizaptandroid.TakeQuiz"
             android:label="@string/title_activity_take_quiz" >
         </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.ReviewAttemptsList"
+            android:label="@string/title_activity_review_attempts_list" >
+        </activity>
     </application>
 
 </manifest>

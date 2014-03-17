@@ -8,32 +8,31 @@ import android.widget.TextView;
 
 public class ScoreBoard extends Activity {
 
-	int score = 0;
 	String dateAndTime;
+	long attemptId = 0;
+	int noOfCorrectAnswers = 0;
 	
 	TextView scoreTextView;
-	TextView dateTimeTextView;
+	TextView noOfCorrectAnswersTextView;
+	DataAccess dao;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.score_board);
+		dao = new DataAccess(this);
+	
 		
-		score = getIntent().getExtras().getInt(Utility.USER_SCORE);
-		dateAndTime= getIntent().getExtras().getString(Utility.DATE_AND_TIME);
+		attemptId = getIntent().getExtras().getLong(Utility.ATTEMPT_ID);
+		
+		noOfCorrectAnswers = dao.getNoOfCorrectAnswers(attemptId);
 		
 		scoreTextView = (TextView) findViewById(R.id.userScore);
-		scoreTextView.setText(String.valueOf(score));
+		scoreTextView.setText(String.valueOf(noOfCorrectAnswers));
 		
-		dateTimeTextView = (TextView) findViewById(R.id.currentDateandTime);
-		dateTimeTextView.setText(String.valueOf(dateAndTime));
+		noOfCorrectAnswersTextView = (TextView) findViewById(R.id.correctQuestions);
+		noOfCorrectAnswersTextView.setText(String.valueOf(noOfCorrectAnswers));
+		
 		
 	}
 	
-	/*@Override
-	public void onBackPressed() {
-		Intent intent = new Intent(ScoreBoard.this, QuizzesList.class);
-		intent.putExtra(Utility.USER_SCORE, score);
-		startActivity(intent);
-		finish();
-	}*/
 }

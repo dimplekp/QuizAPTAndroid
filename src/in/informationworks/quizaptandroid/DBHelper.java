@@ -38,15 +38,22 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String ATTEMPT_ID = "_id";
 	public static final String ATTEMPT_USER_ID = "user_id";
 	public static final String ATTEMPT_QUIZ_ID = "quiz_id";
-	public static final String ATTEMPT_TIME = "time";
-	public static final String ATTEMPT_DATE = "date";
+	public static final String ATTEMPT_DATE_AND_TIME = "date_and_time";
+	
+	public static final String ATTEMPT_DETAIL_ID = "_id";
+	public static final String ATTEMPT_DETAIL_OPTION_ID = "option_id";
+	public static final String ATTEMPT_DETAIL_ATTEMPT_ID = "attempt_id";
+	
+	public static final String TEMP_TABLE_QUE_ID = "que_id";
+	public static final String TEMP_TABLE_OPTION_ID = "opt_id";
 	
     public static final String USERS_TABLE_NAME = "user";
     public static final String QUIZZES_TABLE_NAME = "Quizzes";
     public static final String QUESTION_TABLE_NAME = "Questions";
     public static final String OPTION_TABLE_NAME = "Options";
     public static final String ATTEMPTS_TABLE_NAME = "Attempts";
-    public static final String ATTEMPT_DETAILS_TABLE_NAME = "AttemptDetails";
+    public static final String ATTEMPT_DETAILS_TABLE_NAME = "Attempt_Details";
+    public static final String TEMP_QUESTION_OPTION_TABLE_NAME = "Temp_question_option";
     
     private final Context myContext;
     private static DBHelper mInstance;

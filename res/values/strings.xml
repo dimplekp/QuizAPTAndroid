@@ -18,5 +18,6 @@
     <string name="title_activity_load_question">LoadQuestion</string>
     <string name="title_activity_score_board">Score Board</string>
     <string name="title_activity_take_quiz">Take Quiz</string>
+    <string name="title_activity_review_attempts_list">Review Attempts</string>
 
 </resources>
