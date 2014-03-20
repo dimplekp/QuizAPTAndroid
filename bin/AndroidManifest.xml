@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="in.informationworks.quizaptandroid"
+    package="in.informationworks.quizapt"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -44,8 +44,8 @@
             android:label="@string/title_activity_choose_login_signup" >
         </activity>
         <activity
-            android:name="in.informationworks.quizaptandroid.QuizzesList"
-            android:label="@string/title_activity_quizzes_list" >
+            android:name="in.informationworks.quizaptandroid.QuizList"
+            android:label="@string/title_activity_quiz_list" >
         </activity>
         <activity
             android:name="in.informationworks.quizaptandroid.SelectedQuiz"
@@ -66,6 +66,38 @@
         <activity
             android:name="in.informationworks.quizaptandroid.ReviewAttemptsList"
             android:label="@string/title_activity_review_attempts_list" >
+        </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.SelectedQuizReviewAttempts"
+            android:label="@string/title_activity_selected_quiz_review_attempts" >
+        </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.AttemptsList"
+            android:label="@string/title_activity_attempts_list" >
+        </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.SelectedQuizAttemptList"
+            android:label="@string/title_activity_selected_quiz_attempt_list" >
+        </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.AttemptList"
+            android:label="@string/title_activity_attempt_list" >
+        </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.SelectedPreviousAttemptScore"
+            android:label="@string/title_activity_selected_previous_attempt_score" >
+        </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.ReviewAttempt"
+            android:label="@string/title_activity_review_attempt" >
+        </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.ViewSolution"
+            android:label="@string/title_activity_view_solution" >
+        </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.ViewSolutionQuizList"
+            android:label="@string/title_activity_view_solution_quiz_list" >
         </activity>
     </application>
 

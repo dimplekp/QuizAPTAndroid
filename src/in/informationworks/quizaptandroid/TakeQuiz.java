@@ -1,15 +1,15 @@
 package in.informationworks.quizaptandroid;
 
+import in.informationworks.quizapt.R;
+import in.informationworks.quizaptandroid.models.AttemptDetail;
 import in.informationworks.quizaptandroid.models.Option;
 import in.informationworks.quizaptandroid.models.Question;
 import in.informationworks.quizaptandroid.models.Quiz;
-import in.informationworks.quizaptandroid.models.TempQuestionOption;
-
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -47,6 +47,11 @@ public class TakeQuiz extends Activity {
 	Question question;
 	List<Question> quesList;
 	List<Option> optList;
+	ArrayList<Option> optionList = new ArrayList<Option>();
+	List<AttemptDetail> attemptOptionList = new ArrayList<AttemptDetail>();
+	ArrayList<Option> optionGroupList = new ArrayList<Option>();
+	ArrayList<Option> currentOptions = new ArrayList<Option>();
+	ArrayList<ArrayList<Option>> allOptions = new  ArrayList<ArrayList<Option>>();
 	final RadioButton[] optionRB = new RadioButton[10];
 	long currentQueId = 0;
 	final Context context = this;
@@ -55,7 +60,7 @@ public class TakeQuiz extends Activity {
 	SPAccess spa;
 	Calendar c;
 	long attemptId;
-	List<TempQuestionOption> tempQuesOptList;
+	
 	long queId = 0;
 	
 	@SuppressWarnings("unused")
@@ -74,6 +79,12 @@ public class TakeQuiz extends Activity {
 		currentQuestionIndex = 0;
 		quiz = dao.getQuiz(quizId);
 		quesList = dao.getAllQuestions(quizId);
+		
+		for(int i = 0;i < quesList.size(); i++)
+		{
+		  optionList = dao.getAllOptionsForQuestion(quesList.get(i).getQueId());
+		  allOptions.add(optionList);
+		}
 		
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
@@ -97,6 +108,7 @@ public class TakeQuiz extends Activity {
 					
 					Intent intent = new Intent(TakeQuiz.this, ScoreBoard.class);
 					intent.putExtra(Utility.ATTEMPT_ID, attemptId);
+					intent.putExtra(Utility.NO_OF_QUESTIONS, totalQuestions);
 					
 					startActivity(intent);
 					finish();
@@ -122,11 +134,38 @@ public class TakeQuiz extends Activity {
 				setQuestionView();
 			}
 		});
+		
+		
+		optionsRadioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+			
+				int selectedOptionIndex = optionsRadioGroup.indexOfChild(findViewById(optionsRadioGroup.getCheckedRadioButtonId()));
+				currentOption = optList.get(selectedOptionIndex);
+				
+				// If current option is set true, values of selected options will not be inserted in Attempt_details table 
+				if (currentOption.getChecked()) {
+					return;
+				} else {
+					for(int i = 0; i < optList.size(); i++){
+						Option opt = optList.get(i);
+						if (opt.getChecked() == true) {
+							dao.deleteAttemptDetail(attemptId, opt.getOptId());
+							opt.setChecked(false);
+						}
+					}
+					dao.insertAttemptDetail(attemptId, currentOption.getOptId());
+					currentOption.setChecked(true);
+				}
+			}
+		});
 	}
 	
 	private void setQuestionView() {
 		currentQue = quesList.get(currentQuestionIndex);
-		
+		currentOptions = allOptions.get(currentQuestionIndex);
+	
 		questionTextView.setText(currentQue.getQuestion());
 		quizNameTextView.setText(quiz.getName());
 		
@@ -139,8 +178,13 @@ public class TakeQuiz extends Activity {
 			prevButton.setEnabled(true);
 		}
 		
-		optList = dao.getAllOptions(currentQue.getQueId());		
+		optList = allOptions.get(currentQuestionIndex);	
 		noOfOptions = optList.size();
+		if(noOfOptions < 2)
+		{
+			this.finish();
+			//Process.killProcess( android.os.Process.myPid() ); 
+		}
 		optionsRadioGroup.removeAllViews();
 		
 		for (int i=0; i<noOfOptions; i++) {
@@ -148,33 +192,11 @@ public class TakeQuiz extends Activity {
 			optionRB[i] = new RadioButton(this);
 			optionsRadioGroup.addView(optionRB[i]);
 			optionRB[i].setText(currentOption.getOptTxt());
+			optionRB[i].setChecked(currentOption.getChecked());
 		}
 		
 		currentQueId = currentQuestionIndex;
 		
-		optionsRadioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(RadioGroup group, int checkedId) {
-			
-				int selectedOptionIndex = optionsRadioGroup.indexOfChild(findViewById(optionsRadioGroup.getCheckedRadioButtonId()));
-				currentOption = optList.get(selectedOptionIndex);
-				optionId = currentOption.getOptId();
-				checkAnswer = dao.checkCorrectnessOfAnswer(optionId);
-				queId = dao.getQueIdFromOptionId(optionId);
-				tempQuesOptList = dao.getOptIdFromQueIdInTempTable(queId);
-				if (tempQuesOptList == null)
-				{
-					//do nothing
-				}
-				else
-				{
-					dao.deletePreviousOptionForMultipleChoices(tempQuesOptList, attemptId);
-				}
-				dao.insertAttemptDetails(optionId, attemptId);
-				dao.insertTempQuestionOptionValues(optionId, queId);
-				}
-		});
 	}
 	
 	@Override
@@ -188,7 +210,6 @@ public class TakeQuiz extends Activity {
 				.setCancelable(false)
 				.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog,int id) {
-						dao.deleteAllValuesOfTempTable();
 						TakeQuiz.this.finish();
 					}
 				  })
@@ -202,5 +223,4 @@ public class TakeQuiz extends Activity {
  
 				alertDialog.show();
 	}
-
 }

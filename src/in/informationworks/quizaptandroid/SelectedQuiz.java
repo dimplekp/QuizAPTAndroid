@@ -1,5 +1,6 @@
 package in.informationworks.quizaptandroid;
 
+import in.informationworks.quizapt.R;
 import in.informationworks.quizaptandroid.models.Quiz;
 import android.os.Bundle;
 import android.app.Activity;
@@ -20,6 +21,7 @@ public class SelectedQuiz extends Activity {
 	long quizId;
 	Quiz quiz;
 	Button startAQuizButton;
+	Button reviewAttemptsButton;
 	int position;
 	
 	DataAccess dao;
@@ -48,12 +50,25 @@ public class SelectedQuiz extends Activity {
 		startAQuizButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent quizQuestion = new Intent(SelectedQuiz.this, TakeQuiz.class);
-				quizQuestion.putExtra(Utility.NO_OF_QUESTIONS, no_of_questions);
-				quizQuestion.putExtra(Utility.QUIZ_ID, quiz.getId());
-				startActivity(quizQuestion);
+				Intent quizQuestionIntent = new Intent(SelectedQuiz.this, TakeQuiz.class);
+				quizQuestionIntent.putExtra(Utility.NO_OF_QUESTIONS, no_of_questions);
+				quizQuestionIntent.putExtra(Utility.QUIZ_ID, quiz.getId());
+				startActivity(quizQuestionIntent);
 				finish();
 			}
+		});
+		
+		reviewAttemptsButton = (Button) findViewById(R.id.reviewAttempt);
+		reviewAttemptsButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				Intent attemptListIntent = new Intent(SelectedQuiz.this, SelectedQuizAttemptList.class);
+				startActivity(attemptListIntent);
+				attemptListIntent.putExtra(Utility.QUIZ_ID, quiz.getId());
+				finish();
+			}
+			
 		});
 	}
 }

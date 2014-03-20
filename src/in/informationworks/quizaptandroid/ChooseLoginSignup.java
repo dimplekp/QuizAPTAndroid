@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import in.informationworks.quizapt.R;
 
 public class ChooseLoginSignup extends Activity {
 

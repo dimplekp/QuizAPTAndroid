@@ -13,11 +13,19 @@
     <string name="title_activity_home_screen">Home</string>
     <string name="_id">_id</string>
     <string name="title_activity_choose_login_signup">Choose any</string>
-    <string name="title_activity_quizzes_list">List of Quizzes</string>
+    <string name="title_activity_quiz_list">List of Quizzes</string>
     <string name="title_activity_selected_quiz">SelectedQuiz</string>
     <string name="title_activity_load_question">LoadQuestion</string>
     <string name="title_activity_score_board">Score Board</string>
     <string name="title_activity_take_quiz">Take Quiz</string>
     <string name="title_activity_review_attempts_list">Review Attempts</string>
+    <string name="title_activity_selected_quiz_review_attempts">Review Attempts</string>
+    <string name="title_activity_attempts_list">Attempts List</string>
+    <string name="title_activity_selected_quiz_attempt_list">Attempt List</string>
+    <string name="title_activity_attempt_list">Attempt List</string>
+    <string name="title_activity_selected_previous_attempt_score">Attempt Score</string>
+    <string name="title_activity_review_attempt">Review Attempt</string>
+    <string name="title_activity_view_solution">View Solution</string>
+    <string name="title_activity_view_solution_quiz_list">View Solution</string>
 
 </resources>

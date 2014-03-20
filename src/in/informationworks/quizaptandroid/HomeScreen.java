@@ -1,7 +1,7 @@
 package in.informationworks.quizaptandroid;
 
+import in.informationworks.quizapt.R;
 import in.informationworks.quizaptandroid.models.*;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -15,6 +15,8 @@ public class HomeScreen extends Activity {
 
 	Button logoutButton;
 	Button ChooseQuizButton;
+	Button ReviewAttemptsButton;
+	Button ViewSolutionButton;
 	long userId;
 	TextView userIdTxt;
 	TextView userNameTxt;
@@ -35,10 +37,6 @@ public class HomeScreen extends Activity {
 		User user = dao.getUser(userId);
 		final String name = user.getName();
 		
-		//Display user id stored in SharedPreferences.
-		//userIdTxt = (TextView) findViewById(R.id.userId);
-		//userIdTxt.setText(String.valueOf(userId));
-		
 		//Display name of a user whose id is stored in SharedPreferences.
 		userNameTxt = (TextView) findViewById(R.id.userName);
 		userNameTxt.setText(name);
@@ -53,15 +51,33 @@ public class HomeScreen extends Activity {
 				startActivity(signupIntent);
 			}
 		});
+		ReviewAttemptsButton = (Button) findViewById(R.id.reviewPreviousAttempts);
+		ReviewAttemptsButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent reviewAttemptIntent = new Intent(HomeScreen.this, AttemptList.class);
+				startActivity(reviewAttemptIntent);
+			}
+		});
 		
 		ChooseQuizButton = (Button) findViewById(R.id.chooseQuiz);
 		ChooseQuizButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent quizzesList = new Intent(HomeScreen.this, QuizzesList.class);
+				Intent quizzesList = new Intent(HomeScreen.this, QuizList.class);
 				startActivity(quizzesList);
 			}
 		});
+		
+		ViewSolutionButton = (Button) findViewById(R.id.viewSolution);
+		ViewSolutionButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent quizzesList = new Intent(HomeScreen.this, QuizList.class);
+				startActivity(quizzesList);
+			}
+		});
+
 	}
 	
 	@Override

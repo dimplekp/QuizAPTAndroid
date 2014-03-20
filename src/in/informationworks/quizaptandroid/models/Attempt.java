@@ -1,7 +1,14 @@
 package in.informationworks.quizaptandroid.models;
 
+import android.content.Context;
+import in.informationworks.quizaptandroid.DataAccess;
+
 public class Attempt {
 
+	Context context;
+	DataAccess dao = new DataAccess(context);
+	
+	private String quizAttemptname;
 	private long attemptId;
 	private long quizId;
 	private long userId;
@@ -12,6 +19,14 @@ public class Attempt {
 	}
 	public void setAttemptId(long attemptId) {
 		this.attemptId = attemptId;
+	}
+	
+	public void setAttemptName(String quizAttemptname){
+		this.quizAttemptname = quizAttemptname;
+	}
+	public String getAttemptName()
+	{
+		return quizAttemptname;
 	}
 	
 	public long getUserId() {
@@ -33,6 +48,11 @@ public class Attempt {
 	}
 	public void setDateAndTime(String dateAndTime) {
 		this.dateAndTime = dateAndTime;
+	}
+	
+	public String toString() {
+		Quiz quiz = dao.getQuiz(quizId);
+		return quiz.getName();
 	}
 	
 }

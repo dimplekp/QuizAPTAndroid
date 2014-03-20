@@ -6,6 +6,7 @@ public class Option {
 	private long queId;
 	private String optionTxt;
 	private String correct;
+	private boolean checked;
 	
 	public long getOptId() {
 		return optionId;
@@ -33,5 +34,12 @@ public class Option {
 	}
 	public void setCorrect(String correct) {
 		this.correct = correct;
+	}
+	
+	public boolean getChecked() {
+		return checked;
+	}
+	public void setChecked(boolean checked) {
+		this.checked = checked;
 	}
 }

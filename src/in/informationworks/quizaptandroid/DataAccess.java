@@ -9,7 +9,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.ParseException;
 import android.provider.BaseColumns;
 
 public class DataAccess {
@@ -25,7 +24,6 @@ public class DataAccess {
 	}
 	
 	//Insert new user in database.
-	
 	public long insertUser(String name, String email, String pass) {
 		long id = -1;
 		try {
@@ -41,8 +39,6 @@ public class DataAccess {
 		}
 		return id;
 	}
-	
-	
 	
 	/*
 	 Compare entered email id and password with the ones in database to check if they are correct or not.
@@ -127,6 +123,21 @@ public class DataAccess {
 	 		 return true;
 	 }
 	
+	public boolean isOptionChecked(long optionId, long attemptId) {
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		String[] columns = {"option_id"};
+		String selection = "option_id=? AND attempt_id=?";
+		String[] selectionArg = {String.valueOf(optionId), String.valueOf(attemptId)};
+		Cursor cursor = null;
+		cursor = db.query(DBHelper.ATTEMPT_DETAILS_TABLE_NAME, columns, selection, selectionArg, null, null, null);
+		int numberOfRows = cursor.getCount();
+		if(numberOfRows <= 0) {
+			return false;
+		}
+		else
+			return true;
+		}
+	
 	public long updateUser(ContentValues values, int userId) {
 		long id = -1;
 		try {
@@ -161,6 +172,28 @@ public class DataAccess {
 			e.printStackTrace();
 		}
 		return userId;
+	}
+	
+	public String getQuizName(long quizId) {
+		String quizName = "";
+		db = dbHelper.getReadableDatabase();
+		String[] columns = {"name"};
+		String selection = "_id=?";
+		String[] selectionArgs = {String.valueOf(quizId)};
+		Cursor cursor = null;
+		try {
+			if (db != null) {
+				cursor = db.query(DBHelper.QUIZZES_TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+				if (cursor.getCount() > 0) {
+					cursor.moveToFirst();
+					quizName = cursor.getString(cursor.getColumnIndex("name"));
+				}
+					cursor.close();
+			}
+		} catch (Exception e) {
+				e.printStackTrace();
+		}
+		return quizName;
 	}
 	
 	//Gets a list of Users
@@ -302,30 +335,18 @@ public class DataAccess {
     
     public int getNoOfCorrectAnswers(long attemptId) {
     	int noOfCorrectAnswers = 0;
-    	int totalAttempts;
-    	int x=0;
     	db = dbHelper.getReadableDatabase();
-    	Cursor attemptsCursor = db.rawQuery("select option_id from " 
-				+ DBHelper.ATTEMPT_DETAILS_TABLE_NAME
-				+ " where attempt_id = '"+ String.valueOf(attemptId) + "'", null);
-    	totalAttempts = attemptsCursor.getCount();
-    	for (int i = 0; i < totalAttempts; i++)
-    	{
-    		Cursor noOfCorrectAnswersCursor =  db.rawQuery("select count(_id) as noOfCorrectAnswers from " 
-    				+ DBHelper.OPTION_TABLE_NAME 
-    				+ " where _id = ? AND correct = ?", new String[] { attemptsCursor.getColumnName(0).toString(), String.valueOf(true) });
-    		
-    		if(noOfCorrectAnswersCursor.getCount()  > 0) {
-    			noOfCorrectAnswersCursor.moveToFirst();
-    			noOfCorrectAnswers = noOfCorrectAnswersCursor.getInt(noOfCorrectAnswersCursor.getColumnIndex("noOfCorrectAnswers"));
-    		}
-    		noOfCorrectAnswers++;
-    		if(noOfCorrectAnswers == 1)
-    		{
-    			x++;
-    		}
-    	}
-    	return x;
+		
+    	Cursor getCorrectAnswers = db.rawQuery("select count(correct) as noOfCorrectAnswers from "
+    			+ DBHelper.OPTION_TABLE_NAME
+    			+ " where _id in (select option_id from "
+    			+ DBHelper.ATTEMPT_DETAILS_TABLE_NAME
+    			+ " where attempt_id = " + String.valueOf(attemptId) + " ) AND correct = ?", new String[] { String.valueOf(true)});
+    	if (getCorrectAnswers.getCount() > 0) {
+    		getCorrectAnswers.moveToFirst();
+    		noOfCorrectAnswers = getCorrectAnswers.getInt(getCorrectAnswers.getColumnIndex("noOfCorrectAnswers"));
+		}
+		return noOfCorrectAnswers;
     }
     
     public List<Option> getOptions(long queId) {
@@ -333,19 +354,19 @@ public class DataAccess {
 		try {
 			db = dbHelper.getReadableDatabase();
 			if (db != null) {
-				Cursor cursor = db.query(DBHelper.OPTION_TABLE_NAME,
+				Cursor cursorGetOptions = db.query(DBHelper.OPTION_TABLE_NAME,
 						null, "q_id = " + "'" + queId + "'", null, null, null,
 						null);
-				if (cursor.getCount() > 0) {
+				if (cursorGetOptions.getCount() > 0) {
 					options = new ArrayList<Option>();
-					cursor.moveToFirst();
-					while (!cursor.isAfterLast()) {
-						Option option = cursorToOption(cursor);
+					cursorGetOptions.moveToFirst();
+					while (!cursorGetOptions.isAfterLast()) {
+						Option option = cursorToOption(cursorGetOptions);
 						options.add(option);
-						cursor.moveToNext();
+						cursorGetOptions.moveToNext();
 					}
 				}
-				cursor.close();
+				cursorGetOptions.close();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -375,38 +396,33 @@ public class DataAccess {
 		// return quest list
 		return quesList;
 	}
-      
-    public List<TempQuestionOption> getOptIdFromQueIdInTempTable(long queId) {
-		List<TempQuestionOption> tempQuesOptList = new ArrayList<TempQuestionOption>();
-		db = dbHelper.getReadableDatabase();
-		Cursor cursor = db.rawQuery("select opt_id from " 
-				+ DBHelper.TEMP_QUESTION_OPTION_TABLE_NAME
-				+ " where que_id = '"+ String.valueOf(queId) + "'", null);
-		
-			if(cursor.moveToFirst()) {
-				do{
-				TempQuestionOption tempqueopt = new TempQuestionOption(); 	
-				tempqueopt.setOptId(cursor.getLong(0));
-				tempQuesOptList.add(tempqueopt);
-				} while (cursor.moveToNext());
-			}	
-		cursor.close();
-		return tempQuesOptList;
-	}
 	
-    public long deletePreviousOptionForMultipleChoices(List<TempQuestionOption> tempQuesOptList, long attemptId) {
+    public List<AttemptDetail> getOptionIdFromAttemptDetails(long attemptId) {
+    	List<AttemptDetail> attemptDetailsOptionList = new ArrayList<AttemptDetail>();
+    	db = dbHelper.getReadableDatabase();
+    	Cursor cursor = db.rawQuery("select option_id from " 
+    			+ DBHelper.ATTEMPT_DETAILS_TABLE_NAME
+    			+ " where attempt_id = "+ String.valueOf(attemptId), null);
+    	if(cursor.moveToFirst()) {
+    		do {
+    			AttemptDetail attemptDetailOptions = new AttemptDetail();
+    			attemptDetailOptions.setOptionId(cursor.getLong(0));
+    			attemptDetailsOptionList.add(attemptDetailOptions);
+    		} while (cursor.moveToNext());
+    	}
+    	cursor.close();
+    	return attemptDetailsOptionList;
+    }
+    
+    public long deleteAttemptDetail(long attemptId, long optionId) {
 		long id = -1;
-		int noOfItems;
 		try {
-			noOfItems = tempQuesOptList.size();
 			db = dbHelper.getReadableDatabase();
-			for(int i = 0;i < noOfItems; i++) 
-			{
+		
 				String whereClause = "option_id=? AND attempt_id=?";
-				String[] whereArgs = {String.valueOf((tempQuesOptList.get(i)).getOptId()), String.valueOf(attemptId)};
+				String[] whereArgs = {String.valueOf(optionId), String.valueOf(attemptId)};
 				if(db != null) {
 					id = db.delete(DBHelper.ATTEMPT_DETAILS_TABLE_NAME, whereClause, whereArgs);
-				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -414,8 +430,8 @@ public class DataAccess {
 		return id;
 	}
     
-    public List<Option> getAllOptions(long queId) {
-    	List<Option> optList = new ArrayList<Option>();
+    public ArrayList<Option> getAllOptionsForQuestion(long queId) {
+    	ArrayList<Option> optList = new ArrayList<Option>();
     	db = dbHelper.getReadableDatabase();
     	Cursor cursor = db.rawQuery("select * from "
     			+ DBHelper.OPTION_TABLE_NAME
@@ -427,6 +443,21 @@ public class DataAccess {
     			option.setQueId(cursor.getLong(1));
     			option.setOptTxt(cursor.getString(2));
     			option.setCorrect(cursor.getString(3));
+    			optList.add(option) ;
+    		} while (cursor.moveToNext());
+    	}
+    	return optList;
+    }
+    
+    public List<Option> getAllOptions() {
+    	List<Option> optList = new ArrayList<Option>();
+    	db = dbHelper.getReadableDatabase();
+    	Cursor cursor = db.rawQuery("select * from "
+    			+ DBHelper.OPTION_TABLE_NAME, null);
+    	if (cursor.moveToFirst()) {
+    		do {
+    			Option option = new Option();
+    			option.setOptId(cursor.getLong(0));
     			optList.add(option);
     		} while (cursor.moveToNext());
     	}
@@ -467,7 +498,7 @@ public class DataAccess {
 		return id;
 	}
     
-	public void insertAttemptDetails(long optionId, long attemptId) {
+	public void insertAttemptDetail(long attemptId, long optionId) {
 		try {
 			ContentValues values = new ContentValues();
 			values.put("option_id", optionId);
@@ -558,6 +589,29 @@ public class DataAccess {
     	return attemptList;
     }
 	
+	public List<Attempt> getSelectedQuizAttempts(long quizId) {
+    	List<Attempt> attemptList = new ArrayList<Attempt>();
+    	
+    	try {
+    		db = dbHelper.getReadableDatabase();
+    		String selection = "quiz_id=?";
+    		String[] selectionArgs = {String.valueOf(quizId)};
+    		Cursor cursor = db.query(DBHelper.ATTEMPTS_TABLE_NAME, null, selection, selectionArgs, null, null, null);
+    		cursor.moveToFirst();
+    		while(!cursor.isAfterLast()) {
+    			Attempt attempt = cursorToAttempt(cursor);
+    			attemptList.add(attempt);
+    			cursor.moveToNext();
+    		}
+    		cursor.close();
+    	
+    	} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return attemptList;
+    }
+	
+	
 	public User cursorToUser(Cursor cursor) {
 		User user = new User();
 		user.setId(cursor.getInt(cursor.getColumnIndex(DBHelper.KEY_ROWID)));
@@ -593,7 +647,6 @@ public class DataAccess {
 	public Attempt cursorToAttempt(Cursor cursor) {
 		Attempt attempt = new Attempt();
 		attempt.setAttemptId(cursor.getInt(cursor.getColumnIndex(DBHelper.ATTEMPT_ID)));
-		attempt.setUserId(cursor.getInt(cursor.getColumnIndex(DBHelper.ATTEMPT_USER_ID)));
 		attempt.setQuizId(cursor.getLong(cursor.getColumnIndex(DBHelper.ATTEMPT_QUIZ_ID)));
 		attempt.setDateAndTime(cursor.getString(cursor.getColumnIndex(DBHelper.ATTEMPT_DATE_AND_TIME)));
 		return attempt;

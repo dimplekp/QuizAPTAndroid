@@ -74,7 +74,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin" >
         
         <Button
-        android:id="@+id/Solution"
+        android:id="@+id/viewSolution"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"

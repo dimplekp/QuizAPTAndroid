@@ -28,7 +28,7 @@
         	android:id="@+id/userScore"
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
-        	android:layout_marginLeft="80dp"
+        	android:layout_marginRight="40dp"
         	android:layout_marginBottom="20dp"
         	android:textAppearance="?android:attr/textAppearanceMedium" />
     
@@ -54,6 +54,7 @@
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:layout_marginBottom="20dp"
+        	android:layout_marginRight="40dp"
         	android:textAppearance="?android:attr/textAppearanceMedium" />
     	
     </LinearLayout>
@@ -78,6 +79,7 @@
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:layout_marginBottom="20dp"
+        	android:layout_marginRight="40dp"
         	android:textAppearance="?android:attr/textAppearanceMedium" />
     	
     </LinearLayout>
@@ -102,30 +104,7 @@
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:layout_marginBottom="20dp"
-        	android:textAppearance="?android:attr/textAppearanceMedium" />
-    	
-    </LinearLayout>
-    
-    <LinearLayout
- 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin" >
-    	
-    	<TextView
-        	android:id="@+id/Incorrect"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="Incorrect:"
-        	android:layout_marginBottom="20dp"
-        	android:textAppearance="?android:attr/textAppearanceMedium" />
-        
-    	<TextView
-        	android:id="@+id/incorrectQuestions"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:layout_marginBottom="20dp"
+        	android:layout_marginRight="40dp"
         	android:textAppearance="?android:attr/textAppearanceMedium" />
     	
     </LinearLayout>

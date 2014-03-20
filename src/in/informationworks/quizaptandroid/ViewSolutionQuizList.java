@@ -5,14 +5,16 @@ import in.informationworks.quizaptandroid.models.Quiz;
 import java.util.List;
 
 import android.os.Bundle;
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class QuizzesList extends ListActivity {
+public class ViewSolutionQuizList extends ListActivity {
 
 	DBHelper db;
 	DataAccess dao;
@@ -30,8 +32,9 @@ public class QuizzesList extends ListActivity {
 	
 	public void onListItemClick(ListView parent, View v, int position, long id) {
 		Intent intent = new Intent();
-		intent.setClass(QuizzesList.this, SelectedQuiz.class);
+		intent.setClass(ViewSolutionQuizList.this, ViewSolution.class);
 		intent.putExtra(Utility.QUIZ_ID, quizzes.get(position).getId());
 		startActivity(intent);
 	}
+
 }

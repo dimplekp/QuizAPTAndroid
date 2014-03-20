@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import in.informationworks.quizapt.R;
 
 public class Login extends Activity implements OnClickListener {
 
