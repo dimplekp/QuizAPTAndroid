@@ -2,7 +2,9 @@ package in.informationworks.quizaptandroid;
 
 import in.informationworks.quizaptandroid.R;
 import in.informationworks.quizaptandroid.models.Attempt;
+
 import java.util.List;
+
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -18,19 +20,21 @@ public class AttemptList extends ListActivity {
 	
 	DataAccess dao;
 	List<Attempt> attempts;
+	long userId;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.quiz_list);
-	    
+	    userId = getIntent().getExtras().getLong(Utility.USER_ID);
+	     
 	    dao = new DataAccess(this);
         SetList();   
 	}
 	
 	public void SetList(){
 		try {
-			attempts = dao.getAllAttempts();
+			attempts = dao.getAllAttempts(userId);
 			AttemptListAdapter adapter = new AttemptListAdapter(this, R.layout.quiz_list_details, attempts);
 			setListAdapter(adapter);
 		} catch (Exception e) {
@@ -83,9 +87,11 @@ public class AttemptList extends ListActivity {
 			String attemptQuizName = dao.getQuiz(attempts.get(position).getQuizId()).getName();
 			if(holder.txtQuizName != null) {
 				holder.txtQuizName.setText(attemptQuizName);
+				holder.txtQuizName.setTextSize(25.0f);
 			}
 			
 			holder.txtDateAndTime.setText(attempts.get(position).getDateAndTime());
+			holder.txtDateAndTime.setTextSize(15.0f);
 			
 			return row;
 		}

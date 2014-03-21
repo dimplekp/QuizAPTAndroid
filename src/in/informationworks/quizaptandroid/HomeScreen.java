@@ -56,6 +56,7 @@ public class HomeScreen extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent reviewAttemptIntent = new Intent(HomeScreen.this, AttemptList.class);
+				reviewAttemptIntent.putExtra(Utility.USER_ID, userId);
 				startActivity(reviewAttemptIntent);
 			}
 		});
@@ -65,6 +66,7 @@ public class HomeScreen extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent quizzesList = new Intent(HomeScreen.this, QuizList.class);
+				quizzesList.putExtra(Utility.USER_ID, userId);
 				startActivity(quizzesList);
 			}
 		});
@@ -73,8 +75,8 @@ public class HomeScreen extends Activity {
 		ViewSolutionButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent quizzesList = new Intent(HomeScreen.this, ViewSolutionQuizList.class);
-				startActivity(quizzesList);
+				Intent viewSolution = new Intent(HomeScreen.this, ViewSolutionQuizList.class);
+				startActivity(viewSolution);
 			}
 		});
 

@@ -15,11 +15,13 @@ public class QuizList extends ListActivity{
 
 	DataAccess dao;
 	List<Quiz> quizzes;
+	long userId;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		dao = new DataAccess(this);
+		userId = getIntent().getExtras().getLong(Utility.USER_ID);
         quizzes = dao.getAllQuizzes();
         ArrayAdapter<Quiz> adapter = new ArrayAdapter<Quiz>(this, android.R.layout.simple_list_item_1, quizzes);
         setListAdapter(adapter);
@@ -29,6 +31,7 @@ public class QuizList extends ListActivity{
 		Intent intent = new Intent();
 		intent.setClass(QuizList.this, SelectedQuiz.class);
 		intent.putExtra(Utility.QUIZ_ID, quizzes.get(position).getId());
+		intent.putExtra(Utility.USER_ID, userId);
 		startActivity(intent);
 	}
 }

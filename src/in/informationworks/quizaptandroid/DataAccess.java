@@ -570,11 +570,13 @@ public class DataAccess {
 		}
 	}
 	
-	public List<Attempt> getAllAttempts() {
+	public List<Attempt> getAllAttempts(long userId) {
     	List<Attempt> attemptList = new ArrayList<Attempt>();
     	try {
     		db = dbHelper.getReadableDatabase();
-    		Cursor cursor = db.query(DBHelper.ATTEMPTS_TABLE_NAME, null, null, null, null, null, null);
+    		Cursor cursor = db.rawQuery("select * from "
+    				+ DBHelper.ATTEMPTS_TABLE_NAME
+    				+ " where user_id = " + String.valueOf(userId), null);
     		cursor.moveToFirst();
     		while(!cursor.isAfterLast()) {
     			Attempt attempt = cursorToAttempt(cursor);
@@ -587,6 +589,49 @@ public class DataAccess {
 			e.printStackTrace();
 		}
     	return attemptList;
+    }
+	
+	public List<Attempt> getAllQuizAttempts(long quizId, long userId) {
+    	List<Attempt> attemptList = new ArrayList<Attempt>();
+    	try {
+    		db = dbHelper.getReadableDatabase();
+    		Cursor cursor = db.rawQuery("select * from " 
+    				+ DBHelper.ATTEMPTS_TABLE_NAME
+    				+" where quiz_id = " + String.valueOf(quizId) 
+    				+" AND user_id = " + String.valueOf(userId), null);
+    		cursor.moveToFirst();
+    		while(!cursor.isAfterLast()) {
+    			Attempt attempt = cursorToAttempt(cursor);
+    			attemptList.add(attempt);
+    			cursor.moveToNext();
+    		}
+    		cursor.close();
+    	
+    	} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return attemptList;
+    }
+	
+	public List<AttemptDetail> getAllQuizAttemptDetails(long attemptId) {
+    	List<AttemptDetail> attemptDetailList = new ArrayList<AttemptDetail>();
+    	try {
+    		db = dbHelper.getReadableDatabase();
+    		Cursor cursor = db.rawQuery("select * from " 
+    				+ DBHelper.ATTEMPT_DETAILS_TABLE_NAME
+    				+"where attempt_id = ?" + String.valueOf(attemptId), null);
+    		cursor.moveToFirst();
+    		while(!cursor.isAfterLast()) {
+    			AttemptDetail attemptDetail = cursorToAttemptDetail(cursor);
+    			attemptDetailList.add(attemptDetail);
+    			cursor.moveToNext();
+    		}
+    		cursor.close();
+    	
+    	} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return attemptDetailList;
     }
 	
 	public List<Attempt> getSelectedQuizAttempts(long quizId) {
@@ -650,6 +695,14 @@ public class DataAccess {
 		attempt.setQuizId(cursor.getLong(cursor.getColumnIndex(DBHelper.ATTEMPT_QUIZ_ID)));
 		attempt.setDateAndTime(cursor.getString(cursor.getColumnIndex(DBHelper.ATTEMPT_DATE_AND_TIME)));
 		return attempt;
+	}
+	
+	public AttemptDetail cursorToAttemptDetail(Cursor cursor) {
+		AttemptDetail attemptdetail = new AttemptDetail();
+		attemptdetail.setAttemptDetailsId(cursor.getLong(cursor.getColumnIndex(DBHelper.ATTEMPT_DETAIL_ID)));
+		attemptdetail.setOptionId(cursor.getLong(cursor.getColumnIndex(DBHelper.ATTEMPT_DETAIL_OPTION_ID)));
+		attemptdetail.setAttemptId(cursor.getLong(cursor.getColumnIndex(DBHelper.ATTEMPT_DETAIL_ATTEMPT_ID)));
+		return attemptdetail;
 	}
 	
 }

@@ -23,6 +23,7 @@ public class SelectedQuiz extends Activity {
 	Button startAQuizButton;
 	Button reviewAttemptsButton;
 	int position;
+	long userId;
 	
 	DataAccess dao;
 	@Override
@@ -33,6 +34,7 @@ public class SelectedQuiz extends Activity {
 		dao = new DataAccess(this);
 		
 		quizId = getIntent().getExtras().getLong(Utility.QUIZ_ID);
+		userId = getIntent().getExtras().getLong(Utility.USER_ID);
 		quiz = dao.getQuiz(quizId);
 		no_of_questions = dao.getNumberOfQuestionsInQuiz(quizId);
 		time_allowed = dao.getTimeAllowed(quizId);
@@ -64,8 +66,9 @@ public class SelectedQuiz extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				Intent attemptListIntent = new Intent(SelectedQuiz.this, SelectedQuizAttemptList.class);
-				startActivity(attemptListIntent);
 				attemptListIntent.putExtra(Utility.QUIZ_ID, quiz.getId());
+				attemptListIntent.putExtra(Utility.USER_ID, userId);
+				startActivity(attemptListIntent);
 				finish();
 			}
 			

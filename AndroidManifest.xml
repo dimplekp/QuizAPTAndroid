@@ -99,6 +99,14 @@
             android:name="in.informationworks.quizaptandroid.ViewSolutionQuizList"
             android:label="@string/title_activity_view_solution_quiz_list" >
         </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.SelectedQuizReviewAttempt"
+            android:label="@string/title_activity_selected_quiz_review_attempt" >
+        </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.ViewAttemptedQuiz"
+            android:label="@string/title_activity_view_attempted_quiz" >
+        </activity>
     </application>
 
 </manifest>

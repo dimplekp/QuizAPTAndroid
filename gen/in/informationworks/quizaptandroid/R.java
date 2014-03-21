@@ -136,10 +136,12 @@ public final class R {
         public static final int score_board=0x7f030006;
         public static final int selected_previous_attempt_score=0x7f030007;
         public static final int selected_quiz=0x7f030008;
-        public static final int signup=0x7f030009;
-        public static final int splash=0x7f03000a;
-        public static final int take_quiz=0x7f03000b;
-        public static final int view_solution=0x7f03000c;
+        public static final int selectedquiz_attemptlist_details=0x7f030009;
+        public static final int signup=0x7f03000a;
+        public static final int splash=0x7f03000b;
+        public static final int take_quiz=0x7f03000c;
+        public static final int view_attempted_quiz=0x7f03000d;
+        public static final int view_solution=0x7f03000e;
     }
     public static final class menu {
         public static final int attempt_list=0x7f080000;
@@ -156,27 +158,28 @@ public final class R {
         public static final int selected_previous_attempt_score=0x7f08000b;
         public static final int selected_quiz=0x7f08000c;
         public static final int selected_quiz_attempt_list=0x7f08000d;
-        public static final int selected_quiz_review_attempts=0x7f08000e;
-        public static final int signup=0x7f08000f;
-        public static final int start_aquiz=0x7f080010;
-        public static final int take_quiz=0x7f080011;
-        public static final int view_solution=0x7f080012;
-        public static final int view_solution_quiz_list=0x7f080013;
+        public static final int selected_quiz_review_attempt=0x7f08000e;
+        public static final int selected_quiz_review_attempts=0x7f08000f;
+        public static final int signup=0x7f080010;
+        public static final int start_aquiz=0x7f080011;
+        public static final int take_quiz=0x7f080012;
+        public static final int view_attempted_quiz=0x7f080013;
+        public static final int view_solution=0x7f080014;
+        public static final int view_solution_quiz_list=0x7f080015;
     }
     public static final class string {
         public static final int _id=0x7f06000a;
         public static final int action_settings=0x7f060001;
         public static final int app_name=0x7f060000;
-        public static final int confirmpasswordhint=0x7f060004;
-        public static final int emailidhint=0x7f060002;
-        public static final int hello_world=0x7f060006;
-        public static final int passwordhint=0x7f060003;
+        public static final int confirmpasswordhint=0x7f060005;
+        public static final int emailidhint=0x7f060003;
+        public static final int passwordhint=0x7f060004;
         public static final int title_activity_attempt_list=0x7f060015;
         public static final int title_activity_attempts_list=0x7f060013;
         public static final int title_activity_choose_login_signup=0x7f06000b;
         public static final int title_activity_home_screen=0x7f060009;
         public static final int title_activity_load_question=0x7f06000e;
-        public static final int title_activity_login=0x7f060005;
+        public static final int title_activity_login=0x7f060006;
         public static final int title_activity_quiz_list=0x7f06000c;
         public static final int title_activity_review_attempt=0x7f060017;
         public static final int title_activity_review_attempts_list=0x7f060011;
@@ -184,12 +187,15 @@ public final class R {
         public static final int title_activity_selected_previous_attempt_score=0x7f060016;
         public static final int title_activity_selected_quiz=0x7f06000d;
         public static final int title_activity_selected_quiz_attempt_list=0x7f060014;
+        public static final int title_activity_selected_quiz_review_attempt=0x7f06001a;
         public static final int title_activity_selected_quiz_review_attempts=0x7f060012;
         public static final int title_activity_signup=0x7f060007;
         public static final int title_activity_start_aquiz=0x7f060008;
         public static final int title_activity_take_quiz=0x7f060010;
+        public static final int title_activity_view_attempted_quiz=0x7f06001b;
         public static final int title_activity_view_solution=0x7f060018;
         public static final int title_activity_view_solution_quiz_list=0x7f060019;
+        public static final int userName=0x7f060002;
     }
     public static final class style {
         /** 

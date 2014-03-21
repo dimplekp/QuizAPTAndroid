@@ -9,8 +9,8 @@ public class AttemptDetail {
 	public long getAttemptId() {
 		return attemptId;
 	}
-	public void setAttemptId(int attemptId) {
-		this.attemptId = attemptId;
+	public void setAttemptId(long l) {
+		this.attemptId = l;
 	}
 	
 	public long getAttemptDetailsId() {
