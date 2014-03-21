@@ -46,7 +46,7 @@ public class AttemptList extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		String item;
 		item = (String) String.valueOf(attempts.get(position).getQuizId()) + " | " + attempts.get(position).getDateAndTime();
-		Intent intent = new Intent(this, ScoreBoard.class);
+		Intent intent = new Intent(this, ReviewAttemptScoreBoard.class);
 		intent.putExtra(Utility.DATE_AND_TIME, attempts.get(position).getDateAndTime());
 		intent.putExtra(Utility.NO_OF_QUESTIONS, dao.getNumberOfQuestionsInQuiz(attempts.get(position).getQuizId()));
 		intent.putExtra(Utility.QUIZ_ID, attempts.get(position).getQuizId());

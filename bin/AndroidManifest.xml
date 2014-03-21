@@ -56,7 +56,7 @@
             android:label="@string/title_activity_load_question" >
         </activity>
         <activity
-            android:name="in.informationworks.quizaptandroid.ScoreBoard"
+            android:name="in.informationworks.quizaptandroid.ReviewAttemptScoreBoard"
             android:label="@string/title_activity_score_board" >
         </activity>
         <activity
@@ -110,6 +110,10 @@
         <activity
             android:name="in.informationworks.quizaptandroid.ScoreBoardPreviousAttempt"
             android:label="@string/title_activity_score_board_previous_attempt" >
+        </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.ScoreBoard"
+            android:label="@string/title_activity_score_board" >
         </activity>
     </application>
 

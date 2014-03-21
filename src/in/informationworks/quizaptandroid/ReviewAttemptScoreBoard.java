@@ -1,9 +1,9 @@
 package in.informationworks.quizaptandroid;
 
+import in.informationworks.quizaptandroid.R;
 import in.informationworks.quizaptandroid.models.Attempt;
 import in.informationworks.quizaptandroid.models.AttemptDetail;
 import in.informationworks.quizaptandroid.models.Question;
-import in.informationworks.quizaptandroid.models.Quiz;
 
 import java.util.List;
 
@@ -16,9 +16,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class ScoreBoard extends Activity {
+public class ReviewAttemptScoreBoard extends Activity {
 
-	
+	String dateAndTime;
 	long attemptId;
 	long quizId;
 	long userId;
@@ -32,31 +32,36 @@ public class ScoreBoard extends Activity {
 	TextView attemptedQuestionsTextView;
 	TextView totalQuestionsTextView;
 	TextView QuizNameTextView;
-	
+	TextView DateAndTimeTextView;
 	
 	Button reviewAttemptButton;
 	List<Attempt> attempts;
 	List<AttemptDetail> attemptDetails;
 	List<AttemptDetail> attemptDetailsOptions;
-	List<Quiz> quiz;
+	List<Question> questions;
 	DataAccess dao;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.score_board);
+		setContentView(R.layout.review_attempt_score_board);
 		
 		dao = new DataAccess(this);
+	
 		attemptId = getIntent().getExtras().getLong(Utility.ATTEMPT_ID);
 		quizId = getIntent().getExtras().getLong(Utility.QUIZ_ID);
 		totalQuestions = getIntent().getExtras().getInt(Utility.NO_OF_QUESTIONS);
+		quizName =  getIntent().getExtras().getString(Utility.QUIZ_NAME);
+		dateAndTime = getIntent().getExtras().getString(Utility.DATE_AND_TIME);
 		
 		noOfCorrectAnswers = dao.getNoOfCorrectAnswers(attemptId);
 		attemptDetailsOptions = dao.getOptionIdFromAttemptDetails(attemptId);
 		noOfAttemptedQuestions = attemptDetailsOptions.size();
 		
 		QuizNameTextView = (TextView) findViewById(R.id.QuizName);
-		QuizNameTextView.setText(String.valueOf(dao.getQuiz(quizId).getName()));
+		QuizNameTextView.setText(String.valueOf(quizName));
+		
+		DateAndTimeTextView = (TextView) findViewById(R.id.DateAndTime);
+		DateAndTimeTextView.setText(dateAndTime);
 		
 		scoreTextView = (TextView) findViewById(R.id.userScore);
 		scoreTextView.setText(String.valueOf(noOfCorrectAnswers));
@@ -75,7 +80,7 @@ public class ScoreBoard extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				Intent intent = new Intent(ScoreBoard.this, ReviewAttempt.class);
+				Intent intent = new Intent(ReviewAttemptScoreBoard.this, ReviewAttempt.class);
 				intent.putExtra(Utility.QUIZ_ID, quizId);
 				intent.putExtra(Utility.ATTEMPT_ID, attemptId);
 				startActivity(intent);
@@ -83,5 +88,7 @@ public class ScoreBoard extends Activity {
 			}
 			
 		});
+		
 	}
+	
 }

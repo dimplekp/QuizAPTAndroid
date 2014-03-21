@@ -133,14 +133,15 @@ public final class R {
         public static final int quiz_list=0x7f030003;
         public static final int quiz_list_details=0x7f030004;
         public static final int review_attempt=0x7f030005;
-        public static final int score_board=0x7f030006;
-        public static final int selected_previous_attempt_score=0x7f030007;
-        public static final int selected_quiz=0x7f030008;
-        public static final int selectedquiz_attemptlist_details=0x7f030009;
-        public static final int signup=0x7f03000a;
-        public static final int splash=0x7f03000b;
-        public static final int take_quiz=0x7f03000c;
-        public static final int view_solution=0x7f03000d;
+        public static final int review_attempt_score_board=0x7f030006;
+        public static final int score_board=0x7f030007;
+        public static final int selected_previous_attempt_score=0x7f030008;
+        public static final int selected_quiz=0x7f030009;
+        public static final int selectedquiz_attemptlist_details=0x7f03000a;
+        public static final int signup=0x7f03000b;
+        public static final int splash=0x7f03000c;
+        public static final int take_quiz=0x7f03000d;
+        public static final int view_solution=0x7f03000e;
     }
     public static final class menu {
         public static final int attempt_list=0x7f080000;
