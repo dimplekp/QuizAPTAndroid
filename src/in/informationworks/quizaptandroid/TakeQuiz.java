@@ -1,6 +1,6 @@
 package in.informationworks.quizaptandroid;
 
-import in.informationworks.quizapt.R;
+import in.informationworks.quizaptandroid.R;
 import in.informationworks.quizaptandroid.models.AttemptDetail;
 import in.informationworks.quizaptandroid.models.Option;
 import in.informationworks.quizaptandroid.models.Question;
@@ -109,6 +109,7 @@ public class TakeQuiz extends Activity {
 					Intent intent = new Intent(TakeQuiz.this, ScoreBoard.class);
 					intent.putExtra(Utility.ATTEMPT_ID, attemptId);
 					intent.putExtra(Utility.NO_OF_QUESTIONS, totalQuestions);
+					intent.putExtra(Utility.QUIZ_ID, quizId);
 					
 					startActivity(intent);
 					finish();

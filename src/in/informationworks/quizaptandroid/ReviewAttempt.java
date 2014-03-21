@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import in.informationworks.quizapt.R;
+import in.informationworks.quizaptandroid.R;
 
 public class ReviewAttempt extends Activity {
 

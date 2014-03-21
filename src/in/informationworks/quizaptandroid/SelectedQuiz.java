@@ -1,6 +1,6 @@
 package in.informationworks.quizaptandroid;
 
-import in.informationworks.quizapt.R;
+import in.informationworks.quizaptandroid.R;
 import in.informationworks.quizaptandroid.models.Quiz;
 import android.os.Bundle;
 import android.app.Activity;

@@ -1,5 +1,5 @@
 /** Automatically generated file. DO NOT MODIFY */
-package in.informationworks.quizapt;
+package in.informationworks.quizaptandroid;
 
 public final class BuildConfig {
     public final static boolean DEBUG = true;

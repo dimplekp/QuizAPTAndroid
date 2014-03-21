@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import in.informationworks.quizapt.R;
+import in.informationworks.quizaptandroid.R;
 
 public class Signup extends Activity implements OnClickListener {
 

@@ -16,9 +16,7 @@ import android.widget.ListView;
 
 public class ViewSolutionQuizList extends ListActivity {
 
-	DBHelper db;
 	DataAccess dao;
-	Cursor c;
 	List<Quiz> quizzes;
 	
 	@Override

@@ -4,9 +4,6 @@ import android.content.Context;
 import in.informationworks.quizaptandroid.DataAccess;
 
 public class Attempt {
-
-	Context context;
-	DataAccess dao = new DataAccess(context);
 	
 	private String quizAttemptname;
 	private long attemptId;
@@ -51,8 +48,7 @@ public class Attempt {
 	}
 	
 	public String toString() {
-		Quiz quiz = dao.getQuiz(quizId);
-		return quiz.getName();
+		return String.valueOf(quizId);
 	}
 	
 }

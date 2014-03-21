@@ -1,6 +1,6 @@
 package in.informationworks.quizaptandroid;
 
-import in.informationworks.quizapt.R;
+import in.informationworks.quizaptandroid.R;
 import in.informationworks.quizaptandroid.models.Attempt;
 import java.util.List;
 import android.app.ListActivity;
@@ -11,17 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class AttemptList extends ListActivity {
 	
 	DataAccess dao;
-	List<Attempt> attempts = null;
-	LinearLayout scrollviewprogressreport;
+	List<Attempt> attempts;
 	
-	public void onCreate(Bundle savedInstanceState) {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.quiz_list);
 	    
@@ -81,7 +80,7 @@ public class AttemptList extends ListActivity {
 			else {
 				holder = (QuizViewHolder) row.getTag();
 			}
-			String attemptQuizName = attempts.get(position).getAttemptName();
+			String attemptQuizName = dao.getQuiz(attempts.get(position).getQuizId()).getName();
 			if(holder.txtQuizName != null) {
 				holder.txtQuizName.setText(attemptQuizName);
 			}

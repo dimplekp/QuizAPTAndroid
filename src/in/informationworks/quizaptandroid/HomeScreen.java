@@ -1,6 +1,6 @@
 package in.informationworks.quizaptandroid;
 
-import in.informationworks.quizapt.R;
+import in.informationworks.quizaptandroid.R;
 import in.informationworks.quizaptandroid.models.*;
 import android.os.Bundle;
 import android.app.Activity;
@@ -73,7 +73,7 @@ public class HomeScreen extends Activity {
 		ViewSolutionButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent quizzesList = new Intent(HomeScreen.this, QuizList.class);
+				Intent quizzesList = new Intent(HomeScreen.this, ViewSolutionQuizList.class);
 				startActivity(quizzesList);
 			}
 		});

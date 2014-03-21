@@ -3,7 +3,7 @@ package in.informationworks.quizaptandroid;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import in.informationworks.quizapt.R;
+import in.informationworks.quizaptandroid.R;
 
 public class MainActivity extends Activity {
 

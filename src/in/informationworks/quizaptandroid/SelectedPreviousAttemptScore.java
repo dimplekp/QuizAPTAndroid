@@ -3,7 +3,7 @@ package in.informationworks.quizaptandroid;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
-import in.informationworks.quizapt.R;
+import in.informationworks.quizaptandroid.R;
 
 public class SelectedPreviousAttemptScore extends Activity {
 
