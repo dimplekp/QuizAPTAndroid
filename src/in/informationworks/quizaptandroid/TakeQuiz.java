@@ -108,7 +108,6 @@ public class TakeQuiz extends Activity {
 					
 					Intent intent = new Intent(TakeQuiz.this, ScoreBoard.class);
 					intent.putExtra(Utility.ATTEMPT_ID, attemptId);
-					intent.putExtra(Utility.NO_OF_QUESTIONS, totalQuestions);
 					intent.putExtra(Utility.QUIZ_ID, quizId);
 					
 					startActivity(intent);

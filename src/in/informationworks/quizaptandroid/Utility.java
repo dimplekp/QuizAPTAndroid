@@ -8,5 +8,6 @@ public class Utility {
 	public final static String DATE_AND_TIME = "DATE AND TIME";
 	public final static String ATTEMPT_ID = "ATTEMPT ID";
 	public final static String USER_ID = "USER ID";
+	public final static String QUIZ_NAME = "QUIZ NAME";
 	
 }

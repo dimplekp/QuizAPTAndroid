@@ -83,46 +83,46 @@ public final class R {
         public static final int yellow=0x7f020005;
     }
     public static final class id {
-        public static final int Attempted=0x7f090017;
-        public static final int Correct=0x7f090019;
-        public static final int Incorrect=0x7f09001d;
+        public static final int Attempted=0x7f090019;
+        public static final int Correct=0x7f09001b;
+        public static final int DateAndTime=0x7f090014;
+        public static final int Incorrect=0x7f09001f;
         public static final int QuizName=0x7f09000e;
-        public static final int Score=0x7f090013;
-        public static final int Total=0x7f090015;
+        public static final int Score=0x7f090015;
+        public static final int Total=0x7f090017;
         public static final int action_settings=0x7f090029;
-        public static final int attemptedQuestions=0x7f090018;
+        public static final int attemptedQuestions=0x7f09001a;
         public static final int button1=0x7f090000;
         public static final int button2=0x7f090001;
+        public static final int checkAnswerStatus=0x7f090010;
         public static final int chooseQuiz=0x7f090004;
-        public static final int correctQuestions=0x7f09001a;
-        public static final int date=0x7f09001c;
+        public static final int correctQuestions=0x7f09001c;
+        public static final int date=0x7f09001e;
         public static final int dateAndTime=0x7f09000d;
         public static final int edtxtConfirmPassword=0x7f090026;
         public static final int email_txt=0x7f090008;
         public static final int fullname_txt=0x7f090025;
         public static final int imageView1=0x7f090028;
-        public static final int incorrectQuestions=0x7f09001e;
+        public static final int incorrectQuestions=0x7f090020;
         public static final int login=0x7f09000a;
         public static final int logout=0x7f090007;
-        public static final int next=0x7f090012;
-        public static final int noOfQuestions=0x7f090021;
-        public static final int optionsRadioGroup=0x7f090010;
+        public static final int next=0x7f090013;
+        public static final int noOfQuestions=0x7f090023;
+        public static final int optionsRadioGroup=0x7f090011;
         public static final int password_txt=0x7f090009;
-        public static final int previous=0x7f090011;
+        public static final int previous=0x7f090012;
         public static final int question=0x7f09000f;
         public static final int quizName=0x7f09000c;
-        public static final int reviewAttempt=0x7f09001b;
+        public static final int reviewAttempt=0x7f09001d;
         public static final int reviewPreviousAttempts=0x7f090005;
         public static final int scrollviewprogressreport=0x7f09000b;
         public static final int signup=0x7f090027;
         public static final int startAQuiz=0x7f090024;
-        public static final int textView1=0x7f09001f;
-        public static final int textView2=0x7f090020;
-        public static final int textView3=0x7f090022;
-        public static final int timeAllowed=0x7f090023;
-        public static final int totalQuestions=0x7f090016;
+        public static final int textView1=0x7f090021;
+        public static final int textView2=0x7f090022;
+        public static final int totalQuestions=0x7f090018;
         public static final int userName=0x7f090003;
-        public static final int userScore=0x7f090014;
+        public static final int userScore=0x7f090016;
         public static final int viewSolution=0x7f090006;
         public static final int welcome=0x7f090002;
     }
@@ -140,8 +140,7 @@ public final class R {
         public static final int signup=0x7f03000a;
         public static final int splash=0x7f03000b;
         public static final int take_quiz=0x7f03000c;
-        public static final int view_attempted_quiz=0x7f03000d;
-        public static final int view_solution=0x7f03000e;
+        public static final int view_solution=0x7f03000d;
     }
     public static final class menu {
         public static final int attempt_list=0x7f080000;
@@ -155,17 +154,18 @@ public final class R {
         public static final int review_attempt=0x7f080008;
         public static final int review_attempts_list=0x7f080009;
         public static final int score_board=0x7f08000a;
-        public static final int selected_previous_attempt_score=0x7f08000b;
-        public static final int selected_quiz=0x7f08000c;
-        public static final int selected_quiz_attempt_list=0x7f08000d;
-        public static final int selected_quiz_review_attempt=0x7f08000e;
-        public static final int selected_quiz_review_attempts=0x7f08000f;
-        public static final int signup=0x7f080010;
-        public static final int start_aquiz=0x7f080011;
-        public static final int take_quiz=0x7f080012;
-        public static final int view_attempted_quiz=0x7f080013;
-        public static final int view_solution=0x7f080014;
-        public static final int view_solution_quiz_list=0x7f080015;
+        public static final int score_board_previous_attempt=0x7f08000b;
+        public static final int selected_previous_attempt_score=0x7f08000c;
+        public static final int selected_quiz=0x7f08000d;
+        public static final int selected_quiz_attempt_list=0x7f08000e;
+        public static final int selected_quiz_review_attempt=0x7f08000f;
+        public static final int selected_quiz_review_attempts=0x7f080010;
+        public static final int signup=0x7f080011;
+        public static final int start_aquiz=0x7f080012;
+        public static final int take_quiz=0x7f080013;
+        public static final int view_attempted_quiz=0x7f080014;
+        public static final int view_solution=0x7f080015;
+        public static final int view_solution_quiz_list=0x7f080016;
     }
     public static final class string {
         public static final int _id=0x7f06000a;
@@ -173,6 +173,7 @@ public final class R {
         public static final int app_name=0x7f060000;
         public static final int confirmpasswordhint=0x7f060005;
         public static final int emailidhint=0x7f060003;
+        public static final int hello_world=0x7f06001d;
         public static final int passwordhint=0x7f060004;
         public static final int title_activity_attempt_list=0x7f060015;
         public static final int title_activity_attempts_list=0x7f060013;
@@ -184,6 +185,7 @@ public final class R {
         public static final int title_activity_review_attempt=0x7f060017;
         public static final int title_activity_review_attempts_list=0x7f060011;
         public static final int title_activity_score_board=0x7f06000f;
+        public static final int title_activity_score_board_previous_attempt=0x7f06001c;
         public static final int title_activity_selected_previous_attempt_score=0x7f060016;
         public static final int title_activity_selected_quiz=0x7f06000d;
         public static final int title_activity_selected_quiz_attempt_list=0x7f060014;

@@ -47,6 +47,13 @@
         			android:orientation="vertical"
         			android:paddingLeft="@dimen/activity_horizontal_margin"
         			android:paddingRight="@dimen/activity_horizontal_margin" >
+        			
+   					<TextView
+        				android:id="@+id/checkAnswerStatus"
+        				android:layout_width="wrap_content"
+        				android:layout_height="wrap_content"
+        				android:text="Not Attempted"
+        				android:textAppearance="?android:attr/textAppearanceSmall" />		    
    	    
    	    			<RadioGroup
         				android:id="@+id/optionsRadioGroup"

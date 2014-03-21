@@ -255,44 +255,7 @@ public class DataAccess {
     	return quizList;
     }
     
-    //Gets time allowed to complete the quiz
-    
-    public int getTimeAllowed(long quizId) {
-    	int cnt = -1;
-		int timeAllowed = -1;
-		db = dbHelper.getReadableDatabase();
-		Cursor cursor = null;
-		try {
-			if (db != null) {
-				
-				cursor = db.rawQuery("select count(_id) as quecnt from "
-						+ DBHelper.QUESTION_TABLE_NAME
-						+ " where quiz_id = ?", new String[] { String.valueOf(quizId) });
-				if (cursor.getCount() > 0) {
-					cursor.moveToFirst();
-					cnt = cursor.getInt(cursor.getColumnIndex("quecnt"));
-				}
-				
-				cursor = db.rawQuery("select time_allowed_per_question_in_minutes from " 
-						+ DBHelper.QUIZZES_TABLE_NAME 
-						+ " where _id = ?",
-						new String[] { String.valueOf(quizId) });
-				
-				if (cursor.getCount() > 0) {
-					cursor.moveToFirst();
-					timeAllowed = cursor.getInt(cursor.getColumnIndex("time_allowed_per_question_in_minutes"));
-				}
-				
-				cursor.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return cnt*timeAllowed;
-	}
-    
     //Gets no. of questions in the Quiz
-    
     public int getNumberOfQuestionsInQuiz(long quizId) {
 		int cnt = -1;
 		try {
@@ -619,7 +582,7 @@ public class DataAccess {
     		db = dbHelper.getReadableDatabase();
     		Cursor cursor = db.rawQuery("select * from " 
     				+ DBHelper.ATTEMPT_DETAILS_TABLE_NAME
-    				+"where attempt_id = ?" + String.valueOf(attemptId), null);
+    				+" where attempt_id = " + String.valueOf(attemptId), null);
     		cursor.moveToFirst();
     		while(!cursor.isAfterLast()) {
     			AttemptDetail attemptDetail = cursorToAttemptDetail(cursor);

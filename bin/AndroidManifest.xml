@@ -107,6 +107,10 @@
             android:name="in.informationworks.quizaptandroid.ViewAttemptedQuiz"
             android:label="@string/title_activity_view_attempted_quiz" >
         </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.ScoreBoardPreviousAttempt"
+            android:label="@string/title_activity_score_board_previous_attempt" >
+        </activity>
     </application>
 
 </manifest>

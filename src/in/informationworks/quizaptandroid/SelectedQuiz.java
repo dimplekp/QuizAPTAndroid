@@ -37,16 +37,12 @@ public class SelectedQuiz extends Activity {
 		userId = getIntent().getExtras().getLong(Utility.USER_ID);
 		quiz = dao.getQuiz(quizId);
 		no_of_questions = dao.getNumberOfQuestionsInQuiz(quizId);
-		time_allowed = dao.getTimeAllowed(quizId);
 		
 		quizNameTextView = (TextView) findViewById(R.id.quizName);
 		quizNameTextView.setText(quiz.getName());
 		
 		noOfQuestionsTextView = (TextView) findViewById(R.id.noOfQuestions);
 		noOfQuestionsTextView.setText(String.valueOf(no_of_questions));
-		
-		timeAllowedTextView = (TextView) findViewById(R.id.timeAllowed);
-		timeAllowedTextView.setText(String.valueOf(time_allowed));
 		
 		startAQuizButton = (Button) findViewById(R.id.startAQuiz);
 		startAQuizButton.setOnClickListener(new OnClickListener() {

@@ -12,7 +12,7 @@
     <string name="title_activity_start_aquiz">Start the Quiz</string>
     <string name="title_activity_home_screen">Home</string>
     <string name="_id">_id</string>
-    <string name="title_activity_choose_login_signup"> </string>
+    <string name="title_activity_choose_login_signup"></string>
     <string name="title_activity_quiz_list">Quizzes</string>
     <string name="title_activity_selected_quiz">Quiz</string>
     <string name="title_activity_load_question">Quiz</string>
@@ -29,5 +29,7 @@
     <string name="title_activity_view_solution_quiz_list">Solutions</string>
     <string name="title_activity_selected_quiz_review_attempt">Review previous attempts of this Quiz</string>
     <string name="title_activity_view_attempted_quiz">ViewAttemptedQuiz</string>
+    <string name="title_activity_score_board_previous_attempt">Score Board</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

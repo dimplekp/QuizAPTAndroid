@@ -47,12 +47,11 @@ public class AttemptList extends ListActivity {
 		String item;
 		item = (String) String.valueOf(attempts.get(position).getQuizId()) + " | " + attempts.get(position).getDateAndTime();
 		Intent intent = new Intent(this, ScoreBoard.class);
-		Bundle scoreBoardBundle = new Bundle();
-		
-		scoreBoardBundle.putString("keyToQue", String.valueOf(dao.getNumberOfQuestionsInQuiz(attempts.get(position).getQuizId())));
-		scoreBoardBundle.putLong("keyAttempted", attempts.get(position).getQuizId());
-		scoreBoardBundle.putLong("keyQuizId", attempts.get(position).getQuizId());
-		intent.putExtras(scoreBoardBundle);
+		intent.putExtra(Utility.DATE_AND_TIME, attempts.get(position).getDateAndTime());
+		intent.putExtra(Utility.NO_OF_QUESTIONS, dao.getNumberOfQuestionsInQuiz(attempts.get(position).getQuizId()));
+		intent.putExtra(Utility.QUIZ_ID, attempts.get(position).getQuizId());
+		intent.putExtra(Utility.ATTEMPT_ID, attempts.get(position).getAttemptId());
+		intent.putExtra(Utility.QUIZ_NAME, dao.getQuiz(attempts.get(position).getQuizId()).getName());
 		startActivity(intent);
 	}
 	
