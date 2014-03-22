@@ -405,7 +405,7 @@ public class DataAccess {
     			option.setOptId(cursor.getLong(0));
     			option.setQueId(cursor.getLong(1));
     			option.setOptTxt(cursor.getString(2));
-    			option.setCorrect(cursor.getString(3));
+    			option.setCorrect(Boolean.parseBoolean(cursor.getString(3)));
     			optList.add(option) ;
     		} while (cursor.moveToNext());
     	}
@@ -648,7 +648,7 @@ public class DataAccess {
 		option.setOptId(cursor.getInt(cursor.getColumnIndex(DBHelper.OPT_ID)));
 		option.setQueId(cursor.getInt(cursor.getColumnIndex(DBHelper.QUES_ID)));
 		option.setOptTxt(cursor.getString(cursor.getColumnIndex(DBHelper.OPT_TXT)));
-		option.setCorrect(cursor.getString(cursor.getColumnIndex(DBHelper.OPT_CORRECT)));
+		option.setCorrect(Boolean.getBoolean(cursor.getString((cursor.getColumnIndex(DBHelper.OPT_CORRECT)))));
 		return option;
 	}
 	

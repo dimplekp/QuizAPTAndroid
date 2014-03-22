@@ -162,7 +162,7 @@ public class ViewSolution extends Activity {
 			optionsRadioGroup.addView(optionRB[i]);
 			optionRB[i].setText(currentOption.getOptTxt());
 			
-			if(Boolean.parseBoolean(currentOption.getCorrect()) == true) 
+			if(currentOption.getCorrect() == true) 
 			{	
 				optionRB[i].setTextColor(getResources().getColor(R.color.green));
 			}

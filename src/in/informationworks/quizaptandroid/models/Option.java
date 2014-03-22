@@ -5,7 +5,7 @@ public class Option {
 	private long optionId;
 	private long queId;
 	private String optionTxt;
-	private String correct;
+	private boolean correct;
 	private boolean checked;
 	
 	public long getOptId() {
@@ -29,10 +29,10 @@ public class Option {
 		this.optionTxt = optionTxt;
 	}
 	
-	public String getCorrect() {
+	public boolean getCorrect() {
 		return correct;
 	}
-	public void setCorrect(String correct) {
+	public void setCorrect(boolean correct) {
 		this.correct = correct;
 	}
 	

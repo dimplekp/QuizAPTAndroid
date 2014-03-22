@@ -48,7 +48,7 @@ public class ReviewAttempt extends Activity {
 	boolean checkAnswer;
 	SPAccess spa;
 	long attemptId;
-	String checkAnswerStatus;
+	boolean checkAnswerStatus;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +117,57 @@ public class ReviewAttempt extends Activity {
 			  }
 		  });
 	}
+	
+	private boolean isOptionSelected(Option currentOption) {
+		for(int j = 0; j < attemptDetails.size(); j++)
+		{
+			if(currentOption.getOptId() == attemptDetails.get(j).getOptionId())
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private void setAttemptStatus() {
+		
+		boolean noOptionSelected = true;
+		
+		for (int i = 0; i<noOfOptions; i++) {
+			
+			currentOption = optList.get(i);
+			
+			//-- Mark radio button checked or uncheced based on user selection.
+			if (isOptionSelected(currentOption)) {
+				optionRB[i].setChecked(true);
+				noOptionSelected = false;
+				
+				// Option is selected and it is correct.
+				if (currentOption.getCorrect()) {
+					optionRB[i].setTextColor(getResources().getColor(R.color.green));
+					checkAnswerStatusTextView.setText("Correct");
+				} else {
+					optionRB[i].setTextColor(getResources().getColor(R.color.red));
+					checkAnswerStatusTextView.setText("In Correct");
+				}
+				
+			} else {
+				optionRB[i].setChecked(false);
+				
+				// Option is not selected and it is correct.
+				if (currentOption.getCorrect()) {
+					optionRB[i].setTextColor(getResources().getColor(R.color.green));
+				}
+			}
+		}
+		
+		// After iterating all the options mark status as Not Attempted.
+		if(noOptionSelected) {
+			checkAnswerStatusTextView.setText("Not Attempted");
+		}
+		
+	}
 
 	@SuppressLint({ "NewApi", "ResourceAsColor" })
 	private void setQuestionView() {
@@ -152,43 +203,11 @@ public class ReviewAttempt extends Activity {
 			optionRB[i] = new RadioButton(this);
 			optionsRadioGroup.addView(optionRB[i]);
 			optionRB[i].setText(currentOption.getOptTxt());
-			checkAnswerStatus = currentOption.getCorrect();
-			/*if(Boolean.parseBoolean(currentOption.getCorrect()) == true) 
-			{	
-				optionRB[i].setTextColor(getResources().getColor(R.color.green));
-			}*/
-			for(int j = 0; j < attemptDetails.size(); j++) {
-				if(currentOption.getOptId() == attemptDetails.get(j).getOptionId())
-				{
-					if(checkAnswerStatus == "true")
-					{
-						optionRB[i].setChecked(true);
-						optionRB[i].setTextColor(getResources().getColor(R.color.green));
-						checkAnswerStatusTextView.setText("Correct");
-						checkAnswerStatusTextView.setTextColor(R.color.green);
-					}
-					else
-					{
-						optionRB[i].setChecked(true);
-						optionRB[i].setTextColor(getResources().getColor(R.color.red));
-						checkAnswerStatusTextView.setText("Incorrect");
-						checkAnswerStatusTextView.setTextColor(R.color.red);
-					}
-					
-				}
+			optionsRadioGroup.setEnabled(false);
+			currentQueId = currentQuestionIndex;
 			
-				else if(Boolean.parseBoolean(currentOption.getCorrect()) == true) 
-				{
-					optionRB[i].setTextColor(getResources().getColor(R.color.green));
-					checkAnswerStatusTextView.setText("Not Attempted");
-				}
-				else
-				{
-					
-				}
-			}
-		}	
-		optionsRadioGroup.setEnabled(false);
-		currentQueId = currentQuestionIndex;
+		}
+		
+		setAttemptStatus();
 	}
 }
