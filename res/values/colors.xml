@@ -2,7 +2,7 @@
 <resources>
     <drawable name="red">#7f00</drawable>
     <drawable name="blue">#770000ff</drawable>
-    <drawable name="green">#7700ff00</drawable>
+    <drawable name="green">#41A317</drawable>
 	<drawable name="yellow">#77ffff00</drawable>
 	<drawable name="white">#ffffff</drawable>
 	<drawable name="screen_background_black">#ff000000</drawable>
@@ -13,10 +13,10 @@
     <color name="black">#000000</color>
     <color name="blue">#0000FF</color>
     <color name="red">#FF0000</color>
-    <color name="light_grey">#efefef</color>
+    <color name="light_grey">#FBB917</color>
     <color name="medium_grey">#d3d3d3</color>
     <color name="less_white">#fcfcfc</color>
-    <color name="darkgrey">#303030</color>
+    <color name="darkgrey">#307D7E</color>
     <color name="lightblack">#404040</color>
     <color name="darkorange">#F88017</color>
     <color name="getmoregrey">#45484D</color>
@@ -35,6 +35,7 @@
     <color name="bottombar_background_end">#d3d3d3</color>
      <color name="bottombar_background_item_pressed_start">#dedfe0</color>
     <color name="bottombar_background_item_pressed_end">#c4c4c4</color>
+    <color name="Royal_blue">#2B60DE</color>
     
     <color name="list_divider">#c5e5f7</color>
     
@@ -65,4 +66,12 @@
     <color name="darkgreen">#76823a</color>
     <color name="grey">#3b3b3b</color>
     <color name="mediumgrey">#dbdcdb</color>
+    <color name="blueorchid">#1F45FC</color>
+    <color name="blueskoi">#3090C7</color>
+    <color name="blueslate">#357EC7</color>
+    
+    <color name="scarlet">#FF2400</color>
+    <color name="babyblue">#008080</color>
+    
+    
 </resources>

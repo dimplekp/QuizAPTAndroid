@@ -78,6 +78,7 @@ public class AttemptList extends ListActivity {
 				holder = new QuizViewHolder();
 				holder.txtQuizName = (TextView) row.findViewById(R.id.quizName);
 				holder.txtDateAndTime= (TextView) row.findViewById(R.id.dateAndTime);
+				holder.txtQuizName.setHeight(80);
 				row.setTag(holder);
 			}
 			else {
@@ -87,10 +88,12 @@ public class AttemptList extends ListActivity {
 			if(holder.txtQuizName != null) {
 				holder.txtQuizName.setText(attemptQuizName);
 				holder.txtQuizName.setTextSize(25.0f);
+				holder.txtQuizName.setTextColor(getResources().getColor(R.color.white));
 			}
 			
 			holder.txtDateAndTime.setText(attempts.get(position).getDateAndTime());
 			holder.txtDateAndTime.setTextSize(15.0f);
+			holder.txtDateAndTime.setTextColor(getResources().getColor(R.color.white));
 			
 			return row;
 		}

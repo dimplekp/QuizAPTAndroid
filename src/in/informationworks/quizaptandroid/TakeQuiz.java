@@ -193,6 +193,8 @@ public class TakeQuiz extends Activity {
 			optionRB[i] = new RadioButton(this);
 			optionsRadioGroup.addView(optionRB[i]);
 			optionRB[i].setText(currentOption.getOptTxt());
+			optionRB[i].setTextColor(getResources().getColor(R.color.white));
+			optionRB[i].setTextSize(20.0f);
 			optionRB[i].setChecked(currentOption.getChecked());
 		}
 		

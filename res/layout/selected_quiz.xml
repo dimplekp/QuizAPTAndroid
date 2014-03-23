@@ -7,6 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="@color/babyblue"
     tools:context=".SelectedQuiz" >
 
     <LinearLayout
@@ -21,6 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quiz name :"
+        android:textColor="@color/white"
         android:layout_marginBottom="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
@@ -30,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="50dp"
+        android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </LinearLayout>
@@ -47,6 +50,7 @@
         android:layout_height="wrap_content"
         android:text="No. of questions :"
         android:layout_marginBottom="20dp"
+        android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <TextView
@@ -55,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="70dp"
         android:layout_marginBottom="20dp"
+		android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     </LinearLayout>
@@ -70,6 +75,8 @@
         android:id="@+id/startAQuiz"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/darkgrey"
+        android:background="@color/light_grey"
         android:text="START THE QUIZ" />
 
     </LinearLayout>
@@ -86,6 +93,8 @@
     	    android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
         	android:layout_marginTop="200dp"
+        	android:background="@color/light_grey"
+        	android:textColor="@color/darkgrey"
         	android:text="REVIEW PREVIOUS ATTEMPTS" />
     
     </LinearLayout>

@@ -7,6 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="@color/babyblue"
     tools:context=".ReviewAttemptScoreBoard" >
 
     <LinearLayout
@@ -23,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -31,6 +33,7 @@
         	android:layout_height="wrap_content"
         	android:layout_marginBottom="20dp"
         	android:layout_marginRight="10dp"
+        	android:textColor="@color/white"
         	android:textAppearance="?android:attr/textAppearanceLarge" />
     
     </LinearLayout>
@@ -46,6 +49,7 @@
         android:id="@+id/Score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="Your Score:"
         android:layout_marginBottom="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -56,6 +60,9 @@
         	android:layout_height="wrap_content"
         	android:layout_marginRight="40dp"
         	android:layout_marginBottom="20dp"
+        	android:textColor="@color/white"
+        	android:text="10"
+        	android:layout_marginLeft="50dp"
         	android:textAppearance="?android:attr/textAppearanceMedium" />
     
     </LinearLayout>
@@ -72,6 +79,7 @@
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:text="Total:"
+        	android:textColor="@color/white"
         	android:layout_marginBottom="20dp"
         	android:textAppearance="?android:attr/textAppearanceMedium" />
         
@@ -81,6 +89,9 @@
         	android:layout_height="wrap_content"
         	android:layout_marginBottom="20dp"
         	android:layout_marginRight="40dp"
+        	android:textColor="@color/white"
+        	android:text="10"
+        	android:layout_marginLeft="121dp"
         	android:textAppearance="?android:attr/textAppearanceMedium" />
     	
     </LinearLayout>
@@ -97,6 +108,7 @@
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:text="Attempted:"
+        	android:textColor="@color/white"
         	android:layout_marginBottom="20dp"
         	android:textAppearance="?android:attr/textAppearanceMedium" />
         
@@ -106,6 +118,9 @@
         	android:layout_height="wrap_content"
         	android:layout_marginBottom="20dp"
         	android:layout_marginRight="40dp"
+        	android:text="10"
+        	android:layout_marginLeft="80dp"
+        	android:textColor="@color/white"
         	android:textAppearance="?android:attr/textAppearanceMedium" />
     	
     </LinearLayout>
@@ -122,6 +137,7 @@
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:text="Correct:"
+        	android:textColor="@color/white"
         	android:layout_marginBottom="20dp"
         	android:textAppearance="?android:attr/textAppearanceMedium" />
         
@@ -131,6 +147,9 @@
         	android:layout_height="wrap_content"
         	android:layout_marginBottom="20dp"
         	android:layout_marginRight="40dp"
+        	android:text="10"
+        	android:layout_marginLeft="108dp"
+        	android:textColor="@color/white"
         	android:textAppearance="?android:attr/textAppearanceMedium" />
     	
     </LinearLayout>
@@ -145,7 +164,9 @@
     	<Button 
     	    android:id="@+id/reviewAttempt"
     	    android:layout_width="fill_parent"
-        	android:layout_height="wrap_content"
+        	android:layout_height="50dp"
+        	android:textColor="@color/darkgrey"
+        	android:background="@color/light_grey"
         	android:layout_marginTop="100dp"
         	android:text="REVIEW ATTEMPT" />
     

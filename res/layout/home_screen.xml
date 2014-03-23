@@ -6,12 +6,14 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
+    android:background="@color/babyblue"
     tools:context=".HomeScreen" >
 
     <LinearLayout
  		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="40dp"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin" >
         
@@ -21,6 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Hi "
         android:layout_marginLeft="150dp"
+        android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceLarge" />
         
         <TextView
@@ -29,6 +32,7 @@
         android:layout_height="wrap_content"
         android:text="Dimple"
         android:layout_marginBottom="20dp"
+        android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceLarge" />
         
     </LinearLayout>
@@ -38,14 +42,18 @@
  		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20dp"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin" >
+        android:paddingRight="30dp" >
         
         <Button
         android:id="@+id/chooseQuiz"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginBottom="30dp"
+        android:textColor="@color/darkgrey"
+        android:background="@color/light_grey"
+        android:layout_weight="500"
         android:text="CHOOSE A QUIZ" />
         
     </LinearLayout>
@@ -55,13 +63,15 @@
 		android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin" >
+        android:paddingRight="30dp" >
         
         <Button
         android:id="@+id/reviewPreviousAttempts"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginBottom="30dp"
+        android:textColor="@color/darkgrey"
+        android:background="@color/light_grey"
         android:text="REVIEW PREVIOUS ATTEMPTS" />
         
     </LinearLayout>
@@ -71,13 +81,15 @@
 		android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin" >
+        android:paddingRight="30dp" >
         
         <Button
         android:id="@+id/viewSolution"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginBottom="30dp"
+        android:textColor="@color/darkgrey"
+        android:background="@color/light_grey"
         android:text="VIEW SOLUTION" />
         
     </LinearLayout>
@@ -88,13 +100,15 @@
 		android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin" >
+        android:paddingRight="30dp" >
         
         <Button
         android:id="@+id/logout"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginBottom="30dp"
+        android:textColor="@color/darkgrey"
+        android:background="@color/light_grey"
         android:text="LOG OUT" />
         
     </LinearLayout>

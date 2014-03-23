@@ -6,6 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/babyblue"
     tools:context=".TakeQuiz" >
 
     <ScrollView
@@ -24,6 +25,7 @@
         		android:layout_width="wrap_content"
         		android:layout_height="wrap_content"
         		android:text="Large Text"
+        		android:textColor="@color/white"
         		android:textAppearance="?android:attr/textAppearanceLarge" />
     
     			<LinearLayout
@@ -37,6 +39,9 @@
         				android:id="@+id/question"
         				android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
+        				android:textColor="@color/white"
+        				android:paddingTop="10dp"
+        				android:paddingBottom="10dp"
         				android:textAppearance="?android:attr/textAppearanceMedium" />
         
     			</LinearLayout>
@@ -52,13 +57,17 @@
         				android:id="@+id/checkAnswerStatus"
         				android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
+        				android:layout_marginLeft="120dp"
         				android:text="Not Attempted"
-        				android:textAppearance="?android:attr/textAppearanceSmall" />		    
+        				android:textColor="@color/white"
+        				android:textSize="15sp" />		    
    	    
    	    			<RadioGroup
         				android:id="@+id/optionsRadioGroup"
         				android:layout_width="wrap_content"
-        				android:layout_height="wrap_content" >
+        				android:layout_height="wrap_content"
+        				android:paddingTop="10dp"
+        				android:paddingBottom="10dp" >
 
            			</RadioGroup>
    	    
@@ -76,6 +85,9 @@
    		    		android:layout_width="wrap_content"
    		    		android:layout_height="wrap_content"
    		    		android:layout_marginLeft="50dp"
+   		    		android:layout_marginRight="5dp"
+   		    		android:textColor="@color/darkgrey"
+   		    		android:background="@color/light_grey"
    		    		android:text="Prev" />
 
    				<Button
@@ -83,6 +95,9 @@
    		    		android:layout_width="wrap_content"
    		    		android:layout_height="wrap_content"
    		    		android:layout_marginRight="50dp"
+   		    		android:layout_marginLeft="5dp"
+   		    		android:textColor="@color/darkgrey"
+   		    		android:background="@color/light_grey"
    		    		android:text="Next" />
    	    
    			</LinearLayout>	

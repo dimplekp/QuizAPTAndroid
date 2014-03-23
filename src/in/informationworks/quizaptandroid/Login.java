@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import in.informationworks.quizaptandroid.R;
 
@@ -21,6 +22,7 @@ public class Login extends Activity implements OnClickListener {
 	DBHelper DB = null;
 	DataAccess dao;
 	SPAccess spa;
+	TextView signUpTextView;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +32,21 @@ public class Login extends Activity implements OnClickListener {
         btnLogin = (Button)findViewById(R.id.login);
         edtxtEmail = (EditText)findViewById(R.id.email_txt);
 		edtxtPassword = (EditText)findViewById(R.id.password_txt);
+		signUpTextView = (TextView) findViewById(R.id.signup);
 		
         btnLogin.setOnClickListener(this);
         dao = new DataAccess(this);
         spa = new SPAccess(this);
+        signUpTextView.setOnClickListener(new View.OnClickListener() {
+        	
+			
+			@Override
+			public void onClick(View v) {
+				Intent signupIntent = new Intent(Login.this, Signup.class);
+				startActivity(signupIntent);
+				
+			}
+		});
     }
 
 	@Override

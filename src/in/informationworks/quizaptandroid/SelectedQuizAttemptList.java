@@ -1,7 +1,9 @@
 package in.informationworks.quizaptandroid;
 
 import in.informationworks.quizaptandroid.models.Attempt;
+
 import java.util.List;
+
 import android.os.Bundle;
 import android.app.ListActivity;
 import android.content.Context;
@@ -76,6 +78,7 @@ public class SelectedQuizAttemptList extends ListActivity {
 				holder = new QuizViewHolder();
 				holder.txtQuizName = (TextView) row.findViewById(R.id.quizName);
 				holder.txtDateAndTime= (TextView) row.findViewById(R.id.dateAndTime);
+				holder.txtQuizName.setHeight(80);
 				row.setTag(holder);
 			}
 			else {
@@ -85,10 +88,12 @@ public class SelectedQuizAttemptList extends ListActivity {
 			if(holder.txtQuizName != null) {
 				holder.txtQuizName.setText(attemptQuizName);
 				holder.txtQuizName.setTextSize(25.0f);
+				holder.txtQuizName.setTextColor(getResources().getColor(R.color.white));
 			}
 			
 			holder.txtDateAndTime.setText(attempts.get(position).getDateAndTime());
 			holder.txtDateAndTime.setTextSize(15.0f);
+			holder.txtDateAndTime.setTextColor(getResources().getColor(R.color.white));
 			
 			return row;
 		}

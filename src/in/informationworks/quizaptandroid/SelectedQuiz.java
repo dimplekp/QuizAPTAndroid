@@ -65,7 +65,6 @@ public class SelectedQuiz extends Activity {
 				attemptListIntent.putExtra(Utility.QUIZ_ID, quiz.getId());
 				attemptListIntent.putExtra(Utility.USER_ID, userId);
 				startActivity(attemptListIntent);
-				finish();
 			}
 			
 		});

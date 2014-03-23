@@ -47,7 +47,7 @@ public class HomeScreen extends Activity {
 			public void onClick(View v) {
 				SharedPreferences preferences = getSharedPreferences("QUIZ_APT_PREFS", 0);
 				preferences.edit().remove("USER_ID").commit();
-				Intent signupIntent = new Intent(HomeScreen.this, ChooseLoginSignup.class);
+				Intent signupIntent = new Intent(HomeScreen.this, Login.class);
 				startActivity(signupIntent);
 			}
 		});

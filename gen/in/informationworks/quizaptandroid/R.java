@@ -11,6 +11,7 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int Royal_blue=0x7f040019;
         /**  <color name="orange">#FF9900</color> 
          */
         public static final int accent_1=0x7f04000b;
@@ -20,47 +21,53 @@ public final class R {
         public static final int actionbar_background_item_pressed_start=0x7f040011;
         public static final int actionbar_background_start=0x7f04000e;
         public static final int actionbar_divider=0x7f04000c;
-        public static final int actionbar_text=0x7f04001b;
+        public static final int actionbar_text=0x7f04001c;
         public static final int actionbar_title=0x7f04000d;
-        public static final int all_track_color=0x7f040024;
-        public static final int background_1=0x7f040022;
+        public static final int all_track_color=0x7f040025;
+        public static final int babyblue=0x7f040031;
+        public static final int background_1=0x7f040023;
         public static final int black=0x7f040001;
-        public static final int block_column_1=0x7f040025;
-        public static final int block_column_2=0x7f040026;
-        public static final int block_column_3=0x7f040027;
+        public static final int block_column_1=0x7f040026;
+        public static final int block_column_2=0x7f040027;
+        public static final int block_column_3=0x7f040028;
         public static final int blue=0x7f040002;
-        public static final int body_text_1=0x7f04001c;
-        public static final int body_text_1_inverse=0x7f04001f;
-        public static final int body_text_2=0x7f04001d;
-        public static final int body_text_2_inverse=0x7f040020;
-        public static final int body_text_disabled=0x7f04001e;
+        public static final int blueorchid=0x7f04002d;
+        public static final int blueskoi=0x7f04002e;
+        public static final int blueslate=0x7f04002f;
+        public static final int body_text_1=0x7f04001d;
+        public static final int body_text_1_inverse=0x7f040020;
+        public static final int body_text_2=0x7f04001e;
+        public static final int body_text_2_inverse=0x7f040021;
+        public static final int body_text_disabled=0x7f04001f;
         public static final int bottombar_background_end=0x7f040016;
         public static final int bottombar_background_item_pressed_end=0x7f040018;
         public static final int bottombar_background_item_pressed_start=0x7f040017;
         public static final int bottombar_background_start=0x7f040015;
-        public static final int darkgreen=0x7f040029;
+        public static final int darkgreen=0x7f04002a;
         public static final int darkgrey=0x7f040007;
         public static final int darkorange=0x7f040009;
         public static final int getmoregrey=0x7f04000a;
         public static final int green=0x7f040013;
-        public static final int grey=0x7f04002a;
+        public static final int grey=0x7f04002b;
         /**  <color name="accent_1">#ff29549f</color> 
          */
-        public static final int hyperlink=0x7f040021;
+        public static final int hyperlink=0x7f040022;
         public static final int less_white=0x7f040006;
         public static final int light_grey=0x7f040004;
         public static final int lightblack=0x7f040008;
-        public static final int list_divider=0x7f040019;
+        public static final int list_divider=0x7f04001a;
         public static final int medium_grey=0x7f040005;
-        public static final int mediumgrey=0x7f04002b;
-        public static final int orange=0x7f040028;
+        public static final int mediumgrey=0x7f04002c;
+        public static final int orange=0x7f040029;
         public static final int red=0x7f040003;
-        public static final int tab_bk=0x7f04001a;
+        public static final int scarlet=0x7f040030;
+        public static final int tab_bk=0x7f04001b;
         public static final int translucent_blue=0x7f040014;
-        public static final int whats_on_separator=0x7f040023;
+        public static final int whats_on_separator=0x7f040024;
         public static final int white=0x7f040000;
     }
     public static final class dimen {
+        public static final int actionbar_compat_height=0x7f050003;
         /**  Default screen margins, per the Android Design guidelines. 
 
          Customize dimensions originally defined in res/values/dimens.xml (such as
@@ -69,66 +76,111 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f050000;
         public static final int activity_vertical_margin=0x7f050001;
+        public static final int body_padding_large=0x7f050011;
+        /**  body content 
+         */
+        public static final int body_padding_medium=0x7f050010;
+        /**  bottom bar 
+         */
+        public static final int bottombar_height=0x7f050019;
+        /**  UI elements 
+         */
+        public static final int colorstrip_height=0x7f050002;
+        public static final int schedule_header_padding=0x7f050007;
+        public static final int schedule_hour_height=0x7f050008;
+        public static final int schedule_label_header_width=0x7f050009;
+        public static final int schedule_label_padding=0x7f05000a;
+        public static final int speaker_image_padding=0x7f050017;
+        public static final int speaker_image_size=0x7f050016;
+        public static final int star_button_padding=0x7f05000b;
+        public static final int tab_height=0x7f05000c;
+        public static final int tab_side_padding=0x7f05000d;
+        public static final int text_size_large=0x7f050014;
+        public static final int text_size_medium=0x7f050013;
+        public static final int text_size_small=0x7f050012;
+        public static final int text_size_xlarge=0x7f050015;
+        public static final int track_icon_padding=0x7f05000f;
+        public static final int track_icon_width=0x7f05000e;
+        public static final int vendor_image_size=0x7f050018;
+        public static final int whats_on_button_right_padding=0x7f050006;
+        public static final int whats_on_height=0x7f050004;
+        public static final int whats_on_item_padding=0x7f050005;
     }
     public static final class drawable {
-        public static final int blue=0x7f020003;
-        public static final int green=0x7f020004;
-        public static final int ic_launcher=0x7f020000;
-        public static final int iw_logo=0x7f020001;
-        public static final int red=0x7f020002;
-        public static final int screen_background_black=0x7f020007;
-        public static final int translucent_background=0x7f020008;
-        public static final int transparent_background=0x7f020009;
-        public static final int white=0x7f020006;
-        public static final int yellow=0x7f020005;
+        public static final int blue=0x7f020012;
+        public static final int email=0x7f020000;
+        public static final int green=0x7f020013;
+        public static final int ic_action_search=0x7f020001;
+        public static final int ic_action_submit=0x7f020002;
+        public static final int ic_action_submit_grey=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int ic_menu_moreoverflow_normal_holo_light=0x7f020005;
+        public static final int ic_menu_search=0x7f020006;
+        public static final int ic_stat_notify=0x7f020007;
+        public static final int iw_logo=0x7f020008;
+        public static final int list_focused_holo=0x7f020009;
+        public static final int list_longpressed_holo=0x7f02000a;
+        public static final int list_pressed_holo_light=0x7f02000b;
+        public static final int list_selector_disabled_holo_light=0x7f02000c;
+        public static final int password=0x7f02000d;
+        public static final int quizicon=0x7f02000e;
+        public static final int quiztime=0x7f02000f;
+        public static final int red=0x7f020011;
+        public static final int screen_background_black=0x7f020016;
+        public static final int translucent_background=0x7f020017;
+        public static final int transparent_background=0x7f020018;
+        public static final int username=0x7f020010;
+        public static final int white=0x7f020015;
+        public static final int yellow=0x7f020014;
     }
     public static final class id {
-        public static final int Attempted=0x7f090019;
-        public static final int Correct=0x7f09001b;
-        public static final int DateAndTime=0x7f090014;
-        public static final int QuizName=0x7f09000e;
-        public static final int Score=0x7f090015;
-        public static final int Total=0x7f090017;
-        public static final int action_settings=0x7f090026;
-        public static final int attemptedQuestions=0x7f09001a;
-        public static final int button1=0x7f090000;
-        public static final int button2=0x7f090001;
-        public static final int checkAnswerStatus=0x7f090010;
-        public static final int chooseQuiz=0x7f090004;
-        public static final int correctQuestions=0x7f09001c;
-        public static final int dateAndTime=0x7f09000d;
-        public static final int edtxtConfirmPassword=0x7f090023;
-        public static final int email_txt=0x7f090008;
-        public static final int fullname_txt=0x7f090022;
-        public static final int imageView1=0x7f090025;
+        public static final int Attempted=0x7f09001b;
+        public static final int Correct=0x7f09001d;
+        public static final int DateAndTime=0x7f090016;
+        public static final int QuizName=0x7f090010;
+        public static final int Score=0x7f090017;
+        public static final int Total=0x7f090019;
+        public static final int action_settings=0x7f090027;
+        public static final int attemptedQuestions=0x7f09001c;
+        public static final int checkAnswerStatus=0x7f090012;
+        public static final int chooseQuiz=0x7f090002;
+        public static final int correctQuestions=0x7f09001e;
+        public static final int dateAndTime=0x7f09000e;
+        public static final int edtxtConfirmPassword=0x7f090025;
+        public static final int email_txt=0x7f090007;
+        public static final int fullname_txt=0x7f090024;
+        public static final int imageView1=0x7f090026;
+        public static final int imageView2=0x7f090006;
+        public static final int imageView3=0x7f090008;
+        public static final int listView=0x7f09000f;
         public static final int login=0x7f09000a;
-        public static final int logout=0x7f090007;
-        public static final int next=0x7f090013;
-        public static final int noOfQuestions=0x7f090020;
-        public static final int optionsRadioGroup=0x7f090011;
+        public static final int logout=0x7f090005;
+        public static final int next=0x7f090015;
+        public static final int noOfQuestions=0x7f090022;
+        public static final int optionsRadioGroup=0x7f090013;
         public static final int password_txt=0x7f090009;
-        public static final int previous=0x7f090012;
-        public static final int question=0x7f09000f;
-        public static final int quizName=0x7f09000c;
-        public static final int reviewAttempt=0x7f09001d;
-        public static final int reviewPreviousAttempts=0x7f090005;
-        public static final int scrollviewprogressreport=0x7f09000b;
-        public static final int signup=0x7f090024;
-        public static final int startAQuiz=0x7f090021;
-        public static final int textView1=0x7f09001e;
-        public static final int textView2=0x7f09001f;
-        public static final int totalQuestions=0x7f090018;
-        public static final int userName=0x7f090003;
-        public static final int userScore=0x7f090016;
-        public static final int viewSolution=0x7f090006;
-        public static final int welcome=0x7f090002;
+        public static final int previous=0x7f090014;
+        public static final int question=0x7f090011;
+        public static final int quizName=0x7f09000d;
+        public static final int reviewAttempt=0x7f09001f;
+        public static final int reviewPreviousAttempts=0x7f090003;
+        public static final int scrollviewprogressreport=0x7f09000c;
+        public static final int signup=0x7f09000b;
+        public static final int startAQuiz=0x7f090023;
+        public static final int textView1=0x7f090020;
+        public static final int textView2=0x7f090021;
+        public static final int totalQuestions=0x7f09001a;
+        public static final int userName=0x7f090001;
+        public static final int userScore=0x7f090018;
+        public static final int viewSolution=0x7f090004;
+        public static final int welcome=0x7f090000;
     }
     public static final class layout {
-        public static final int choose_login_signup=0x7f030000;
-        public static final int home_screen=0x7f030001;
-        public static final int login=0x7f030002;
-        public static final int quiz_list=0x7f030003;
-        public static final int quiz_list_details=0x7f030004;
+        public static final int home_screen=0x7f030000;
+        public static final int login=0x7f030001;
+        public static final int quiz_list=0x7f030002;
+        public static final int quiz_list_details=0x7f030003;
+        public static final int quizlist=0x7f030004;
         public static final int review_attempt=0x7f030005;
         public static final int review_attempt_score_board=0x7f030006;
         public static final int score_board=0x7f030007;
@@ -198,14 +250,14 @@ public final class R {
     }
     public static final class style {
         /** 
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    
+Base application theme, dependent on API level. This theme is replaced
+by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
+
+Theme customizations available in newer API levels can go in
+res/values-vXX/styles.xml, while customizations related to
+backward-compatibility can go here.
+
 
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.

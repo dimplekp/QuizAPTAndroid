@@ -112,6 +112,7 @@ public class ReviewAttempt extends Activity {
 				  else
 				  {
 					  nextButton.setEnabled(true);
+					  
 				  }
 				  setQuestionView();
 			  }
@@ -147,9 +148,11 @@ public class ReviewAttempt extends Activity {
 				if (currentOption.getCorrect()) {
 					optionRB[i].setTextColor(getResources().getColor(R.color.green));
 					checkAnswerStatusTextView.setText("Correct");
+					checkAnswerStatusTextView.setTextColor(getResources().getColor(R.color.green));
 				} else {
-					optionRB[i].setTextColor(getResources().getColor(R.color.red));
-					checkAnswerStatusTextView.setText("In Correct");
+					optionRB[i].setTextColor(getResources().getColor(R.color.orange));
+					checkAnswerStatusTextView.setText("Incorrect");
+					checkAnswerStatusTextView.setTextColor(getResources().getColor(R.color.orange));
 				}
 				
 			} else {
@@ -179,7 +182,7 @@ public class ReviewAttempt extends Activity {
 		
 		if(currentQuestionIndex == 0) 
 		{
-			prevButton.setEnabled(false);
+			prevButton.setEnabled(false);	
 		}
 		else
 		{
@@ -203,6 +206,8 @@ public class ReviewAttempt extends Activity {
 			optionRB[i] = new RadioButton(this);
 			optionsRadioGroup.addView(optionRB[i]);
 			optionRB[i].setText(currentOption.getOptTxt());
+			optionRB[i].setTextColor(getResources().getColor(R.color.white));
+			optionRB[i].setTextSize(20.0f);
 			optionsRadioGroup.setEnabled(false);
 			currentQueId = currentQuestionIndex;
 			

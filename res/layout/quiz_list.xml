@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/babyblue"
     android:orientation="vertical" >
     <ListView
         android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:id="@+id/android:list" 
-		android:dividerHeight="1dp"
-		android:cacheColorHint="#00000000"
-	/>
-    <!--  android:layoutAnimation="@anim/layout_slide_right"-->
+		android:dividerHeight="3dp"
+		android:cacheColorHint="#00000000" />
+    
     <ScrollView
         
         android:layout_width="fill_parent"

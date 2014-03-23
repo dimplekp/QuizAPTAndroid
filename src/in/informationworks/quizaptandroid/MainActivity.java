@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
 					if(isUserLoggedin == false) {
 			
 						Intent intent = new Intent();
-						intent.setClass(MainActivity.this, ChooseLoginSignup.class);
+						intent.setClass(MainActivity.this, Login.class);
 						startActivity(intent);
 						finish();
 						
