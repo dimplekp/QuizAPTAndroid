@@ -9,6 +9,7 @@
     <drawable name="translucent_background">#e0000000</drawable>
     <drawable name="transparent_background">#00000000</drawable>
     
+    <color name="offwhite">#B6B6B4</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="blue">#0000FF</color>

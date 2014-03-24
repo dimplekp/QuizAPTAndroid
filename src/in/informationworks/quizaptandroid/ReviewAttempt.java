@@ -168,6 +168,7 @@ public class ReviewAttempt extends Activity {
 		// After iterating all the options mark status as Not Attempted.
 		if(noOptionSelected) {
 			checkAnswerStatusTextView.setText("Not Attempted");
+			checkAnswerStatusTextView.setTextColor(getResources().getColor(R.color.white));
 		}
 		
 	}

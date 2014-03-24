@@ -1,17 +1,19 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingBottom="3dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".TakeQuiz"
     android:background="@color/babyblue"
-    tools:context=".TakeQuiz" >
+    android:orientation="vertical" >
 
     <ScrollView
         android:layout_width="match_parent"
-    	android:layout_height="wrap_content">
+    	android:layout_height="wrap_content"
+    	android:layout_weight="3">
     	
     	<LinearLayout
     	    android:layout_width="match_parent"
@@ -25,24 +27,25 @@
         		android:layout_width="wrap_content"
         		android:layout_height="wrap_content"
         		android:text="Large Text"
-        		android:textColor="@color/white"
-        		android:textAppearance="?android:attr/textAppearanceLarge" />
+        		android:textAppearance="?android:attr/textAppearanceLarge"
+        		android:textColor="@color/white" />
     
     			<LinearLayout
         			android:layout_width="fill_parent"
         			android:layout_height="wrap_content"
         			android:orientation="vertical"
         			android:paddingLeft="@dimen/activity_horizontal_margin"
-        			android:paddingRight="@dimen/activity_horizontal_margin" >
+        			android:paddingRight="@dimen/activity_horizontal_margin"
+        			android:paddingTop="20dp" >
     	
         			<TextView
         				android:id="@+id/question"
         				android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
         				android:textColor="@color/white"
+        				android:textSize="20sp"
         				android:paddingTop="10dp"
-        				android:paddingBottom="10dp"
-        				android:textAppearance="?android:attr/textAppearanceMedium" />
+        				android:paddingBottom="10dp" />
         
     			</LinearLayout>
 
@@ -52,22 +55,12 @@
         			android:orientation="vertical"
         			android:paddingLeft="@dimen/activity_horizontal_margin"
         			android:paddingRight="@dimen/activity_horizontal_margin" >
-        			
-   					<TextView
-        				android:id="@+id/checkAnswerStatus"
-        				android:layout_width="wrap_content"
-        				android:layout_height="wrap_content"
-        				android:layout_marginLeft="180dp"
-        				android:text="Not Attempted"
-        				android:textColor="@color/white"
-        				android:textSize="15sp" />		    
    	    
    	    			<RadioGroup
         				android:id="@+id/optionsRadioGroup"
         				android:layout_width="wrap_content"
         				android:layout_height="wrap_content"
-        				android:paddingTop="10dp"
-        				android:paddingBottom="10dp" >
+        				android:clickable="false" >
 
            			</RadioGroup>
    	    
@@ -76,15 +69,16 @@
    		</LinearLayout>
    		
    	</ScrollView>
-    
-    <LinearLayout 
-   	    		android:layout_width="fill_parent"
-        		android:layout_height="wrap_content"
-        		android:orientation="horizontal"
-        		android:layout_alignParentBottom="true"
-        		android:gravity="center"
-        		android:paddingLeft="@dimen/activity_horizontal_margin"
-        		android:paddingRight="@dimen/activity_horizontal_margin" >
+   	
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
 
    				<Button
    		    		android:id="@+id/previous"
@@ -92,9 +86,8 @@
    		    		android:layout_height="wrap_content"
    		    		android:layout_marginLeft="50dp"
    		    		android:layout_marginRight="5dp"
-   		    		android:textColor="@color/darkgrey"
    		    		android:background="@color/light_grey"
-   		    		android:focusableInTouchMode="true"
+   		    		android:textColor="@color/darkgrey"
    		    		android:text="Prev" />
 
    				<Button
@@ -103,11 +96,10 @@
    		    		android:layout_height="wrap_content"
    		    		android:layout_marginRight="50dp"
    		    		android:layout_marginLeft="5dp"
-   		    		android:focusableInTouchMode="true"
-   		    		android:textColor="@color/darkgrey"
    		    		android:background="@color/light_grey"
+   		    		android:textColor="@color/darkgrey"
    		    		android:text="Next" />
    	    
    			</LinearLayout>	
     
-</RelativeLayout>
+</LinearLayout>
