@@ -210,7 +210,7 @@ public class ReviewAttempt extends Activity {
 			optionRB[i].setTextSize(20.0f);
 			optionsRadioGroup.setEnabled(false);
 			currentQueId = currentQuestionIndex;
-			
+			optionsRadioGroup.getChildAt(i).setEnabled(false);
 		}
 		
 		setAttemptStatus();
