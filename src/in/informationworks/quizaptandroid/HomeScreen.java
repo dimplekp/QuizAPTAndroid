@@ -49,6 +49,7 @@ public class HomeScreen extends Activity {
 				preferences.edit().remove("USER_ID").commit();
 				Intent signupIntent = new Intent(HomeScreen.this, Login.class);
 				startActivity(signupIntent);
+				finish();
 			}
 		});
 		ReviewAttemptsButton = (Button) findViewById(R.id.reviewPreviousAttempts);
