@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="in.informationworks.quizaptandroid.MainActivity"
+            android:name="in.informationworks.quizaptandroid.Splash"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,7 @@
         <activity
             android:name="in.informationworks.quizaptandroid.Login"
             android:label="@string/title_activity_login"
-            android:parentActivityName="in.informationworks.quizaptandroid.MainActivity" >
+            android:parentActivityName="in.informationworks.quizaptandroid.Splash" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="in.informationworks.quizaptandroid.MainActivity" />
@@ -36,7 +36,7 @@
             android:label="@string/title_activity_signup" >
         </activity>
         <activity
-            android:name="in.informationworks.quizaptandroid.HomeScreen"
+            android:name="in.informationworks.quizaptandroid.Home"
             android:label="@string/title_activity_home_screen" >
         </activity>
         <activity
@@ -44,11 +44,11 @@
             android:label="@string/title_activity_choose_login_signup" >
         </activity>
         <activity
-            android:name="in.informationworks.quizaptandroid.QuizList"
+            android:name="in.informationworks.quizaptandroid.Quizzes"
             android:label="@string/title_activity_quiz_list" >
         </activity>
         <activity
-            android:name="in.informationworks.quizaptandroid.SelectedQuiz"
+            android:name="in.informationworks.quizaptandroid.QuizDetails"
             android:label="@string/title_activity_selected_quiz" >
         </activity>
         <activity
@@ -56,7 +56,7 @@
             android:label="@string/title_activity_load_question" >
         </activity>
         <activity
-            android:name="in.informationworks.quizaptandroid.ReviewAttemptScoreBoard"
+            android:name="in.informationworks.quizaptandroid.ReviewAttemptScore"
             android:label="@string/title_activity_score_board" >
         </activity>
         <activity
@@ -76,11 +76,11 @@
             android:label="@string/title_activity_attempts_list" >
         </activity>
         <activity
-            android:name="in.informationworks.quizaptandroid.SelectedQuizAttemptList"
+            android:name="in.informationworks.quizaptandroid.QuizAttempts"
             android:label="@string/title_activity_selected_quiz_attempt_list" >
         </activity>
         <activity
-            android:name="in.informationworks.quizaptandroid.AttemptList"
+            android:name="in.informationworks.quizaptandroid.AllAttempts"
             android:label="@string/title_activity_attempt_list" >
         </activity>
         <activity
@@ -96,7 +96,7 @@
             android:label="@string/title_activity_view_solution" >
         </activity>
         <activity
-            android:name="in.informationworks.quizaptandroid.ViewSolutionQuizList"
+            android:name="in.informationworks.quizaptandroid.ViewSolutionQuizzes"
             android:label="@string/title_activity_view_solution_quiz_list" >
         </activity>
         <activity
@@ -112,7 +112,7 @@
             android:label="@string/title_activity_score_board_previous_attempt" >
         </activity>
         <activity
-            android:name="in.informationworks.quizaptandroid.ScoreBoard"
+            android:name="in.informationworks.quizaptandroid.ReceiveScore"
             android:label="@string/title_activity_score_board" >
         </activity>
     </application>

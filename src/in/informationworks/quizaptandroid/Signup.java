@@ -48,7 +48,7 @@ public class Signup extends Activity implements OnClickListener {
 		boolean UserStatus = validateSignupInput();
 
 		if(UserStatus == true) {
-			Intent loginPage = new Intent(Signup.this, HomeScreen.class);
+			Intent loginPage = new Intent(Signup.this, Home.class);
 			startActivity(loginPage);
 			finish();
 		}

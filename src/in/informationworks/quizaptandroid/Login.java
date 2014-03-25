@@ -95,7 +95,7 @@ public class Login extends Activity implements OnClickListener {
 			 //spa.DisplayUserId(String.valueOf(user_id));
 			 spa.saveId(user_id );
 			 Intent intent = new Intent();
-			 intent.setClass(Login.this, HomeScreen.class);
+			 intent.setClass(Login.this, Home.class);
 			 startActivity(intent);
 			 finish();
 		 }

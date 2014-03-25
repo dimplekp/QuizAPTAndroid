@@ -106,7 +106,7 @@ public class TakeQuiz extends Activity {
 				if(currentQuestionIndex == (totalQuestions)) {
 					dao.deleteAllValuesOfTempTable();
 					
-					Intent intent = new Intent(TakeQuiz.this, ScoreBoard.class);
+					Intent intent = new Intent(TakeQuiz.this, ReceiveScore.class);
 					intent.putExtra(Utility.ATTEMPT_ID, attemptId);
 					intent.putExtra(Utility.QUIZ_ID, quizId);
 					intent.putExtra(Utility.NO_OF_QUESTIONS, totalQuestions);

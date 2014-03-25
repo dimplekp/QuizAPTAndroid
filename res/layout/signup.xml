@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/babyblue"
-    tools:context=".MainActivity" >    
+    tools:context=".Splash" >    
         
     <TextView android:text="New User"
                     android:layout_width="fill_parent"
