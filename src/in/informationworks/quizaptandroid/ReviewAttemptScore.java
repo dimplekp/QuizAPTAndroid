@@ -33,6 +33,7 @@ public class ReviewAttemptScore extends Activity {
 	TextView totalQuestionsTextView;
 	TextView QuizNameTextView;
 	TextView DateAndTimeTextView;
+	TextView percentageTextView;
 	
 	Button reviewAttemptButton;
 	List<Attempt> attempts;
@@ -74,6 +75,9 @@ public class ReviewAttemptScore extends Activity {
 		
 		totalQuestionsTextView = (TextView) findViewById(R.id.totalQuestions);
 		totalQuestionsTextView.setText(String.valueOf(totalQuestions));
+		
+		percentageTextView = (TextView) findViewById(R.id.percentage);
+		percentageTextView.setText(String.valueOf((100 * noOfCorrectAnswers)/totalQuestions));
 		
 		reviewAttemptButton = (Button) findViewById(R.id.reviewAttempt);
 		reviewAttemptButton.setOnClickListener(new OnClickListener() {
