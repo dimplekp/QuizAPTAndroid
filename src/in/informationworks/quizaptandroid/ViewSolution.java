@@ -24,13 +24,9 @@ public class ViewSolution extends Activity {
 	Button nextButton;
 	Button prevButton;
 	int currentQuestionIndex = 0;
-	int currentOptionIndex = 0;
 	long quizId;
 	int totalQuestions;
-	int position;
 	int noOfOptions;
-	long optionId;
-	long attemptDetailId;
 	TextView questionTextView;
 	TextView quizNameTextView;
 	RadioGroup optionsRadioGroup;
@@ -38,25 +34,15 @@ public class ViewSolution extends Activity {
 	Option currentOption;
 	DataAccess dao;
 	Quiz quiz;
-	Option option;
-	Question question;
 	List<Question> quesList;
 	List<Option> optList;
 	ArrayList<Option> optionList = new ArrayList<Option>();
-	List<AttemptDetail> attemptOptionList = new ArrayList<AttemptDetail>();
-	ArrayList<Option> optionGroupList = new ArrayList<Option>();
 	ArrayList<Option> currentOptions = new ArrayList<Option>();
 	ArrayList<ArrayList<Option>> allOptions = new  ArrayList<ArrayList<Option>>();
 	final RadioButton[] optionRB = new RadioButton[10];
 	long currentQueId = 0;
 	final Context context = this;
-	boolean checkAnswer;
-	String currentDateandTime;
 	SPAccess spa;
-	Calendar c;
-	long attemptId;
-	
-	long queId = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -1,15 +1,15 @@
 package in.informationworks.quizaptandroid;
 
 import in.informationworks.quizaptandroid.R;
-import in.informationworks.quizaptandroid.models.AttemptDetail;
 import in.informationworks.quizaptandroid.models.Option;
 import in.informationworks.quizaptandroid.models.Question;
 import in.informationworks.quizaptandroid.models.Quiz;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -24,18 +24,15 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
-public class TakeQuiz extends Activity {
+public class AttemptQuiz extends Activity {
 
 	Button nextButton;
 	Button prevButton;
+	Button saveButton;
 	int currentQuestionIndex = 0;
-	int currentOptionIndex = 0;
 	long quizId;
 	int totalQuestions;
-	int position;
 	int noOfOptions;
-	long optionId;
-	long attemptDetailId;
 	TextView questionTextView;
 	TextView quizNameTextView;
 	RadioGroup optionsRadioGroup;
@@ -43,25 +40,18 @@ public class TakeQuiz extends Activity {
 	Option currentOption;
 	DataAccess dao;
 	Quiz quiz;
-	Option option;
-	Question question;
 	List<Question> quesList;
 	List<Option> optList;
 	ArrayList<Option> optionList = new ArrayList<Option>();
-	List<AttemptDetail> attemptOptionList = new ArrayList<AttemptDetail>();
-	ArrayList<Option> optionGroupList = new ArrayList<Option>();
+	List<Quiz> quizzes;
 	ArrayList<Option> currentOptions = new ArrayList<Option>();
 	ArrayList<ArrayList<Option>> allOptions = new  ArrayList<ArrayList<Option>>();
 	final RadioButton[] optionRB = new RadioButton[10];
 	long currentQueId = 0;
 	final Context context = this;
-	boolean checkAnswer;
 	String currentDateandTime;
 	SPAccess spa;
-	Calendar c;
 	long attemptId;
-	
-	long queId = 0;
 	
 	@SuppressWarnings("unused")
 	@SuppressLint("SimpleDateFormat")
@@ -95,6 +85,7 @@ public class TakeQuiz extends Activity {
 		quizNameTextView = (TextView) findViewById(R.id.QuizName);
 		nextButton = (Button) findViewById(R.id.next); 
 		prevButton = (Button) findViewById(R.id.previous);
+		saveButton = (Button) findViewById(R.id.save);
 		optionsRadioGroup = (RadioGroup) findViewById (R.id.optionsRadioGroup);
 		
 		setQuestionView();
@@ -104,18 +95,30 @@ public class TakeQuiz extends Activity {
 			public void onClick(View v) {
 				currentQuestionIndex++;
 				if(currentQuestionIndex == (totalQuestions)) {
-					dao.deleteAllValuesOfTempTable();
 					
-					Intent intent = new Intent(TakeQuiz.this, ReceiveScore.class);
+					Intent intent = new Intent(AttemptQuiz.this, ReceiveScore.class);
 					intent.putExtra(Utility.ATTEMPT_ID, attemptId);
 					intent.putExtra(Utility.QUIZ_ID, quizId);
 					intent.putExtra(Utility.NO_OF_QUESTIONS, totalQuestions);
-					
 					startActivity(intent);
 					finish();
 				} else {
 					setQuestionView();
 				}
+			}
+		});
+		
+		saveButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				Intent intent = new Intent(AttemptQuiz.this, ReceiveScore.class);
+				intent.putExtra(Utility.ATTEMPT_ID, attemptId);
+				intent.putExtra(Utility.QUIZ_ID, quizId);
+				intent.putExtra(Utility.NO_OF_QUESTIONS, totalQuestions);
+				startActivity(intent);
+				finish();
 			}
 		});
 		
@@ -213,7 +216,7 @@ public class TakeQuiz extends Activity {
 				.setCancelable(false)
 				.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog,int id) {
-						TakeQuiz.this.finish();
+						AttemptQuiz.this.finish();
 					}
 				  })
 				.setNegativeButton("No",new DialogInterface.OnClickListener() {

@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/babyblue"
-    tools:context=".TakeQuiz" >
+    tools:context=".AttemptQuiz" >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,13 +20,26 @@
     		android:paddingRight="@dimen/activity_horizontal_margin"
     		android:orientation="vertical">
     
-    		<TextView
+    	    <LinearLayout
+    			android:layout_width="match_parent"
+    		android:layout_height="wrap_content"
+    		android:paddingLeft="@dimen/activity_horizontal_margin"
+    		android:paddingRight="@dimen/activity_horizontal_margin"
+    		android:orientation="horizontal">
+    		
+    	        <TextView
         		android:id="@+id/QuizName"
         		android:layout_width="wrap_content"
         		android:layout_height="wrap_content"
         		android:text="Large Text"
         		android:textColor="@color/white"
         		android:textAppearance="?android:attr/textAppearanceLarge" />
+    	        
+    	        
+    	        
+    		</LinearLayout>
+    				        
+    		
     
     			<LinearLayout
         			android:layout_width="fill_parent"
@@ -79,22 +92,31 @@
    		    		android:id="@+id/previous"
    		    		android:layout_width="wrap_content"
    		    		android:layout_height="wrap_content"
-   		    		android:layout_marginLeft="50dp"
+   		    		android:layout_marginLeft="20dp"
    		    		android:layout_marginRight="5dp"
    		    		android:textColor="@color/darkgrey"
    		    		android:background="@color/light_grey"
    		    		android:text="Prev" />
-
+   				
    				<Button
    		    		android:id="@+id/next"
    		    		android:layout_width="wrap_content"
    		    		android:layout_height="wrap_content"
-   		    		android:layout_marginRight="50dp"
+   		    		android:layout_marginRight="5dp"
    		    		android:layout_marginLeft="5dp"
    		    		android:textColor="@color/darkgrey"
    		    		android:background="@color/light_grey"
    		    		android:text="Next" />
    	    
+   				<Button
+   		    		android:id="@+id/save"
+   		    		android:layout_width="wrap_content"
+   		    		android:layout_height="wrap_content"
+   		    		android:textColor="@color/darkgrey"
+   		    		android:layout_marginLeft="5dp"
+   		    		android:layout_marginRight="20dp"
+   		    		android:background="@color/light_grey"
+   		    		android:text="SAVE" />
    			</LinearLayout>	
     
 </RelativeLayout>

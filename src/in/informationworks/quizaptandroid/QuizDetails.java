@@ -46,7 +46,7 @@ public class QuizDetails extends Activity {
 		startAQuizButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent quizQuestionIntent = new Intent(QuizDetails.this, TakeQuiz.class);
+				Intent quizQuestionIntent = new Intent(QuizDetails.this, AttemptQuiz.class);
 				quizQuestionIntent.putExtra(Utility.NO_OF_QUESTIONS, no_of_questions);
 				quizQuestionIntent.putExtra(Utility.QUIZ_ID, quiz.getId());
 				startActivity(quizQuestionIntent);

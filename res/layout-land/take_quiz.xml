@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/babyblue"
     android:orientation="vertical"
-    tools:context=".TakeQuiz" >
+    tools:context=".AttemptQuiz" >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -92,11 +92,21 @@
    		    		android:id="@+id/next"
    		    		android:layout_width="wrap_content"
    		    		android:layout_height="wrap_content"
-   		    		android:layout_marginRight="50dp"
+   		    		android:layout_marginRight="5dp"
    		    		android:layout_marginLeft="5dp"
    		    		android:textColor="@color/darkgrey"
    		    		android:background="@color/light_grey"
    		    		android:text="Next" />
+   				
+   				<Button
+   		    		android:id="@+id/save"
+   		    		android:layout_width="wrap_content"
+   		    		android:layout_height="wrap_content"
+   		    		android:textColor="@color/darkgrey"
+   		    		android:layout_marginLeft="5dp"
+   		    		android:layout_marginRight="50dp"
+   		    		android:background="@color/light_grey"
+   		    		android:text="SAVE" />
    	    
    			</LinearLayout>	
     

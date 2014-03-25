@@ -522,16 +522,7 @@ public class DataAccess {
 		return queId;
 	}
 	
-	public void deleteAllValuesOfTempTable() {
-		try {
-			db = dbHelper.getReadableDatabase();
-			if(db != null) {
-				db.delete(DBHelper.TEMP_QUESTION_OPTION_TABLE_NAME, null, null);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	
 	
 	public List<Attempt> getAllAttempts(long userId) {
     	List<Attempt> attemptList = new ArrayList<Attempt>();
