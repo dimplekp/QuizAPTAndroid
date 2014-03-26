@@ -29,7 +29,7 @@ public class AttemptQuiz extends Activity {
 
 	Button nextButton;
 	Button prevButton;
-	Button saveButton;
+	Button submitButton;
 	int currentQuestionIndex = 0;
 	long quizId;
 	int totalQuestions;
@@ -91,7 +91,7 @@ public class AttemptQuiz extends Activity {
 		quizNameTextView = (TextView) findViewById(R.id.QuizName);
 		nextButton = (Button) findViewById(R.id.next); 
 		prevButton = (Button) findViewById(R.id.previous);
-		saveButton = (Button) findViewById(R.id.save);
+		submitButton = (Button) findViewById(R.id.submit);
 		optionsRadioGroup = (RadioGroup) findViewById (R.id.optionsRadioGroup);
 		
 		setQuestionView();
@@ -124,7 +124,7 @@ public class AttemptQuiz extends Activity {
 			}
 		});
 		
-		saveButton.setOnClickListener(new View.OnClickListener() {
+		submitButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {

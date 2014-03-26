@@ -84,6 +84,7 @@ public class QuizDetails extends Activity {
 					Intent attemptListIntent = new Intent(QuizDetails.this, AttemptQuiz.class);
 					attemptListIntent.putExtra(Utility.QUIZ_ID, quiz.getId());
 					attemptListIntent.putExtra(Utility.USER_ID, userId);
+					attemptListIntent.putExtra(Utility.NO_OF_QUESTIONS, no_of_questions);
 					startActivity(attemptListIntent);
 				}
 			}

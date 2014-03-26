@@ -141,7 +141,7 @@ public final class R {
         public static final int QuizName=0x7f090010;
         public static final int Score=0x7f090017;
         public static final int Total=0x7f090019;
-        public static final int action_settings=0x7f09002b;
+        public static final int action_settings=0x7f09002c;
         public static final int attemptedQuestions=0x7f09001c;
         public static final int checkAnswerStatus=0x7f090012;
         public static final int chooseQuiz=0x7f090002;
@@ -167,10 +167,11 @@ public final class R {
         public static final int resumeAttempt=0x7f090026;
         public static final int reviewAttempt=0x7f090021;
         public static final int reviewPreviousAttempts=0x7f090003;
-        public static final int save=0x7f09002a;
+        public static final int save=0x7f09002b;
         public static final int scrollviewprogressreport=0x7f09000c;
         public static final int signup=0x7f09000b;
         public static final int startAQuiz=0x7f090025;
+        public static final int submit=0x7f09002a;
         public static final int textView=0x7f090020;
         public static final int textView1=0x7f090023;
         public static final int textView2=0x7f090022;
