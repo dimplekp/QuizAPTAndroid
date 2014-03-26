@@ -25,6 +25,15 @@ public class SPAccess {
 		return pref.getLong("USER_ID", 0);
 	}
 	
+	public void saveAttemptId(long attemptId) {
+		editor.putLong("ATTEMPT_ID", attemptId);
+		editor.commit();
+	}
+	
+	public long getAttemptId() {
+		return pref.getLong("ATTEMPT_ID", 0);
+	}
+	
 	public void saveQuizName(String QuizName) {
 		editor.putString("Quiz_Name", QuizName);
 		editor.commit();
@@ -45,4 +54,16 @@ public class SPAccess {
 			return true; 	
 		}
 	}
+	
+	public boolean isQuizPending() {
+		long value = pref.getLong("ATTEMPT_ID", 0);
+		pref = c.getSharedPreferences("QUIZ_APT_PREFS", 0);
+		if (value == 0) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
 }

@@ -17,6 +17,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -79,7 +80,12 @@ public class AttemptQuiz extends Activity {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		currentDateandTime = dateFormat.format(new Date());
-		attemptId = dao.insertQuizAttempt(quizId, spa.getUserId(), currentDateandTime);
+		if(spa.getAttemptId() == 0) {
+			attemptId = dao.insertQuizAttempt(quizId, spa.getUserId(), currentDateandTime);
+		}
+		else {
+			attemptId = spa.getAttemptId();
+		}
 		
 		questionTextView = (TextView)findViewById(R.id.question);
 		quizNameTextView = (TextView) findViewById(R.id.QuizName);
@@ -103,6 +109,16 @@ public class AttemptQuiz extends Activity {
 					startActivity(intent);
 					finish();
 				} else {
+					
+					if(currentQuestionIndex == totalQuestions-1)
+					{
+						nextButton.setEnabled(false);
+						//nextButton.setBackgroundColor(getResources().getColor(R.color.babyblue));
+					}
+					else
+					{
+						nextButton.setEnabled(true);
+					}
 					setQuestionView();
 				}
 			}
@@ -113,6 +129,8 @@ public class AttemptQuiz extends Activity {
 			@Override
 			public void onClick(View v) {
 				
+				SharedPreferences preferences = getSharedPreferences("QUIZ_APT_PREFS", 0);
+				preferences.edit().remove("ATTEMPT_ID").commit();
 				Intent intent = new Intent(AttemptQuiz.this, ReceiveScore.class);
 				intent.putExtra(Utility.ATTEMPT_ID, attemptId);
 				intent.putExtra(Utility.QUIZ_ID, quizId);
@@ -130,6 +148,7 @@ public class AttemptQuiz extends Activity {
 				if(currentQuestionIndex == 0) 
 				{
 					prevButton.setEnabled(false);
+					//prevButton.setBackgroundColor(getResources().getColor(R.color.babyblue));
 				}
 				else
 				{
@@ -176,10 +195,21 @@ public class AttemptQuiz extends Activity {
 		if(currentQuestionIndex == 0) 
 		{
 			prevButton.setEnabled(false);
+			//prevButton.setBackgroundColor(getResources().getColor(R.color.babyblue));
 		}
 		else
 		{
 			prevButton.setEnabled(true);
+		}
+		
+		if(currentQuestionIndex == totalQuestions-1)
+		{
+			nextButton.setEnabled(false);
+			//nextButton.setBackgroundColor(getResources().getColor(R.color.babyblue));
+		}
+		else
+		{
+			nextButton.setEnabled(true);
 		}
 		
 		optList = allOptions.get(currentQuestionIndex);	
@@ -216,6 +246,7 @@ public class AttemptQuiz extends Activity {
 				.setCancelable(false)
 				.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog,int id) {
+						spa.saveAttemptId(attemptId);
 						AttemptQuiz.this.finish();
 					}
 				  })

@@ -31,5 +31,6 @@
     <string name="title_activity_view_attempted_quiz">ViewAttemptedQuiz</string>
     <string name="title_activity_score_board_previous_attempt">Score Board</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_resume_quiz">Quiz</string>
 
 </resources>

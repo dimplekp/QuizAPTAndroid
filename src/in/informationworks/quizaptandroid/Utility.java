@@ -9,5 +9,5 @@ public class Utility {
 	public final static String ATTEMPT_ID = "ATTEMPT ID";
 	public final static String USER_ID = "USER ID";
 	public final static String QUIZ_NAME = "QUIZ NAME";
-	
+	public final static String SP_ATTEMPT_ID = "ATTEMPT ID IN SP";
 }

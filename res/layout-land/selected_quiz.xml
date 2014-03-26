@@ -23,14 +23,14 @@
         android:layout_height="wrap_content"
         android:text="Quiz name :"
         android:textColor="@color/white"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <TextView
         android:id="@+id/quizName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="50dp"
         android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No. of questions :"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
@@ -58,12 +58,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="70dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
 		android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content">
     
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        
     <LinearLayout
  		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
@@ -77,8 +85,26 @@
         android:layout_height="wrap_content"
         android:textColor="@color/darkgrey"
         android:background="@color/light_grey"
-        android:text="START THE QUIZ" />
+        android:text="START" />
 
+    </LinearLayout>
+    
+    <LinearLayout
+ 		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin" >
+    	
+    	<Button 
+    	    android:id="@+id/resumeAttempt"
+    	    android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_marginTop="20dp"
+        	android:background="@color/light_grey"
+        	android:textColor="@color/darkgrey"
+        	android:text="RESUME" />
+    
     </LinearLayout>
     
     <LinearLayout
@@ -98,5 +124,6 @@
         	android:text="REVIEW PREVIOUS ATTEMPTS" />
     
     </LinearLayout>
-    
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

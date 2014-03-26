@@ -115,6 +115,10 @@
             android:name="in.informationworks.quizaptandroid.ReceiveScore"
             android:label="@string/title_activity_score_board" >
         </activity>
+        <activity
+            android:name="in.informationworks.quizaptandroid.ResumeQuiz"
+            android:label="@string/title_activity_resume_quiz" >
+        </activity>
     </application>
 
 </manifest>
