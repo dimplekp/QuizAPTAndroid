@@ -25,14 +25,6 @@ public class SPAccess {
 		return pref.getLong("USER_ID", 0);
 	}
 	
-	public void saveAttemptId(long attemptId) {
-		editor.putLong("ATTEMPT_ID", attemptId);
-		editor.commit();
-	}
-	
-	public long getAttemptId() {
-		return pref.getLong("ATTEMPT_ID", 0);
-	}
 	
 	public void saveQuizName(String QuizName) {
 		editor.putString("Quiz_Name", QuizName);

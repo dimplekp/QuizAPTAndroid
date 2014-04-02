@@ -39,6 +39,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String ATTEMPT_USER_ID = "user_id";
 	public static final String ATTEMPT_QUIZ_ID = "quiz_id";
 	public static final String ATTEMPT_DATE_AND_TIME = "date_and_time";
+	public static final String ATTEMPT_QUE_ID = "que_id";
+	public static final String ATTEMPT_IS_ATTEMPTED = "is_attempted";
 	
 	public static final String ATTEMPT_DETAIL_ID = "_id";
 	public static final String ATTEMPT_DETAIL_OPTION_ID = "option_id";

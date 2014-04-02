@@ -85,24 +85,6 @@ public class DataAccess {
 	 	 }
 	}
 	
-	//Checks if answer is correct or not
-	public boolean checkCorrectnessOfAnswer(long optId) {
-		boolean isCorrect = false;
-		SQLiteDatabase db = dbHelper.getReadableDatabase();
-		String[] columns = {"correct"};
-		String selection = "_id = ?";
-		String[] selectionArg = {String.valueOf(optId)};
-		
-		Cursor cursor = null;
-		cursor = db.query(DBHelper.OPTION_TABLE_NAME, columns, selection, selectionArg, null, null, null);
-		if(cursor.getCount()  > 0) {
-			cursor.moveToFirst();
-			//trueOrFalse = cursor.getString(cursor.getColumnIndex("correct"));
-			isCorrect = cursor.getString(cursor.getColumnIndex("correct")).equalsIgnoreCase("true");
-		}
-		cursor.close();
-		return isCorrect;
-	}
 	/*
 	 Checks before creating a new user if user with the same email id exists or not.
 	 */
@@ -445,13 +427,15 @@ public class DataAccess {
 		return question;
 	}
     
-    public long insertQuizAttempt(long quizId, long userId, String currentDateandTime) {
+    public long insertQuizAttempt(long quizId, long userId, String currentDateandTime, long queId, boolean isAttempted) {
 		long id = -1;
 		try {
 			ContentValues values = new ContentValues();
 			values.put("quiz_id", quizId);
 			values.put("user_id", userId);
 			values.put("date_and_time", currentDateandTime);
+			values.put("que_id", queId);
+			values.put("is_attempted", isAttempted);
 			
 			db = dbHelper.getWritableDatabase();
 			id = db.insert(DBHelper.ATTEMPTS_TABLE_NAME, null, values);
@@ -460,6 +444,29 @@ public class DataAccess {
 		}
 		return id;
 	}
+    
+    public void updateAttempt(long queId, long attemptId) {
+    	ContentValues values = new ContentValues();
+    	String whereClause = "_id=?";
+		String[] whereArgs = {String.valueOf(attemptId)};
+    	
+    	values.put("que_id", queId);
+    	values.put("is_attempted", false);
+    	
+    	db = dbHelper.getWritableDatabase();
+    	db.update(DBHelper.ATTEMPTS_TABLE_NAME, values, whereClause, whereArgs);
+    }
+    
+    public void updateAttemptCompleteTrue(long attemptId) {
+    	ContentValues values = new ContentValues();
+    	String whereClause = "_id=?";
+		String[] whereArgs = {String.valueOf(attemptId)};
+		
+		values.put("is_attempted", true);
+		
+		db = dbHelper.getWritableDatabase();
+    	db.update(DBHelper.ATTEMPTS_TABLE_NAME, values, whereClause, whereArgs);
+    }
     
 	public void insertAttemptDetail(long attemptId, long optionId) {
 		try {
@@ -522,15 +529,27 @@ public class DataAccess {
 		return queId;
 	}
 	
-	
+	public Attempt getPendingAttempt(long quizId, long userId) {
+		Attempt attempt = null;
+		db = dbHelper.getReadableDatabase();
+		Cursor cursor = db.rawQuery("select * from "
+				+ DBHelper.ATTEMPTS_TABLE_NAME
+				+ " where quiz_id = " + String.valueOf(quizId) 
+				+ " AND is_attempted = 'false' AND user_id = " + String.valueOf(userId), null );
+		cursor.moveToFirst();
+		while (!cursor.isAfterLast()) {
+			attempt = cursorToAttempt(cursor);
+			cursor.moveToNext();
+		}
+		return attempt;
+	}
 	
 	public List<Attempt> getAllAttempts(long userId) {
     	List<Attempt> attemptList = new ArrayList<Attempt>();
     	try {
     		db = dbHelper.getReadableDatabase();
     		Cursor cursor = db.rawQuery("select * from "
-    				+ DBHelper.ATTEMPTS_TABLE_NAME
-    				+ " where user_id = " + String.valueOf(userId), null);
+    				+ DBHelper.ATTEMPTS_TABLE_NAME , null);
     		cursor.moveToFirst();
     		while(!cursor.isAfterLast()) {
     			Attempt attempt = cursorToAttempt(cursor);
@@ -648,6 +667,8 @@ public class DataAccess {
 		attempt.setAttemptId(cursor.getInt(cursor.getColumnIndex(DBHelper.ATTEMPT_ID)));
 		attempt.setQuizId(cursor.getLong(cursor.getColumnIndex(DBHelper.ATTEMPT_QUIZ_ID)));
 		attempt.setDateAndTime(cursor.getString(cursor.getColumnIndex(DBHelper.ATTEMPT_DATE_AND_TIME)));
+		attempt.setQueId(cursor.getLong(cursor.getColumnIndex(DBHelper.ATTEMPT_QUE_ID)));
+		attempt.setIsAttempted(Boolean.getBoolean(cursor.getString((cursor.getColumnIndex(DBHelper.ATTEMPT_IS_ATTEMPTED)))));
 		return attempt;
 	}
 	

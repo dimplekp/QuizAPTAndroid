@@ -1,15 +1,14 @@
 package in.informationworks.quizaptandroid.models;
 
-import android.content.Context;
-import in.informationworks.quizaptandroid.DataAccess;
-
 public class Attempt {
 	
 	private String quizAttemptname;
 	private long attemptId;
 	private long quizId;
 	private long userId;
+	private long queId;
 	private String dateAndTime;
+	boolean isAttempted;
 	
 	public long getAttemptId() {
 		return attemptId;
@@ -51,4 +50,17 @@ public class Attempt {
 		return String.valueOf(quizId);
 	}
 	
+	public long getQueId() {
+		return queId;
+	}
+	public void setQueId(long queId) {
+		this.queId = queId;
+	}
+	
+	public boolean getIsAttempted() {
+		return isAttempted;
+	}
+	public void setIsAttempted(boolean isAttempted) {
+		this.isAttempted = isAttempted;
+	}
 }

@@ -1,6 +1,7 @@
 package in.informationworks.quizaptandroid;
 
 import in.informationworks.quizaptandroid.R;
+import in.informationworks.quizaptandroid.models.Attempt;
 import in.informationworks.quizaptandroid.models.Quiz;
 import android.os.Bundle;
 import android.app.Activity;
@@ -76,8 +77,7 @@ public class QuizDetails extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				
-				if(spa.getAttemptId() == 0) {
+				if(dao.getPendingAttempt(quizId, userId) == null) {
 					Toast.makeText(getApplicationContext(), "No pending Quiz", Toast.LENGTH_SHORT).show();
 				}
 				else {
@@ -85,6 +85,8 @@ public class QuizDetails extends Activity {
 					attemptListIntent.putExtra(Utility.QUIZ_ID, quiz.getId());
 					attemptListIntent.putExtra(Utility.USER_ID, userId);
 					attemptListIntent.putExtra(Utility.NO_OF_QUESTIONS, no_of_questions);
+					attemptListIntent.putExtra(Utility.ATTEMPT_ID, dao.getPendingAttempt(quizId, userId).getAttemptId());
+					attemptListIntent.putExtra(Utility.QUE_ID, dao.getPendingAttempt(quizId, userId).getQueId());
 					startActivity(attemptListIntent);
 				}
 			}
